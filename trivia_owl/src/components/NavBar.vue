@@ -10,8 +10,8 @@
         <b-dropdown-item>Notificações(modal)</b-dropdown-item>
         <b-dropdown-item><router-link :to="{ name: 'UserManagement' }">Gerir Utilizadores</router-link></b-dropdown-item>
         <b-dropdown-item><router-link :to="{ name: 'ActivityManagement' }">Gerir Atividades</router-link></b-dropdown-item>
-        <b-dropdown-item><router-link :to="{ name: 'Home' }">Home</router-link></b-dropdown-item>
-        <b-dropdown-item><router-link :to="{ name: 'Home' }">Home</router-link></b-dropdown-item>
+        <b-dropdown-item><router-link :to="{ name: 'Team' }">Equipa</router-link></b-dropdown-item>
+        <b-dropdown-item>Login (modal)</b-dropdown-item>
       </b-dropdown>
     </div>
   </div>

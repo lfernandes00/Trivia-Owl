@@ -1,6 +1,6 @@
 <template>
-  <div id="activities">
-    
+  <div id="AddActivity">
+      
   </div>
 </template>
 
