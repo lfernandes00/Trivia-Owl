@@ -1,6 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Activities from "../views/Activities.vue";
+import Classification from "../views/Classification.vue";
+import Interaction from "../views/Interaction.vue";
+import Profile from "../components/Profile.vue";
+import UserManagement from "../views/UserManagement.vue";
+import ActivityManagement from "../components/ActivityManagement.vue";
 
 Vue.use(VueRouter);
 
@@ -11,13 +17,34 @@ const routes = [
     component: Home
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    path: "/activities",
+    name: "Activities",
+    component: Activities
+  },
+  {
+    path: "/classification",
+    name: "Classification",
+    component: Classification
+  },
+  {
+    path: "/interaction",
+    name: "Interaction",
+    component: Interaction
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: Profile
+  },
+  {
+    path: "/admin/userManagement",
+    name: "UserManagement",
+    component: UserManagement 
+  },
+  {
+    path: "/admin/ActivityManagement",
+    name: "ActivityManagement",
+    component: ActivityManagement 
   }
 ];
 
