@@ -8,7 +8,7 @@
 export default {
 name: 'EditActivity',
 }
-// name
+
 </script>
 
 <style>
