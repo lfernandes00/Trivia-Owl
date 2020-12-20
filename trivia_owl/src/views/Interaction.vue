@@ -1,7 +1,6 @@
 <template>
   <div id="Interaction">
-      
-  </div>
+    </div>
 </template>
 
 <script>

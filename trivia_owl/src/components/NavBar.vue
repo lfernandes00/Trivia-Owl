@@ -1,6 +1,6 @@
 <template>
   <div id="navbar">
-    <!-- <router-link :to="{ name: 'Home' }">Home</router-link> |
+    <!-- <router-link :to="{ name: 'Home' }">Home</router-link> 
     <router-link :to="{ name: 'Activities' }">Actividades</router-link> |
     <router-link :to="{ name: 'Classification' }">Classificação</router-link> |
     <router-link :to="{ name: 'Interaction' }">Interação</router-link> |
@@ -14,7 +14,7 @@
       </b-dropdown> -->
 
     <b-navbar toggleable="lg" style="height: 60px">
-      <router-link :to="{ name: 'Home' }"><img src="" alt=""></router-link>
+      <router-link :to="{ name: 'Home' }">HOME</router-link>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 

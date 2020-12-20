@@ -6,7 +6,7 @@
 
 <script>
 export default {
-name: 'ActivityClassification',
+name: "ActivityClassification",
 }
 </script>
 
