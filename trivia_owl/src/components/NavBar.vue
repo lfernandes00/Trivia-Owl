@@ -12,6 +12,7 @@
         <b-dropdown-item><router-link :to="{ name: 'Team' }">Equipa</router-link></b-dropdown-item>
         <b-dropdown-item>Login (modal)</b-dropdown-item>
       </b-dropdown> -->
+      
 
     <b-navbar toggleable="lg" style="height: 60px">
       <router-link :to="{ name: 'Home' }">HOME</router-link>
@@ -41,8 +42,10 @@
 </template>
 
 <script>
+
 export default {
   name: "NavBar",
+
 };
 </script>
 
