@@ -27,10 +27,10 @@
           <router-link id='secondNav'  :to="{ name: 'Classification' }"><p class="mt-3">Classificação</p></router-link>
           <router-link id="thirdNav"  :to="{ name: 'Interaction' }"><p class="mt-3">Interação</p></router-link>
               
-          <b-nav-item-dropdown right class="mr-2 mt-2">
+          <b-nav-item-dropdown right class="mr-2">
             <!-- Using 'button-content' slot -->
             <template #button-content>
-              <em><img src="" alt=""></em>
+              <em><b-avatar icon="people-fill"></b-avatar></em>
             </template>
             <b-dropdown-item href="#">Profile</b-dropdown-item>
             <b-dropdown-item href="#">Sign Out</b-dropdown-item>

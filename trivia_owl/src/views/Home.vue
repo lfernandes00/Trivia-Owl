@@ -34,13 +34,15 @@
   </div>
   <b-row>
     <b-col>
+      <h4>Utilizadores</h4>
       <div>
-       <b-table :items="items"></b-table>
+       <b-table id="userTable" :items="users" :fields='fields1'></b-table>
       </div>
     </b-col>
     <b-col>
+      <h4>Atividades</h4>
       <div>
-<b-table :items="item"></b-table>
+<b-table id="activitiesTable" :items="activities" :fields='fields2'></b-table>
       </div>
       
     </b-col>
@@ -55,17 +57,37 @@ export default {
   name: "Home",
   data() {
     return {
-      items: [
-          { age: 40, first_name: 'João', last_name: 'Pedro' },
-          { age: 21, first_name: 'Maria', last_name: 'Joaquina' },
-          { age: 89, first_name: 'José', last_name: 'Silva' }
+      fields1: ['nome', 'pontos', 'nível'],
+      users: [
+          { nome: 'João Félix', pontos: 5000, nível: 10},
+          { nome: 'Paula Santos', pontos: 4500, nível: 9},
+          { nome: 'Raquel Soares', pontos: 4120, nível: 7}
         ],
-      item: [
-          { age: 40, first_name: 'João', last_name: 'Pedro' },
-          { age: 21, first_name: 'Maria', last_name: 'Joaquina' },
-          { age: 89, first_name: 'José', last_name: 'Silva' }
+        fields2: ['nome', 'curso', 'gostos'],
+      activities: [
+          { nome: 'Atividade 1', curso: 'TSIW', gostos: 10 },
+          { nome: 'Atividade 2', curso: 'Fotografia', gostos: 6 },
+          { nome: 'Atividade 3', curso: 'Multimédia', gostos: 2 }
         ]
     }
   }
 };
 </script>
+
+<style>
+h4 {
+  color: #FF7070;
+}
+
+#userTable {
+  color: white;
+}
+
+table th {
+  color:#FF7070;
+}
+
+#activitiesTable {
+  color: white;
+}
+</style>
