@@ -66,6 +66,7 @@ export default {
 #firstNav:hover {
   background-color: #6FFFE9;
   color: #1c2541;
+  text-decoration: none;
 }
 
 #secondNav {
@@ -75,11 +76,13 @@ export default {
   height: 60px;
   width: 150px;
   color: #6FFFE9;
+  
 }
 
 #secondNav:hover {
   background-color: #6FFFE9;
   color: #1c2541;
+  text-decoration: none;
 }
 
 #thirdNav {
@@ -94,6 +97,7 @@ export default {
 #thirdNav:hover {
   background-color: #6FFFE9;
   color: #1c2541;
+  text-decoration: none;
 }
 
 /* p {
