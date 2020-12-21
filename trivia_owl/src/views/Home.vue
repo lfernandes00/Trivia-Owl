@@ -27,12 +27,8 @@
       <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide>
 
     </b-carousel>
-
-    <p class="mt-4">
-      Titulo da noticia
-    </p>
   </div>
-  <b-row>
+  <b-row class="mt-5">
     <b-col>
       <h4>Utilizadores</h4>
       <div>

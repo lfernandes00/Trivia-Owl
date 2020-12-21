@@ -15,7 +15,7 @@
       
 
     <b-navbar toggleable="lg" style="height: 60px">
-      <router-link :to="{ name: 'Home' }">HOME</router-link>
+      <router-link :to="{ name: 'Home' }"><img id="logo" src="../assets/logo_trivia_owl_escuro.png"></router-link>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -32,7 +32,7 @@
             <template #button-content>
               <em><b-avatar icon="people-fill"></b-avatar></em>
             </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
+            <b-dropdown-item href="#"><router-link :to="{ name: 'Profile' }">Perfil</router-link></b-dropdown-item>
             <b-dropdown-item href="#">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -98,6 +98,11 @@ export default {
   background-color: #6FFFE9;
   color: #1c2541;
   text-decoration: none;
+}
+
+#logo {
+  width: 50px;
+  height: 60px;
 }
 
 /* p {
