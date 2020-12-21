@@ -36,13 +36,13 @@
     <b-col>
       <h4>Utilizadores</h4>
       <div>
-       <b-table id="userTable" :items="users" :fields='fields1'></b-table>
+        <b-table id="userTable" :items="users" :fields='fields1'></b-table>
       </div>
     </b-col>
     <b-col>
       <h4>Atividades</h4>
       <div>
-<b-table id="activitiesTable" :items="activities" :fields='fields2'></b-table>
+        <b-table id="activitiesTable" :items="activities" :fields='fields2'></b-table>
       </div>
       
     </b-col>
