@@ -1,3 +1,4 @@
+
 <template>
   <div id="app">
     <NavBar></NavBar>
@@ -38,3 +39,5 @@ export default {
   color: #42b983;
 }
 </style>
+
+// primeiro comenário
