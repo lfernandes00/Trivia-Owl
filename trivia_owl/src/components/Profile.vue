@@ -26,7 +26,11 @@
             
           </b-col>
           <b-col cols="6" class="mt-5" style="padding: 0px; width: 500px">
-            <b-table id="activitiesTable" :items="history" :fields='fields'></b-table>
+            <b-table id="activitiesTable" :items="history" :fields='fields'>
+              <template #cell(actions)="row">
+                <b-button pill size="md" @click="row.item" class="mr-1 btn btn-danger">Ir</b-button>
+              </template>
+            </b-table>
           </b-col>
         </b-row>
 
@@ -54,7 +58,7 @@ export default {
 name: 'Profile',
     data() {
       return {
-fields: ['nome' , 'curso', 'pontos'],
+fields: ['nome' , 'curso', 'pontos', 'actions'],
       history: [
         {nome: 'Atividade 1', curso: 'TSIW', pontos: 35},
         {nome: 'Atividade 2', curso: 'Multimédia', pontos: 50}
