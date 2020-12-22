@@ -52,7 +52,7 @@ export default {
   name: "Home",
   data() {
     return {
-      fields1: ["nome", "pontos", "nível"],
+      fields1: [ "nome", "pontos", "nível"],
       users: [
         { nome: "João Félix", pontos: 5000, nível: 10 },
         { nome: "Paula Santos", pontos: 4500, nível: 9 },
