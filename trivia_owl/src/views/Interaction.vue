@@ -1,14 +1,11 @@
 <template>
-  <div id="Interaction">
-    </div>
+  <div id="Interaction"></div>
 </template>
 
 <script>
 export default {
-name: 'Interaction',
-}
+  name: "Interaction"
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

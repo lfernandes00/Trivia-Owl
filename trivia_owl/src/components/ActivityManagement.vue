@@ -1,15 +1,13 @@
 <template>
   <div id="ActivityManagement">
-      <router-link :to="{ name: 'EditActivity'}">Atividade 1</router-link>
+    <router-link :to="{ name: 'EditActivity' }">Atividade 1</router-link>
   </div>
 </template>
 
 <script>
 export default {
-name: 'ActivityManagement',
-}
+  name: "ActivityManagement"
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

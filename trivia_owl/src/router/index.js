@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-
 //views
 import Home from "../views/Home.vue";
 import Classification from "../views/Classification.vue";
@@ -55,52 +54,52 @@ const routes = [
   {
     path: "/admin/userManagement",
     name: "UserManagement",
-    component: UserManagement 
+    component: UserManagement
   },
   {
     path: "/admin/ActivityManagement",
     name: "ActivityManagement",
-    component: ActivityManagement 
+    component: ActivityManagement
   },
   {
     path: "/team",
     name: "Team",
-    component: Team 
+    component: Team
   },
   {
     path: "/activity/add",
     name: "AddActivity",
-    component: AddActivity 
+    component: AddActivity
   },
   {
     path: "/activity/activityId",
     name: "Activity",
-    component: Activity 
+    component: Activity
   },
   {
     path: "/activity/activityId/classification",
     name: "ActivityClassification",
-    component: ActivityClassification 
+    component: ActivityClassification
   },
   {
     path: "/activity/activityId/solve",
     name: "ActivitySolve",
-    component: ActivitySolve 
+    component: ActivitySolve
   },
   {
     path: "/admin/activityManagement/activityId/edit",
     name: "EditActivity",
-    component: EditActivity 
+    component: EditActivity
   },
   {
     path: "/profile/trophies",
     name: "Trophies",
-    component: Trophies 
+    component: Trophies
   },
   {
     path: "/profile/edit",
     name: "EditProfile",
-    component: EditProfile 
+    component: EditProfile
   },
   {
     path: "/profile/addTeam",

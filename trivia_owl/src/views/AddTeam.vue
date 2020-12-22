@@ -1,15 +1,11 @@
 <template>
-  <div id="addTeam">
-      
-  </div>
+  <div id="addTeam"></div>
 </template>
 
 <script>
 export default {
-name: 'AddTeam',
-}
+  name: "AddTeam"
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

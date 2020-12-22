@@ -1,15 +1,11 @@
 <template>
-  <div id="AddActivity">
-      
-  </div>
+  <div id="AddActivity"></div>
 </template>
 
 <script>
 export default {
-name: 'AddActivity',
-}
+  name: "AddActivity"
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
