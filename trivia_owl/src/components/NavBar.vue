@@ -44,17 +44,33 @@
                 >Perfil</router-link
               ></b-dropdown-item
             >
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+            <b-dropdown-item href="#">Entrar</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
+
+    <dialog id='dlgLogin'>
+            <input type="text" id="txtSubmit">
+        </dialog>
   </div>
 </template>
 
 <script>
 export default {
-  name: "NavBar"
+  name: "NavBar",
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+    openLogin() {
+            // Exibir a janela 
+            document.querySelector('#dlgLogin').showModal()
+
+        },
+  }
 };
 </script>
 
