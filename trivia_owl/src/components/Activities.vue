@@ -1,78 +1,85 @@
 <template>
-  <div id="activities" class="mt-5">
-    <b-container>
+  <div id="activities" class="">
+    <b-container fluid>
+      <div id="btnDiv" class="mr-4">
+        <router-link :to="{ name: 'AddActivity' }"><b-button  pill id="addBtn" class="btn btn-primary mt-4">+</b-button></router-link>
+      </div>
+  
+      <br>
       <b-card-group>
-        <b-card
+        <router-link :to="{ name: 'Activity' }">
+          <b-card
           img-src="https://picsum.photos/300/300/?image=41"
           img-alt="nome"
           img-top
           img-width="300px"
-          img-height="200px"
+          img-height="300px"
           tag="article"
-          style="max-width: 20rem; width: 300px; height: 200px"
-          class="ml-4 mb-2 mr-4"
+          style=" width: 330px; height: 300px; border-radius: 10%"
+          class="ml-4 mb-2 mr-3 mt-3"
         >
-          <b-card-text
-            ><router-link :to="{ name: 'Activity' }"
-              >Atividade 1</router-link
-            ></b-card-text
-          >
         </b-card>
+        </router-link>
 
-        <b-card
+        
+        <router-link :to="{ name: 'Activity' }">
+          <b-card
           img-src="https://picsum.photos/300/300/?image=41"
           img-alt="nome"
           img-top
           img-width="300px"
-          img-height="200px"
+          img-height="300px"
           tag="article"
-          style="max-width: 20rem; width: 300px; height: 200px"
-          class="ml-4 mb-2 mr-4"
+          style=" width: 330px; height: 300px; border-radius: 10%"
+          class="ml-4 mb-2 mr-3 mt-3"
         >
-          <b-card-text
-            ><router-link :to="{ name: 'Activity' }"
-              >Atividade 1</router-link
-            ></b-card-text
-          >
         </b-card>
+        </router-link>
+        
 
-        <b-card
+        <router-link :to="{ name: 'Activity' }">
+          <b-card
           img-src="https://picsum.photos/300/300/?image=41"
           img-alt="nome"
           img-top
           img-width="300px"
-          img-height="200px"
+          img-height="300px"
           tag="article"
-          style="max-width: 20rem; width: 300px; height: 200px"
-          class="ml-4 mb-2 mr-4"
+          style=" width: 330px; height: 300px; border-radius: 10%"
+          class="ml-4 mb-2 mr-3 mt-3"
         >
-          <b-card-text
-            ><router-link :to="{ name: 'Activity' }"
-              >Atividade 1</router-link
-            ></b-card-text
-          >
         </b-card>
+        </router-link>
 
-        <b-card
+        <router-link :to="{ name: 'Activity' }">
+          <b-card
           img-src="https://picsum.photos/300/300/?image=41"
           img-alt="nome"
           img-top
           img-width="300px"
-          img-height="200px"
+          img-height="300px"
           tag="article"
-          style="max-width: 20rem; width: 300px; height: 200px"
-          class="ml-4 mb-2 mr-4"
+          style=" width: 330px; height: 300px; border-radius: 10%"
+          class="ml-4 mb-2 mr-3 mt-3"
         >
-          <b-card-text
-            ><router-link :to="{ name: 'Activity' }"
-              >Atividade 1</router-link
-            ></b-card-text
-          >
-        </b-card> </b-card-group
-      ><br /><br />
-      <router-link :to="{ name: 'AddActivity' }"
-        ><button id="addBtn" class="btn btn-primary">+</button></router-link
-      >
+        </b-card>
+        </router-link> 
+
+        <router-link :to="{ name: 'Activity' }">
+          <b-card
+          img-src="https://picsum.photos/300/300/?image=41"
+          img-alt="nome"
+          img-top
+          img-width="300px"
+          img-height="300px"
+          border-radius='12%'
+          tag="article"
+          style=" width: 330px; height: 300px; border-radius: 10%"
+          class="ml-4 mb-2 mr-3 mt-3"
+        >
+        </b-card>
+        </router-link> 
+        </b-card-group>
     </b-container>
   </div>
 </template>
@@ -86,8 +93,16 @@ export default {
 <style>
 #addBtn {
   width: 100px;
-  height: 90px;
+  height: 50px;
   background-color: #ff7070;
-  color: white;
+}
+
+#btnDiv {
+  display: flex;
+  justify-content: flex-end;
+}
+
+img {
+  border-radius: 10%;
 }
 </style>
