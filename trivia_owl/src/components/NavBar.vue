@@ -37,22 +37,67 @@
           <b-nav-item-dropdown right class="mr-2">
             <!-- Using 'button-content' slot -->
             <template #button-content>
-              <em><b-avatar icon="people-fill"></b-avatar></em>
+              <em><b-avatar :src="getUser.photo"></b-avatar></em>
             </template>
             <b-dropdown-item href="#"
               ><router-link :to="{ name: 'Profile' }"
                 >Perfil</router-link
               ></b-dropdown-item
             >
-            <b-dropdown-item href="#">Entrar</b-dropdown-item>
+            <b-dropdown-item href="#"><b-button v-b-modal.modalLogin >Entrar</b-button></b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
 
-    <dialog id='dlgLogin'>
-            <input type="text" id="txtSubmit">
-        </dialog>
+    <!-- modal Login -->
+    <b-modal style="background-color: #0B132B" id="modalLogin" title="Login">
+    <form @submit.prevent='Login'>
+        <label for="txtUsername">Nome de Utilizador</label><br>
+        <input type="text" id="txtUsername" v-model="login.username"><br>
+
+        <label for="txtPassword">Palavra Passe</label><br>
+        <input type="password" id="txtPassword" v-model='login.password'><br><br>
+
+        <input type="submit" value="Entrar">
+        <b-button v-b-modal.modalRegister @click='openRegister()'>Registar</b-button>
+    </form>
+  </b-modal>
+
+  <!-- modal Registo -->
+  <b-modal style="background-color: #0B132B" id="modalRegister" title="Registo">
+    <form @submit.prevent='regist'>
+        <label for="txtUsername">Nome de Utilizador</label><br>
+        <input type="text" id="txtUsername"><br>
+
+        <label for="txtPassword">Palavra Passe</label><br>
+        <input type="password" id="txtPassword" ><br><br>
+
+        <label for="txtPassword2">Confirmar Palavra Passe</label><br>
+        <input type="password" id="txtPassword2" ><br><br>
+
+        <label for="txtName">Nome</label><br>
+        <input type="text" id="txtName" ><br><br>
+
+        <label for="txtBirthDate">Data Nascimento</label><br>
+        <input type="date" id="txtBirthDate" ><br><br>
+
+        <label for="txtCourse">Curso</label><br>
+        <input type="text" id="txtCourse" ><br><br>
+
+        <label for="photo">foto</label><br>
+        <input type="url" id="photo" ><br><br>
+
+        <label for="txtType">Tipo de Utilizador</label><br>
+        <select id="txtType">
+          <option value="student">Estudante</option>
+          <option value="teacher">Docente</option>
+        </select><br><br>
+
+        <input type="submit" value="Entrar">
+        <b-button v-b-modal.modalRegister @click='openRegister()'>Registar</b-button>
+    </form>
+  </b-modal>
   </div>
 </template>
 
@@ -61,15 +106,31 @@ export default {
   name: "NavBar",
   data() {
     return {
+      login: {
+        username: '',
+        password: ''
+      }, 
+      register: {
 
+      }
     }
   },
   methods: {
-    openLogin() {
-            // Exibir a janela 
-            document.querySelector('#dlgLogin').showModal()
-
-        },
+    Login() {
+      try {
+        //chamar a ação login que está na store
+        this.$store.dispatch('login', {username: this.login.username, password: this.login.password})
+        //fechar a modal login
+      } catch (error) {
+        //mudar para sweetalert
+        alert(error)
+      }
+    }
+  },
+  computed: {
+    getUser() {
+      return this.$store.getters.getLoggedUser
+    }
   }
 };
 </script>

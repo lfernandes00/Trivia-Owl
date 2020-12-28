@@ -4,7 +4,7 @@
       <b-row class="mt-5">
         <b-col cols="3">
           <div>
-            <b-img class="ml-4" src="https://picsum.photos/300/300/?image=41" style="width: 330px; height: 300px; border-radius: 10%;display:flex; justify-content: start"></b-img>
+            <b-img class="ml-4" src="https://picsum.photos/300/300/?image=41" style="width: 330px; height: 300px;display:flex; justify-content: start"></b-img>
           </div>
         </b-col>
 
