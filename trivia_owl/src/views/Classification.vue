@@ -102,4 +102,8 @@ h1 {
   color: white;
   font-weight: bold;
 }
+
+#activitiesTable {
+  color: white;
+}
 </style>

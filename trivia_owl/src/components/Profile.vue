@@ -7,7 +7,7 @@
     <b-container fluid>
       <b-row class="mt-5">
         <b-col cols="4"
-          ><b-avatar icon="people-fill" size="200px"></b-avatar
+          ><b-avatar :src="getUser.photo" size="200px"></b-avatar
         ></b-col>
         <b-col cols="6" class="mt-5">
           <h6>Nível</h6>
@@ -24,14 +24,14 @@
         <b-col cols="1"></b-col>
         <b-col cols="3" class="mt-5 ml-3">
           <div style="text-align: start">
-            <b class="mr-4">Nome: </b> <strong>João Félix</strong> <br /><br />
-            <b class="mr-4">Idade: </b> <strong>21</strong> <br /><br />
-            <b class="mr-4">Curso: </b> <strong>TSIW</strong> <br /><br />
-            <b class="mr-3">Equipa: </b> <strong>TSIW_4ever</strong><br />
+            <b class="mr-4">Nome: </b> <strong>{{getUser.name}}</strong> <br /><br />
+            <b class="mr-4">Idade: </b> <strong>{{getUser.birthDate}}</strong> <br /><br />
+            <b class="mr-4">Curso: </b> <strong>{{getUser.course}}</strong> <br /><br />
+            <b class="mr-4">Tipo: </b> <strong>{{getUser.type}}</strong><br />
           </div>
         </b-col>
         <b-col cols="6" class="mt-5" style="padding: 0px; width: 500px">
-          <b-table id="activitiesTable" :items="history" :fields="fields">
+          <b-table id="historyTable" :items="history" :fields="fields">
             <template #cell(actions)="row">
               <b-button
                 pill
@@ -84,11 +84,16 @@ export default {
         { nome: "Atividade 2", curso: "Multimédia", pontos: 50 }
       ]
     };
+  },
+  computed: {
+    getUser() {
+      return this.$store.getters.getLoggedUser
+    }
   }
 };
 </script>
 
-<style>
+<style scoped>
 h6 {
   color: #70ffb4;
 }
@@ -104,5 +109,9 @@ b-button pill {
 }
 p {
   color: #00b89c;
+}
+
+#historyTable {
+  color: white;
 }
 </style>

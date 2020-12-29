@@ -89,4 +89,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+
+  #activitiesTable {
+    color: white;
+  }
+  
+  .table thead th {
+    color: #ff7070;
+  }
+</style>

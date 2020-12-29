@@ -66,36 +66,35 @@
 
   <!-- modal Registo -->
   <b-modal style="background-color: #0B132B" id="modalRegister" title="Registo">
-    <form @submit.prevent='regist'>
+    <form @submit.prevent='Register'>
         <label for="txtUsername">Nome de Utilizador</label><br>
-        <input type="text" id="txtUsername"><br>
+        <input type="text" id="txtUsername" v-model='register.username'><br>
 
         <label for="txtPassword">Palavra Passe</label><br>
-        <input type="password" id="txtPassword" ><br><br>
+        <input type="password" id="txtPassword" v-model='register.password'><br><br>
 
         <label for="txtPassword2">Confirmar Palavra Passe</label><br>
-        <input type="password" id="txtPassword2" ><br><br>
+        <input type="password" id="txtPassword2" v-model='register.password2'><br><br>
 
         <label for="txtName">Nome</label><br>
-        <input type="text" id="txtName" ><br><br>
+        <input type="text" id="txtName" v-model='register.name'><br><br>
 
         <label for="txtBirthDate">Data Nascimento</label><br>
-        <input type="date" id="txtBirthDate" ><br><br>
+        <input type="date" id="txtBirthDate" v-model='register.birthDate'><br><br>
 
         <label for="txtCourse">Curso</label><br>
-        <input type="text" id="txtCourse" ><br><br>
+        <input type="text" id="txtCourse" v-model='register.course'><br><br>
 
         <label for="photo">foto</label><br>
-        <input type="url" id="photo" ><br><br>
+        <input type="url" id="photo" v-model='register.photo'><br><br>
 
         <label for="txtType">Tipo de Utilizador</label><br>
-        <select id="txtType">
+        <select id="txtType" v-model='register.type' required>
           <option value="student">Estudante</option>
           <option value="teacher">Docente</option>
         </select><br><br>
 
-        <input type="submit" value="Entrar">
-        <b-button v-b-modal.modalRegister @click='openRegister()'>Registar</b-button>
+        <input type="submit" value="Registar">
     </form>
   </b-modal>
   </div>
@@ -111,7 +110,14 @@ export default {
         password: ''
       }, 
       register: {
-
+        username: '',
+        password: '',
+        password2: '',
+        name: '',
+        birthDate: '',
+        course: '',
+        photo: '',
+        type: ''
       }
     }
   },
@@ -125,6 +131,24 @@ export default {
         //mudar para sweetalert
         alert(error)
       }
+    },
+    Register() {
+      if (this.register.password != this.register.password2) {
+        alert('As palavras passes não são iguais!')
+      }
+      try {
+        this.$store.dispatch('register ', {
+          username: this.register.username,
+          password: this.register.password,
+          name: this.register.name,
+          birthDate: this.register.birthDate,
+          course: this.register.course,
+          photo: this.register.photo,
+          type: this.register.type
+        })
+      } catch (error) {
+        alert(error)
+      }
     }
   },
   computed: {
@@ -135,7 +159,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #navbar {
   background-color: #1c2541;
 }

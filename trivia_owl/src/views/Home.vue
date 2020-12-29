@@ -31,7 +31,7 @@
       </div>
       <b-row class="mt-5">
         <b-col>
-          <h4>Utilizadores</h4>
+          <h4 id="title">Utilizadores</h4>
           <div>
             <b-table
               id="userTable"
@@ -111,8 +111,8 @@ export default {
 };
 </script>
 
-<style>
-h4 {
+<style scoped>
+h4, .h4 {
   color: #ff7070;
 }
 
@@ -120,7 +120,7 @@ h4 {
   color: white;
 }
 
-table th {
+ th {
   color: #ff7070;
 }
 

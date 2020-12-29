@@ -35,8 +35,8 @@
           
         <b-button size="lg" class="mb-2" style="background-color:#70FFB4; color: #0B132B; ">
          <b-icon icon="hand-thumbs-up" ></b-icon>
-        </b-button>
-          <h6 style="color: #FF7070">Gostos: 10</h6>
+        </b-button><br>
+          <b>Gostos: </b> <strong>10</strong>
         </b-col>
         <b-col cols="6"></b-col>
         <b-col cols="3">
@@ -58,5 +58,16 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+img {
+  border-radius: 10%;
+}
+
+b {
+  color: #ff7070;
+}
+
+strong {
+  color: white;
+}
 </style>
