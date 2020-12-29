@@ -16,9 +16,9 @@ import EditProfile from "../views/EditProfile.vue";
 import AddTeam from "../views/AddTeam.vue";
 import TeamClassification from "../views/TeamClassification.vue";
 import EditTeam from "../views/EditTeam.vue";
+import ListActivities from "../views/ListActivities.vue";
 
 //components
-import Activities from "../components/Activities.vue";
 import Profile from "../components/Profile.vue";
 import ActivityManagement from "../components/ActivityManagement.vue";
 import Team from "../components/Team.vue";
@@ -32,9 +32,9 @@ const routes = [
     component: Home
   },
   {
-    path: "/activities",
-    name: "Activities",
-    component: Activities
+    path: "/listactivities",
+    name: "ListActivities",
+    component: ListActivities
   },
   {
     path: "/classification",
@@ -72,7 +72,7 @@ const routes = [
     component: AddActivity
   },
   {
-    path: "/activity/activityId",
+    path: "/activity/:activityId",
     name: "Activity",
     component: Activity
   },

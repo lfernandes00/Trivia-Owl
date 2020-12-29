@@ -24,7 +24,7 @@
         <!-- Right aligned nav items -->
         <!--  class="mt-2 mr-4"-->
         <b-navbar-nav class="ml-auto mr-2">
-          <router-link id="firstNav" :to="{ name: 'Activities' }"
+          <router-link id="firstNav" :to="{ name: 'ListActivities' }"
             ><p class="mt-3">Atividades</p></router-link
           >
           <router-link id="secondNav" :to="{ name: 'Classification' }"
