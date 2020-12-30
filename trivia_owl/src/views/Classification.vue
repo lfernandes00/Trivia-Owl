@@ -30,6 +30,7 @@
 </template>
 
 <script>
+// Preenchimento da tabela com as informações dos utilizadores (classificação, nome, pontos e número de atividades resolvidas)
 export default {
   name: "Classification",
   data() {
@@ -91,6 +92,7 @@ export default {
           atividades_realizadas: 9
         }
       ],
+      // caractrística que retira aas bordas à tabela
       borderless: true
     };
   }
@@ -98,6 +100,7 @@ export default {
 </script>
 
 <style scoped>
+/* Estilização da tabela */
 h1 {
   color: white;
   font-weight: bold;

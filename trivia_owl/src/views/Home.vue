@@ -2,6 +2,7 @@
   <div id="home">
     <b-container>
       <div>
+        <!-- carousel com as suas diferentes características, tamanhos e intervalo de tempo entre imagens -->
         <b-carousel
           id="carousel-1"
           class="mt-5"
@@ -30,6 +31,7 @@
         </b-carousel>
       </div>
       <b-row class="mt-5">
+        <!-- Criação de 2 tabelas, ambas borderless, uma para os utilizadores e outra para as atividades -->
         <b-col>
           <h4 id="title">Utilizadores</h4>
           <div>
@@ -60,6 +62,7 @@
 </template>
 
 <script>
+// Preenchimento das duas tabelas com os três melhores estudantes e com as 3 atividades favoritas
 export default {
   name: "Home",
   data() {
@@ -112,6 +115,7 @@ export default {
 </script>
 
 <style scoped>
+/* Estilização da tabela */
 h4, .h4 {
   color: #ff7070;
 }

@@ -30,7 +30,7 @@
 </template>
 
 <script>
-// Preenchimento da tabela com as informações dos utilizadores e a sua classificação
+// Preenchimento da tabela com as informações dos utilizadores e a sua classificação em prova
 export default {
   name: "ActivityClassification",
   data() {
