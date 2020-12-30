@@ -30,6 +30,7 @@
 </template>
 
 <script>
+// Preenchimento da tabela com as informações dos utilizadores e a sua classificação
 export default {
   name: "ActivityClassification",
   data() {
@@ -90,6 +91,7 @@ export default {
 </script>
 
 <style scoped>
+/* Estilização dos textos da tabela */
 
   #activitiesTable {
     color: white;
