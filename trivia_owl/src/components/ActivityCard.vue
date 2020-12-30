@@ -1,15 +1,25 @@
 <template>
   <div id="activityCard" class="">
     <b-col cols="4">
-      <router-link :to="{ name: 'Activity', params: activity }">
+      <router-link :to="{ name: 'Activity', params: {
+        activityId: activity.id,
+        activityName: activity.name,
+        activityCourse: activity.course,
+        activitySubject: activity.subject,
+        activityPoints: activity.points,
+        activityLevel: activity.level,
+        activityType: activity.type,
+        activityPhoto: activity.photo,
+        activityLikes: activity.likes
+        }}">
           <b-card
           :img-src="activity.photo"
           img-alt="activity.name"
           img-top
           img-width="300px"
-          img-height="300px"
+          img-height="250px"
           tag="article"
-          style=" width: 330px; height: 300px; border-radius: 10%"
+          style=" width: 300px; height: 250px; border-radius: 10%"
           class="ml-4 mb-2 mr-1 mt-3"
         >
         </b-card>

@@ -9,10 +9,11 @@ export default new Vuex.Store({
       {id: 1, username: 'admin', password: 'admin', name: 'Luis', birthDate: '10-10-2000', course: '1', photo: 'https://telegram.org/file/811140509/b45/dQTLEwKZ9gs.22232.gif/4580677d940852f30e', type: 'admin'},
     ],
     activities : [
-      {id: 1, name: 'Quizz C#', course: 'TSIW', subject: 'AED', points: 50, level: 1, type: 'Quizz', photo: 'https://arquivo.devmedia.com.br/cursos/imagem/curso_o-que-e-csharp_1983.png', likes: 0},
-      {id: 2, name: 'Quizz C#', course: 'TSIW', subject: 'AED', points: 50, level: 1, type: 'Quizz', photo: 'https://arquivo.devmedia.com.br/cursos/imagem/curso_o-que-e-csharp_1983.png', likes: 0},
-      {id: 3, name: 'Quizz C#', course: 'TSIW', subject: 'AED', points: 50, level: 1, type: 'Quizz', photo: 'https://arquivo.devmedia.com.br/cursos/imagem/curso_o-que-e-csharp_1983.png', likes: 0},
-      {id: 4, name: 'Quizz C#', course: 'TSIW', subject: 'AED', points: 50, level: 1, type: 'Quizz', photo: 'https://arquivo.devmedia.com.br/cursos/imagem/curso_o-que-e-csharp_1983.png', likes: 0},
+      {id: 1, name: 'Quizz C# 1', course: 'TSIW', subject: 'AED', points: 50, level: 1, type: 'Quizz', photo: 'https://arquivo.devmedia.com.br/cursos/imagem/curso_o-que-e-csharp_1983.png', likes: 1},
+      {id: 2, name: 'Quizz C# 2', course: 'TS', subject: 'AE', points: 50, level: 1, type: 'Quizz', photo: 'https://www.motc.gov.qa/sites/default/files/c-programming.png', likes: 2},
+      {id: 3, name: 'Quizz C# 3', course: 'TSIW', subject: 'A', points: 50, level: 1, type: 'Quizz', photo: 'https://files.betamax.raywenderlich.com/attachments/collections/161/a3b9ac0f-c565-41b1-97bd-d49a3705e204.png', likes: 3},
+      {id: 4, name: 'Quizz C# 4', course: 'TS', subject: 'AE', points: 50, level: 1, type: 'Quizz', photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2VyyttfkRVOUfPRzJBEtINxI-UELSkU_EPw&usqp=CAU', likes: 4},
+      {id: 5, name: 'Quizz C# 4', course: 'TSI', subject: 'AED', points: 50, level: 1, type: 'Quizz', photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2VyyttfkRVOUfPRzJBEtINxI-UELSkU_EPw&usqp=CAU', likes: 5}
     ],
     loggedUser: ''
   },
