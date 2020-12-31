@@ -19,6 +19,7 @@ export default new Vuex.Store({
   },
   getters: {
     getLoggedUser: (state) => state.loggedUser,
+    getUsers: (state) => state.users,
     getActivities: (state) => state.activities
   },
   actions: {
@@ -39,10 +40,10 @@ export default new Vuex.Store({
       const user = context.state.users.find(user => user.username === payload.username)
 
       if (user == undefined) {
-      //login com sucesso
+      //registo com sucesso
       context.commit('REGISTER', payload)
       } else {
-      //login sem sucesso
+      //registo sem sucesso
       throw Error('Username já existente!')
       }
     }

@@ -6,7 +6,6 @@
         <b-carousel
           id="carousel-1"
           class="mt-5"
-          v-model="slide"
           :interval="4000"
           controls
           indicators

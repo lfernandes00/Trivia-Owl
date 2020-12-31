@@ -60,7 +60,7 @@
         <input type="password" id="txtPassword" v-model='login.password'><br><br>
 
         <input type="submit" value="Entrar">
-        <b-button v-b-modal.modalRegister @click='openRegister()'>Registar</b-button>
+        <b-button v-b-modal.modalRegister>Registar</b-button>
     </form>
   </b-modal>
 
@@ -118,9 +118,13 @@ export default {
         course: '',
         photo: '',
         type: ''
-      }
+      },
+      users : []
     }
   },
+  created() {
+    this.users = this.$store.getters.getUsers
+},
   methods: {
     Login() {
       try {
@@ -138,6 +142,7 @@ export default {
       }
       try {
         this.$store.dispatch('register ', {
+          id: this.getNextId(),
           username: this.register.username,
           password: this.register.password,
           name: this.register.name,
@@ -148,6 +153,13 @@ export default {
         })
       } catch (error) {
         alert(error)
+      }
+    },
+    getNextId() {
+      if (this.users.length == 0) {
+        return 1;
+      } else {
+        return this.users[this.users.length - 1].id + 1
       }
     }
   },
