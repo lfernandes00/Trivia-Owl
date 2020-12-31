@@ -33,7 +33,7 @@
       <b-row>
         <b-col cols="3">
           
-        <b-button size="lg" class="mb-2" style="background-color:#70FFB4; color: #0B132B; ">
+        <b-button size="lg" class="mb-2" style="background-color:#70FFB4; color: #0B132B; " >
          <b-icon icon="hand-thumbs-up" ></b-icon>
         </b-button><br>
           <b>Gostos: </b> <strong>{{$route.params.activityLikes}}</strong>
@@ -42,7 +42,13 @@
         <b-col cols="3">
           <!-- Botões que ao serem clicados enviam os utilizadores para a página de classificação ou para as diferentes questões da atividade -->
           <router-link class="mr-3" :to="{ name: 'ActivityClassification' }"><b-button pill style="background-color: #70FFB4; color: #0B132B; font-weight: bold;">Classificação</b-button></router-link>
-          <router-link :to="{ name: 'ActivitySolve' }"><b-button pill style="background-color: #70FFB4; color: #0B132B; font-weight: bold;">Resolver</b-button></router-link>
+          <router-link :to="{ name: 'ActivitySolve', params: {
+            activityQ1: activity.Q1,
+            activityQ1A1: activity.Q1A1,
+            activityQ1A2: activity.Q1A2,
+            activityQ1A3: activity.Q1A3,
+            activityQ1A4: activity.Q1A4
+          } }"><b-button pill style="background-color: #70FFB4; color: #0B132B; font-weight: bold;">Resolver</b-button></router-link>
           
         </b-col>
       </b-row>
@@ -55,7 +61,27 @@
 
 <script>
 export default {
-  name: "Activity"
+  name: "Activity",
+  data() {
+    return {
+      activities: []
+    }
+  },
+  created() {
+    this.activities = this.$store.getters.getActivities
+},
+  methods: {
+    // giveLike(id) {
+    //   this.activities.map(
+    //             activity => {
+    //                 if (activity.id === id) {
+                      
+    //                     activity.likes += 1;
+    //                 }
+    //             }
+    //         )
+    // }
+  }
 };
 </script>
 

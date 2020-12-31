@@ -77,12 +77,12 @@ const routes = [
     component: Activity
   },
   {
-    path: "/activity/activityId/classification",
+    path: "/activity/:activityId/classification",
     name: "ActivityClassification",
     component: ActivityClassification
   },
   {
-    path: "/activity/activityId/solve",
+    path: "/activity/:activityId/solve",
     name: "ActivitySolve",
     component: ActivitySolve
   },

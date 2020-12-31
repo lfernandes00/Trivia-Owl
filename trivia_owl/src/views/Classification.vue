@@ -9,7 +9,7 @@
           />
         </b-col>
         <b-col cols="6" class="mt-5" style="text-align: start"
-          ><br />*
+          ><br />
           <h1>CLASSIFICAÇÃO</h1>
         </b-col>
       </b-row>
@@ -95,7 +95,7 @@ export default {
       // caractrística que retira aas bordas à tabela
       borderless: true
     };
-  }
+  },
 };
 </script>
 
