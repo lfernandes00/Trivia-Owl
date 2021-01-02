@@ -2,16 +2,17 @@
   <div id="ListActivities" class="">
     <b-container fluid>
       <div id="btnDiv" class="mr-4">
-        <b-button pill id="SortBtn" @click="sortActivitiesByLikes" class="btn btn-primary mt-4">{{flagLikes == -1 ? "Maior popularidade": "Menor popularidade"}}</b-button>
-        <select id="sltActivityCourse" v-model='filter.course'>
+        <b-button pill id="sortBtn" @click="sortActivitiesByLikes" class="btn btn-primary mt-4 ml-4">{{flagLikes == -1 ? "Maior popularidade": "Menor popularidade"}}</b-button>
+        <select id="sltActivityCourse" v-model='filter.course' class="mt-4">
             <option value="">Escolha um curso</option>
             <option v-for='activity in getAllCourses' :key='activity' :value="activity">{{activity}}</option>
         </select>
-        <select id="sltActivitySubject" v-model='filter.subject'>
+        <select id="sltActivitySubject" v-model='filter.subject' class="mt-4">
             <option value="">Escolha uma cadeira</option>
             <option v-for='activity in getAllSubjects' :key='activity' :value="activity">{{activity}}</option>
         </select>
-        <router-link :to="{ name: 'AddActivity' }"><b-button  pill id="addBtn" class="btn btn-primary mt-4">+</b-button></router-link>
+        <router-link :to="{ name: 'AddActivity' }"><b-button pill id="addBtn" class="btn btn-primary mt-4">+</b-button></router-link>
+        
       </div>
       <br>
       <b-card-group>
@@ -103,12 +104,25 @@ computed: {
   background-color: #ff7070;
 }
 
+#sortBtn {
+  height: 50px;
+  background-color: #70FFB4;
+  color: #0B132B;
+}
+
 #btnDiv {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 img {
   border-radius: 10%;
+}
+
+select {
+  background-color: #70FFB4;
+  height: 50px;
+  border-radius: 7%;
+  color: #0B132B;
 }
 </style>

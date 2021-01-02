@@ -20,7 +20,7 @@
           img-height="250px"
           tag="article"
           style=" width: 300px; height: 250px; border-radius: 10%"
-          class="ml-4 mb-2 mr-1 mt-3"
+          class="ml-3 mb-2 mr-1 mt-3"
         >
         </b-card>
         </router-link>

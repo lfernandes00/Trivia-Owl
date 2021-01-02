@@ -51,50 +51,59 @@
     </b-navbar>
 
     <!-- modal Login -->
-    <b-modal style="background-color: #0B132B" id="modalLogin" title="Login">
+    <b-modal id="modalLogin" size="sm" hide-header header-bg-variant="dark" body-bg-variant="dark" hide-footer>
+      <div id="mdlLoginHeader">
+        <h1 class="mt-5">Login</h1>
+        <img  src="../assets/logo_trivia_owl_escuro.png" width="115px">
+      </div>
     <form @submit.prevent='Login'>
         <label for="txtUsername">Nome de Utilizador</label><br>
         <input type="text" id="txtUsername" v-model="login.username"><br>
 
-        <label for="txtPassword">Palavra Passe</label><br>
+        <label class="mt-3" for="txtPassword">Palavra Passe</label><br>
         <input type="password" id="txtPassword" v-model='login.password'><br><br>
 
-        <input type="submit" value="Entrar">
-        <b-button v-b-modal.modalRegister>Registar</b-button>
+        <b-button pill id="loginSubmit" type="submit">Entrar</b-button>
+        
+        <b-button pill id="registerBtn" v-b-modal.modalRegister>Registar</b-button>
     </form>
   </b-modal>
 
   <!-- modal Registo -->
-  <b-modal style="background-color: #0B132B" id="modalRegister" title="Registo">
+  <b-modal id="modalRegister" size="sm" hide-header  header-bg-variant="dark" body-bg-variant="dark" hide-footer>
+    <div id="mdlRegisterHeader">
+        <h1 class="mt-5">Registo</h1>
+        <img  src="../assets/logo_trivia_owl_escuro.png" width="115px" >
+      </div>
     <form @submit.prevent='Register'>
-        <label for="txtUsername">Nome de Utilizador</label><br>
-        <input type="text" id="txtUsername" v-model='register.username'><br>
+        <label for="txtRegisterUsername">Nome de Utilizador</label><br>
+        <input type="text" id="txtRegisterUsername" v-model='register.username'><br><br>
 
-        <label for="txtPassword">Palavra Passe</label><br>
-        <input type="password" id="txtPassword" v-model='register.password'><br><br>
+        <label for="txtRegisterPassword">Palavra Passe</label><br>
+        <input type="password" id="txtRegisterPassword" v-model='register.password'><br><br>
 
-        <label for="txtPassword2">Confirmar Palavra Passe</label><br>
-        <input type="password" id="txtPassword2" v-model='register.password2'><br><br>
+        <label for="txtRegisterPassword2">Confirmar Palavra Passe</label><br>
+        <input type="password" id="txtRegisterPassword2" v-model='register.password2'><br><br>
 
-        <label for="txtName">Nome</label><br>
-        <input type="text" id="txtName" v-model='register.name'><br><br>
+        <label for="txtRegisterName">Nome</label><br>
+        <input type="text" id="txtRegisterName" v-model='register.name'><br><br>
 
-        <label for="txtBirthDate">Data Nascimento</label><br>
-        <input type="date" id="txtBirthDate" v-model='register.birthDate'><br><br>
+        <label for="txtRegisterBirthDate">Data Nascimento</label><br>
+        <input type="date" id="txtRegisterBirthDate" v-model='register.birthDate'><br><br>
 
-        <label for="txtCourse">Curso</label><br>
-        <input type="text" id="txtCourse" v-model='register.course'><br><br>
+        <label for="txtRegisterCourse">Curso</label><br>
+        <input type="text" id="txtRegisterCourse" v-model='register.course'><br><br>
 
-        <label for="photo">foto</label><br>
-        <input type="url" id="photo" v-model='register.photo'><br><br>
+        <label for="registerPhoto">Foto</label><br>
+        <input type="url" id="registerPhoto" v-model='register.photo'><br><br>
 
-        <label for="txtType">Tipo de Utilizador</label><br>
-        <select id="txtType" v-model='register.type' required>
+        <label for="txtRegisterType">Tipo de Utilizador</label><br>
+        <select id="txtRegisterType" v-model='register.type' required>
           <option value="student">Estudante</option>
           <option value="teacher">Docente</option>
         </select><br><br>
 
-        <input type="submit" value="Registar">
+        <b-button pill id="registerSubmit" type="submit">Registar</b-button>
     </form>
   </b-modal>
   </div>
@@ -117,7 +126,7 @@ export default {
         birthDate: '',
         course: '',
         photo: '',
-        type: ''
+        type: 'student'
       },
       users : []
     }
@@ -224,6 +233,109 @@ export default {
 #logo {
   width: 50px;
   height: 60px;
+}
+
+#mdlLoginHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+#mdlRegisterHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+h1 {
+  color: #70FFB4;
+}
+
+#txtUsername {
+  width: 264px;
+}
+
+#txtPassword {
+  width: 264px;
+}
+
+label {
+  color: #70FFB4;
+}
+
+#loginSubmit {
+  background-color: #70FFB4;
+  color: #0B132B;
+  border-color: #70FFB4;
+  width: 110px;
+}
+
+#registerBtn {
+  background-color: #70FFB4;
+  color: #0B132B;
+  border-color: #70FFB4;
+  width: 110px;
+  float: right;
+}
+
+#modalLogin {
+  width: 1000px;
+}
+
+input[type=text]{
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+     border-radius: 20px;
+     border: 0px;
+     width: 264px;
+     height: 30px;
+     padding-left: 10px;
+}
+
+input[type=password]{
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+     border-radius: 20px;
+     border: 0px;
+     width: 264px;
+     height: 30px;
+     padding-left: 10px;
+}
+
+input[type=date]{
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+     border-radius: 20px;
+     border: 0px;
+     width: 264px;
+     height: 30px;
+     padding-left: 10px;
+}
+
+input[type=url]{
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+     border-radius: 20px;
+     border: 0px;
+     width: 264px;
+     height: 30px;
+     padding-left: 10px;
+}
+
+#txtRegisterType {
+  -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+     border-radius: 20px;
+     border: 0px;
+     width: 264px;
+     height: 30px;
+     padding-left: 10px;
+}
+
+#registerSubmit {
+  background-color: #70FFB4;
+  color: #0B132B;
+  border-color: #70FFB4;
+  width: 120px;
+  float: right;
 }
 
 /* p {
