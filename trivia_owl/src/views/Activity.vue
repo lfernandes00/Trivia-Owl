@@ -43,11 +43,10 @@
           <!-- Botões que ao serem clicados enviam os utilizadores para a página de classificação ou para as diferentes questões da atividade -->
           <router-link class="mr-3" :to="{ name: 'ActivityClassification' }"><b-button pill style="background-color: #70FFB4; color: #0B132B; font-weight: bold;">Classificação</b-button></router-link>
           <router-link :to="{ name: 'ActivitySolve', params: {
-            activityQ1: activity.Q1,
-            activityQ1A1: activity.Q1A1,
-            activityQ1A2: activity.Q1A2,
-            activityQ1A3: activity.Q1A3,
-            activityQ1A4: activity.Q1A4
+            activityId : $route.params.activityId,
+            activityPhoto: $route.params.activityPhoto,
+            activityName: $route.params.activityName,
+            activityQuestion1: $route.params.activityQuestion1
           } }"><b-button pill style="background-color: #70FFB4; color: #0B132B; font-weight: bold;">Resolver</b-button></router-link>
           
         </b-col>

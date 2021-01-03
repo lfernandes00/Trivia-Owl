@@ -20,10 +20,14 @@
         <b-table
           id="activitiesTable"
           class="text-left"
-          :items="history"
+          :items="getAllUsers"
           :fields="fields"
           :borderless="borderless"
-        ></b-table>
+        >
+        <template #cell(f)="data">
+        <b-avatar :src="data.f"></b-avatar>
+      </template>
+        </b-table>
       </b-row>
     </b-container>
   </div>
@@ -43,59 +47,37 @@ export default {
           key: "f"
         },
         {
-          key: "nome",
-          tdClass: () => {
-            return "text-info";
-          }
+          key: "nome"
         },
         {
-          key: "pontos"
+          key: "pontos",
+          sortable: true
         },
         {
           key: "atividades_realizadas"
         }
       ],
-      history: [
-        {
-          l: 1,
-          f: "img",
-          nome: "João Félix",
-          pontos: 5000,
-          atividades_realizadas: 15
-        },
-        {
-          l: 2,
-          f: "img",
-          nome: "Paula Santos",
-          pontos: 4500,
-          atividades_realizadas: 10
-        },
-        {
-          l: 3,
-          f: "img",
-          nome: "Raquel Soares",
-          pontos: 4120,
-          atividades_realizadas: 11
-        },
-        {
-          l: 4,
-          f: "img",
-          nome: "Ricardo Sousa",
-          pontos: 3700,
-          atividades_realizadas: 7
-        },
-        {
-          l: 5,
-          f: "img",
-          nome: "Rui Pinto",
-          pontos: 3200,
-          atividades_realizadas: 9
-        }
-      ],
+      users: [],
       // caractrística que retira aas bordas à tabela
       borderless: true
-    };
+    }
+    
   },
+  created() {
+      this.users = this.$store.getters.getUsers
+    },
+  computed: {
+      getAllUsers() {
+    const allNames = []
+    const allUsers = []
+
+    for (let user of this.users) {
+      if (allNames.indexOf(user.username) == -1)
+        allUsers.push({l: user.id, f: user.photo, nome: user.name, pontos: user.points, atividades_realizadas: user.doneActivities});
+    }
+    return allUsers;
+    },
+    }
 };
 </script>
 

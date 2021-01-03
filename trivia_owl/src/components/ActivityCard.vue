@@ -10,7 +10,8 @@
         activityLevel: activity.level,
         activityType: activity.type,
         activityPhoto: activity.photo,
-        activityLikes: activity.likes
+        activityLikes: activity.likes,
+        activityQuestion1: activity.question1
         }}">
           <b-card
           :img-src="activity.photo"
