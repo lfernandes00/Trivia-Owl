@@ -183,6 +183,7 @@ export default {
 <style scoped>
 #navbar {
   background-color: #1c2541;
+  
 }
 
 #firstNav {

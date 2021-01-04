@@ -20,7 +20,7 @@
       <b-row>
         <div class="ml-5">
           
-          <b-from id="activityForm" @submit.prevent="submit">
+          <b-form id="activityForm" @submit.prevent="submit">
             <b-form-group id="firstQuestion">
               <h2 style="color: #FF7070">Pergunta 1</h2><br>
               <label id="enunciatedQ1" for="question1">{{questions.question1.enunciated}}</label><br><br>
@@ -67,7 +67,7 @@
             </b-form-group>
 
             <b-button pill id="submitBtn" type="submit" >Submeter</b-button>
-          </b-from>
+          </b-form>
         </div>
       </b-row>
 
