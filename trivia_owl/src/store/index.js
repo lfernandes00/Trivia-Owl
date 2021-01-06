@@ -18,6 +18,19 @@ export default new Vuex.Store({
         type: "admin",
         doneActivities: 1,
         points: 0
+      },
+      {
+        id: 2,
+        username: "user1",
+        password: "1234",
+        name: "João",
+        birthDate: "10-10-2000",
+        course: "1",
+        photo:
+          "https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        type: "admin",
+        doneActivities: 0,
+        points: 100
       }
     ],
     activities: [
@@ -40,7 +53,8 @@ export default new Vuex.Store({
           "Qual a diferença entre Console.Read() e Console.ReadLine();Em Console.Read() os dados são introduzidos em linha enquanto que em ReadLine são introduzidos num paragráfo a seguir;Não há diferença;A segunda dá mais trabalho a escrever;Em Console.Read() os dados são introduzidos no paragráfo a seguir enquanto que em ReadLine são introduzidos na mesma linha;Q3A4",
         question4: "Como escrever comentários em C#?;/*;//;<--!-->;'';Q4A2",
         question5:
-          "Para criar uma variável de texto devemos escrever:;text;strg;string;txt;Q5A3"
+          "Para criar uma variável de texto devemos escrever:;text;strg;string;txt;Q5A3",
+        classification: ""
       },
       {
         id: 2,

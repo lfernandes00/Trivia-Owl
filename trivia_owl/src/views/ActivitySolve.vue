@@ -166,6 +166,7 @@ export default {
     return {
       activities: [],
       id: "",
+      loggedUser: '',
       Q1: "",
       Q2: "",
       Q3: "",
@@ -225,6 +226,7 @@ export default {
   created() {
     this.activities = this.$store.getters.getActivities;
     this.id = this.$route.params.activityId;
+    this.loggedUser = this.$store.getters.getLoggedUser;
 
     const activity = this.activities.find(activity => activity.id === this.id);
 

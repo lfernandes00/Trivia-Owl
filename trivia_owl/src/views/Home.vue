@@ -46,13 +46,71 @@
         <b-col>
           <h4>Atividades</h4>
           <div>
-            <b-table
-              id="activitiesTable"
-              class="text-left"
-              :items="activities"
-              :fields="fields2"
-              :borderless="borderless"
-            ></b-table>
+            <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Nome</th>
+              <th scope="col">Curso</th>
+              <th scope="col">Gostos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <router-link id="firstActivity" :to="{name: 'Activity', params: {
+                activityId: activities[0].id,
+                activityName: activities[0].name,
+                activityCourse: activities[0].course,
+                activitySubject: activities[0].subject,
+                activityPoints: activities[0].points,
+                activityLevel: activities[0].level,
+                activityType: activities[0].type,
+                activityPhoto: activities[0].photo,
+                activityLikes: activities[0].likes,
+                activityQuestion1: activities[0].question1
+                }}"><td id="nameTd">{{activities[0].name}}</td></router-link>
+              <td>{{activities[0].course}}</td>
+              <td>{{activities[0].likes}}</td>
+            </tr>
+
+            <tr>
+              <td>2</td>
+              <router-link id="secondActivity" :to="{name: 'Activity', params: {
+                activityId: activities[1].id,
+                activityName: activities[1].name,
+                activityCourse: activities[1].course,
+                activitySubject: activities[1].subject,
+                activityPoints: activities[1].points,
+                activityLevel: activities[1].level,
+                activityType: activities[1].type,
+                activityPhoto: activities[1].photo,
+                activityLikes: activities[1].likes,
+                activityQuestion1: activities[1].question1
+                }}"><td id="nameTd">{{activities[1].name}}</td></router-link>
+              <td>{{activities[1].course}}</td>
+              <td>{{activities[1].likes}}</td>
+            </tr>
+
+            <tr>
+              <td>3</td>
+              <router-link id="thirdActivity" :to="{name: 'Activity', params: {
+                activityId: activities[2].id,
+                activityName: activities[2].name,
+                activityCourse: activities[2].course,
+                activitySubject: activities[2].subject,
+                activityPoints: activities[2].points,
+                activityLevel: activities[2].level,
+                activityType: activities[2].type,
+                activityPhoto: activities[2].photo,
+                activityLikes: activities[2].likes,
+                activityQuestion1: activities[2].question1
+                }}"><td id="nameTd">{{activities[2].name}}</td></router-link>
+              <td>{{activities[2].course}}</td>
+              <td>{{activities[2].likes}}</td>
+            </tr>
+          </tbody>
+        </table>
           </div>
         </b-col>
       </b-row>
@@ -85,30 +143,21 @@ export default {
         { nome: "Paula Santos", pontos: 4500, nível: 9 },
         { nome: "Raquel Soares", pontos: 4120, nível: 7 }
       ],
-      fields2: [
-        {
-          key: "p"
-        },
-        {
-          key: "nome",
-          tdClass: () => {
-            return "text-info";
-          }
-        },
-        {
-          key: "curso"
-        },
-        {
-          key: "gostos"
+      activities: [],
+      borderless: true,
+    }
+  },
+  created() {
+    this.activities = this.$store.getters.getActivities;
+
+    this.activities.sort(this.compareActivities)
+  },
+  methods: {
+    compareActivities(a, b) {
+            if (a.likes > b.likes) return 1 * -1
+            if (a.likes < b.likes) return -1 * -1
+            if (a.likes === b.likes) return 0
         }
-      ],
-      activities: [
-        { p: 1, nome: "Atividade 1", curso: "TSIW", gostos: 10 },
-        { p: 2, nome: "Atividade 2", curso: "Fotografia", gostos: 6 },
-        { p: 3, nome: "Atividade 3", curso: "Multimédia", gostos: 2 }
-      ],
-      borderless: true
-    };
   }
 };
 </script>
@@ -126,6 +175,18 @@ h4,
 
 th {
   color: #ff7070;
+}
+
+td {
+  color: white;
+}
+
+#nameTd {
+  color: #70FFB4;
+}
+
+#firstActivity {
+  text-decoration: none;
 }
 
 #activitiesTable {

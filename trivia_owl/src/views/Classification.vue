@@ -16,19 +16,26 @@
     </b-container>
 
     <b-container>
-      <b-row class="mt-5">
-        <b-table
-          id="activitiesTable"
-          class="text-left"
-          :items="getAllUsers"
-          :fields="fields"
-          :borderless="borderless"
-        >
-          <template #cell(f)="data">
-            <b-avatar :src="data.f"></b-avatar>
-          </template>
-        </b-table>
-      </b-row>
+      <table class="table table-borderless mt-5">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col">Nome</th>
+              <th scope="col" @click='sortUsers'>Pontos</th>
+              <th scope="col">Atividades Realizadas</th>
+            </tr>
+          </thead>
+          <tbody :key="user.id" v-for="(user,index) in users">
+            <tr>
+              <td>{{index + 1}}</td>
+              <td><b-avatar :src="user.photo"></b-avatar></td>
+              <td id="nameTd">{{user.name}}</td>
+              <td>{{user.points}}</td>
+              <td>{{user.doneActivities}}</td>
+            </tr>
+          </tbody>
+        </table>
     </b-container>
   </div>
 </template>
@@ -39,27 +46,8 @@ export default {
   name: "Classification",
   data() {
     return {
-      fields: [
-        {
-          key: "l"
-        },
-        {
-          key: "f"
-        },
-        {
-          key: "nome"
-        },
-        {
-          key: "pontos",
-          sortable: true
-        },
-        {
-          key: "atividades_realizadas"
-        }
-      ],
       users: [],
-      // caractrística que retira aas bordas à tabela
-      borderless: true
+      flagSort: -1,
     };
   },
   created() {
@@ -82,7 +70,20 @@ export default {
       }
       return allUsers;
     }
-  }
+  },
+  methods: {
+     sortUsers() {
+            // ordenar users pelos pontos (alterando entre ordenação crescente e decrescente)
+            this.flagSort = this.flagSort * -1
+            this.users.sort(this.compareUsers)
+        },
+        compareUsers(a, b) {
+            if (a.points > b.points) return 1 * this.flagSort
+            if (a.points < b.points) return -1 * this.flagSort
+            if (a.points === b.points) return 0
+        }
+    },
+
 };
 </script>
 
@@ -93,7 +94,15 @@ h1 {
   font-weight: bold;
 }
 
-#activitiesTable {
+ td {
   color: white;
+}
+
+ th {
+  color: #ff7070;
+}
+
+#nameTd {
+  color: #70FFB4;
 }
 </style>

@@ -56,10 +56,8 @@
                 >Equipa</router-link
               ></b-dropdown-item-button
             >
-            <b-dropdown-item-button
-              ><router-link id="seventhDropdownItem" :to="{ name: 'Sair' }"
-                >Sair</router-link
-              ></b-dropdown-item-button
+            <b-dropdown-item-button>
+                Sair</b-dropdown-item-button
             >
           </b-nav-item-dropdown>
         </b-navbar-nav>
