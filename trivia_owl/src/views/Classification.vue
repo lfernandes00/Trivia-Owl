@@ -24,9 +24,9 @@
           :fields="fields"
           :borderless="borderless"
         >
-        <template #cell(f)="data">
-        <b-avatar :src="data.f"></b-avatar>
-      </template>
+          <template #cell(f)="data">
+            <b-avatar :src="data.f"></b-avatar>
+          </template>
         </b-table>
       </b-row>
     </b-container>
@@ -60,24 +60,29 @@ export default {
       users: [],
       // caractrística que retira aas bordas à tabela
       borderless: true
-    }
-    
+    };
   },
   created() {
-      this.users = this.$store.getters.getUsers
-    },
+    this.users = this.$store.getters.getUsers;
+  },
   computed: {
-      getAllUsers() {
-    const allNames = []
-    const allUsers = []
+    getAllUsers() {
+      const allNames = [];
+      const allUsers = [];
 
-    for (let user of this.users) {
-      if (allNames.indexOf(user.username) == -1)
-        allUsers.push({l: user.id, f: user.photo, nome: user.name, pontos: user.points, atividades_realizadas: user.doneActivities});
+      for (let user of this.users) {
+        if (allNames.indexOf(user.username) == -1)
+          allUsers.push({
+            l: user.id,
+            f: user.photo,
+            nome: user.name,
+            pontos: user.points,
+            atividades_realizadas: user.doneActivities
+          });
+      }
+      return allUsers;
     }
-    return allUsers;
-    },
-    }
+  }
 };
 </script>
 

@@ -93,11 +93,11 @@ export default {
 <style scoped>
 /* Estilização dos textos da tabela */
 
-  #activitiesTable {
-    color: white;
-  }
-  
-  .table thead th {
-    color: #ff7070;
-  }
+#activitiesTable {
+  color: white;
+}
+
+.table thead th {
+  color: #ff7070;
+}
 </style>

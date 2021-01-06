@@ -115,7 +115,8 @@ export default {
 
 <style scoped>
 /* Estilização da tabela */
-h4, .h4 {
+h4,
+.h4 {
   color: #ff7070;
 }
 
@@ -123,7 +124,7 @@ h4, .h4 {
   color: white;
 }
 
- th {
+th {
   color: #ff7070;
 }
 

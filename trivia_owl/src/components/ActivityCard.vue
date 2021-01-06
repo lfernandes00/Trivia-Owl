@@ -1,19 +1,24 @@
 <template>
   <div id="activityCard" class="">
     <b-col cols="4">
-      <router-link :to="{ name: 'Activity', params: {
-        activityId: activity.id,
-        activityName: activity.name,
-        activityCourse: activity.course,
-        activitySubject: activity.subject,
-        activityPoints: activity.points,
-        activityLevel: activity.level,
-        activityType: activity.type,
-        activityPhoto: activity.photo,
-        activityLikes: activity.likes,
-        activityQuestion1: activity.question1
-        }}">
-          <b-card
+      <router-link
+        :to="{
+          name: 'Activity',
+          params: {
+            activityId: activity.id,
+            activityName: activity.name,
+            activityCourse: activity.course,
+            activitySubject: activity.subject,
+            activityPoints: activity.points,
+            activityLevel: activity.level,
+            activityType: activity.type,
+            activityPhoto: activity.photo,
+            activityLikes: activity.likes,
+            activityQuestion1: activity.question1
+          }
+        }"
+      >
+        <b-card
           :img-src="activity.photo"
           img-alt="activity.name"
           img-top
@@ -24,9 +29,8 @@
           class="ml-3 mb-2 mr-1 mt-3"
         >
         </b-card>
-        </router-link>
+      </router-link>
     </b-col>
-        
   </div>
 </template>
 
@@ -35,7 +39,7 @@ export default {
   name: "ActivityCard",
   props: {
     activity: Object
-  },
+  }
 };
 </script>
 

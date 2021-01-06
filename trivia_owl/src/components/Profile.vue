@@ -24,10 +24,14 @@
         <b-col cols="1"></b-col>
         <b-col cols="3" class="mt-5 ml-3">
           <div style="text-align: start">
-            <b class="mr-4">Nome: </b> <strong>{{getUser.name}}</strong> <br /><br />
-            <b class="mr-4">Idade: </b> <strong>{{getUser.birthDate}}</strong> <br /><br />
-            <b class="mr-4">Curso: </b> <strong>{{getUser.course}}</strong> <br /><br />
-            <b class="mr-4">Tipo: </b> <strong>{{getUser.type}}</strong><br />
+            <b class="mr-4">Nome: </b> <strong>{{ getUser.name }}</strong>
+            <br /><br />
+            <b class="mr-4">Idade: </b>
+            <strong>{{ getUser.birthDate }}</strong> <br /><br />
+            <b class="mr-4">Curso: </b> <strong>{{ getUser.course }}</strong>
+            <br /><br />
+            <b class="mr-4">Tipo: </b> <strong>{{ getUser.type }}</strong
+            ><br />
           </div>
         </b-col>
         <b-col cols="6" class="mt-5" style="padding: 0px; width: 500px">
@@ -87,7 +91,7 @@ export default {
   },
   computed: {
     getUser() {
-      return this.$store.getters.getLoggedUser
+      return this.$store.getters.getLoggedUser;
     }
   }
 };
