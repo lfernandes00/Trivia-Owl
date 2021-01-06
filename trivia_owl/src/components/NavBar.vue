@@ -43,7 +43,7 @@
     </b-navbar>
 
     <!-- modal Login -->
-    <b-modal id="modalLogin" size="sm" hide-header header-bg-variant="dark" body-bg-variant="dark" hide-footer>
+    <b-modal id="modalLogin" size="sm"  hide-header header-bg-variant="dark" body-bg-variant="dark" hide-footer >
       <div id="mdlLoginHeader">
         <h1 class="mt-5">Login</h1>
         <img  src="../assets/logo_trivia_owl_escuro.png" width="115px">
@@ -167,7 +167,7 @@ export default {
   },
   computed: {
     getUser() {
-      this.user = this.$store.getters.getLoggedUser
+      // this.user = this.$store.getters.getLoggedUser
       return this.$store.getters.getLoggedUser
     }
   }
