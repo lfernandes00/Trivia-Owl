@@ -1,17 +1,5 @@
 <template>
   <div id="navbar">
-    <!-- <router-link :to="{ name: 'Home' }">Home</router-link> 
-    <router-link :to="{ name: 'Activities' }">Actividades</router-link> |
-    <router-link :to="{ name: 'Classification' }">Classificação</router-link> |
-    <router-link :to="{ name: 'Interaction' }">Interação</router-link> |
-      <b-dropdown id="dropdown" text="Dropdown" class="m-md-2">
-        <b-dropdown-item><router-link :to="{ name: 'Profile' }">Perfil</router-link></b-dropdown-item>
-        <b-dropdown-item>Notificações(modal)</b-dropdown-item>
-        <b-dropdown-item><router-link :to="{ name: 'UserManagement' }">Gerir Utilizadores</router-link></b-dropdown-item>
-        <b-dropdown-item><router-link :to="{ name: 'ActivityManagement' }">Gerir Atividades</router-link></b-dropdown-item>
-        <b-dropdown-item><router-link :to="{ name: 'Team' }">Equipa</router-link></b-dropdown-item>
-        <b-dropdown-item>Login (modal)</b-dropdown-item>
-      </b-dropdown> -->
 
     <b-navbar toggleable="lg" style="height: 60px">
       <router-link :to="{ name: 'Home' }"
@@ -34,17 +22,21 @@
             ><p class="mt-3">Interação</p></router-link
           >
 
-          <b-nav-item-dropdown right class="mr-2">
+          <b-nav-item-dropdown id="dropdown" right class="mr-2">
             <!-- Using 'button-content' slot -->
             <template #button-content>
               <em><b-avatar :src="getUser.photo"></b-avatar></em>
             </template>
-            <b-dropdown-item href="#"
-              ><router-link :to="{ name: 'Profile' }"
+            <b-dropdown-item-button href="#"              
+            ><router-link id="firstDropdownItem" :to="{ name: 'Profile' }"
                 >Perfil</router-link
-              ></b-dropdown-item
-            >
-            <b-dropdown-item href="#"><b-button v-b-modal.modalLogin >Entrar</b-button></b-dropdown-item>
+              ></b-dropdown-item-button>
+            <b-dropdown-item-button id="secondDropdownItem" v-b-modal.modalLogin>Entrar</b-dropdown-item-button>
+            <b-dropdown-item-button id="thirdDropdownItem">Notificações</b-dropdown-item-button>
+            <b-dropdown-item-button><router-link id="fourthDropdownItem" :to="{ name: 'UserManagement'}">Gerir Utilizadores</router-link></b-dropdown-item-button>
+            <b-dropdown-item-button><router-link id="fifthDropdownItem" :to="{ name: 'ActivityManagement'}">Gerir Atividades</router-link></b-dropdown-item-button>
+            <b-dropdown-item-button><router-link id="sixthDropdownItem" :to="{ name: 'Team'}">Equipa</router-link></b-dropdown-item-button>
+            <b-dropdown-item-button><router-link id="seventhDropdownItem" :to="{ name: 'Sair'}">Sair</router-link></b-dropdown-item-button>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -128,7 +120,8 @@ export default {
         photo: '',
         type: 'student'
       },
-      users : []
+      users : [],
+      user: ''
     }
   },
   created() {
@@ -150,7 +143,7 @@ export default {
         alert('As palavras passes não são iguais!')
       }
       try {
-        this.$store.dispatch('register ', {
+        this.$store.dispatch('register', {
           id: this.getNextId(),
           username: this.register.username,
           password: this.register.password,
@@ -174,6 +167,7 @@ export default {
   },
   computed: {
     getUser() {
+      this.user = this.$store.getters.getLoggedUser
       return this.$store.getters.getLoggedUser
     }
   }
@@ -181,6 +175,34 @@ export default {
 </script>
 
 <style scoped>
+#firstDropdownItem:hover {
+  text-decoration: none;
+}
+
+#secondDropdownItem:hover {
+  text-decoration: none;
+}
+
+#thirdDropdownItem:hover {
+  text-decoration: none;
+}
+
+#fourthDropdownItem:hover {
+  text-decoration: none;
+}
+
+#fifthDropdownItem:hover {
+  text-decoration: none;
+}
+
+#sixthDropdownItem:hover {
+  text-decoration: none;
+}
+
+#seventhDropdownItem:hover {
+  text-decoration: none;
+}
+
 #navbar {
   background-color: #1c2541;
   
@@ -338,12 +360,4 @@ input[type=url]{
   width: 120px;
   float: right;
 }
-
-/* p {
-  color: #6FFFE9;
-}
-
-p:hover {
-color: #1c2541;
-} */
 </style>
