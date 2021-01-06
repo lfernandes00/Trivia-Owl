@@ -19,7 +19,7 @@
 <br>
       <b-row>
         <div class="ml-5">
-          
+          <b-pagination v-model="currentPage" pills :total-rows="rows" size="lg"></b-pagination>
           <b-form id="activityForm" @submit.prevent="submit">
             <b-form-group id="firstQuestion">
               <h2 style="color: #FF7070">Pergunta 1</h2><br>
@@ -88,6 +88,8 @@ export default {
   name: "ActivitySolve",
   data() {
     return {
+      currentPage: '',
+      rows: 100,
       activities: [],
       id: '',
       Q1: '',
