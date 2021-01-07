@@ -189,6 +189,14 @@ td {
   text-decoration: none;
 }
 
+#secondActivity {
+  text-decoration: none;
+}
+
+#thirdActivity {
+  text-decoration: none;
+}
+
 #activitiesTable {
   color: white;
 }

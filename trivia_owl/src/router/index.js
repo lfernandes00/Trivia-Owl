@@ -17,10 +17,12 @@ import AddTeam from "../views/AddTeam.vue";
 import TeamClassification from "../views/TeamClassification.vue";
 import EditTeam from "../views/EditTeam.vue";
 import ListActivities from "../views/ListActivities.vue";
+import ListActivityManagement from "../views/ListActivityManagement.vue";
+import ListActivityProposals from "../views/ListActivityProposals.vue";
 
 //components
 import Profile from "../components/Profile.vue";
-import ActivityManagement from "../components/ActivityManagement.vue";
+
 import Team from "../components/Team.vue";
 
 Vue.use(VueRouter);
@@ -57,9 +59,9 @@ const routes = [
     component: UserManagement
   },
   {
-    path: "/admin/ActivityManagement",
-    name: "ActivityManagement",
-    component: ActivityManagement
+    path: "/admin/ListActivityManagement",
+    name: "ListActivityManagement",
+    component: ListActivityManagement
   },
   {
     path: "/team",
@@ -115,6 +117,11 @@ const routes = [
     path: "/team/teamId/edit",
     name: "EditTeam",
     component: EditTeam
+  },
+  {
+    path: "/admin/activityProposals",
+    name: "ActivityProposals",
+    component: ActivityProposals
   }
 ];
 

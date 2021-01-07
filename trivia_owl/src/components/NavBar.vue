@@ -47,7 +47,7 @@
             <b-dropdown-item-button
               ><router-link
                 id="fifthDropdownItem"
-                :to="{ name: 'ActivityManagement' }"
+                :to="{ name: 'ListActivityManagement' }"
                 >Gerir Atividades</router-link
               ></b-dropdown-item-button
             >
