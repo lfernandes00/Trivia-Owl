@@ -233,8 +233,4 @@ export default {
 #activityImg {
   border-radius: 10%;
 }
-
-b-form {
-  text-align: left;
-}
 </style>

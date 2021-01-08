@@ -13,6 +13,7 @@ export default new Vuex.Store({
         name: "Luis",
         birthDate: "10-10-2000",
         course: "1",
+        level: 1,
         photo:
           "https://telegram.org/file/811140509/b45/dQTLEwKZ9gs.22232.gif/4580677d940852f30e",
         type: "admin",
@@ -26,6 +27,7 @@ export default new Vuex.Store({
         name: "João",
         birthDate: "10-10-2000",
         course: "1",
+        level: 1,
         photo:
           "https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         type: "admin",
@@ -33,6 +35,7 @@ export default new Vuex.Store({
         points: 100
       }
     ],
+    proposals: [],
     activities: [
       {
         id: 1,
@@ -42,6 +45,7 @@ export default new Vuex.Store({
         points: 50,
         level: 1,
         type: "Quizz",
+        desc: '.',
         photo:
           "https://arquivo.devmedia.com.br/cursos/imagem/curso_o-que-e-csharp_1983.png",
         likes: 1,
@@ -63,6 +67,7 @@ export default new Vuex.Store({
         points: 50,
         level: 1,
         type: "Quizz",
+        desc: '.',
         photo: "https://www.motc.gov.qa/sites/default/files/c-programming.png",
         likes: 2
       },
@@ -74,6 +79,7 @@ export default new Vuex.Store({
         points: 50,
         level: 1,
         type: "Quizz",
+        desc: '.',
         photo:
           "https://files.betamax.raywenderlich.com/attachments/collections/161/a3b9ac0f-c565-41b1-97bd-d49a3705e204.png",
         likes: 3
@@ -86,6 +92,7 @@ export default new Vuex.Store({
         points: 50,
         level: 1,
         type: "Quizz",
+        desc: '.',
         photo:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2VyyttfkRVOUfPRzJBEtINxI-UELSkU_EPw&usqp=CAU",
         likes: 4
@@ -98,6 +105,7 @@ export default new Vuex.Store({
         points: 50,
         level: 1,
         type: "Quizz",
+        desc: '.',
         photo:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2VyyttfkRVOUfPRzJBEtINxI-UELSkU_EPw&usqp=CAU",
         likes: 5
@@ -108,7 +116,8 @@ export default new Vuex.Store({
   getters: {
     getLoggedUser: state => state.loggedUser,
     getUsers: state => state.users,
-    getActivities: state => state.activities
+    getActivities: state => state.activities,
+    getProposals: state => state.proposals
   },
   actions: {
     login(context, payload) {
@@ -159,6 +168,15 @@ export default new Vuex.Store({
             }
         }
     )
+    },
+    addProposal(context,payload) {
+      const proposal = context.state.proposals.find(proposal => proposal.name === proposal.name);
+
+      if (proposal == undefined) {
+        context.commit("REGISTERPROPOSAL", payload);
+      } else {
+        throw Error (`Já existe uma atividade com o nome ${payload.name}`)
+      }
     }
   },
   mutations: {
@@ -170,8 +188,10 @@ export default new Vuex.Store({
     },
     REGISTER(state, user) {
       state.users.push(user);
+    },
+    REGISTERPROPOSAL(state, proposal) {
+      state.proposals.push(proposal);
     }
-
   },
 
   modules: {}
