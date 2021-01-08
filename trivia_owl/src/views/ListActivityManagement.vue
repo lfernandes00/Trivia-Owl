@@ -30,7 +30,7 @@
             >{{ activity }}</option
           >
         </select>
-        <router-link :to="{ name: 'AddActivity' }"
+        <router-link :to="{ name: 'ActivityProposals' }"
           ><b-button pill id="addBtn" class="btn btn-primary mt-4"
             >+</b-button
           ></router-link
@@ -38,22 +38,22 @@
       </div>
       <br />
       <b-card-group>
-        <ActivityCard
+        <ActivityManagementCard
           v-for="activity in getFilteredActivities"
           :key="activity.id"
           :activity="activity"
-        ></ActivityCard>
+        ></ActivityManagementCard>
       </b-card-group>
     </b-container>
   </div>
 </template>
 
 <script>
-import ActivityCard from "@/components/ActivityCard.vue";
+import ActivityManagementCard from "@/components/ActivityManagementCard.vue";
 export default {
   name: "ListActivities",
   components: {
-    ActivityCard
+    ActivityManagementCard
   },
   data() {
     return {
