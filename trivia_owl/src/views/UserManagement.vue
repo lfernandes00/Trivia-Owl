@@ -16,7 +16,7 @@
               <td><b-avatar :src="user.photo"></b-avatar></td>
               <td>{{user.name}}</td>
               <td>{{user.course}}</td>
-              <td><b-button pill id="removeBtn">Eliminar</b-button></td>
+              <td><b-button pill id="removeBtn" @click='removeUser(user.id)'>Eliminar</b-button></td>
             </tr>
           </tbody>
         </table>
@@ -34,6 +34,16 @@ export default {
   },
   created() {
     this.users = this.$store.getters.getUsers;
+  },
+  methods: {
+    removeUser(id) {
+            // Remover objeto com confirmação
+            if (confirm('Deseja remover o utilizador?')) {
+                this.users = this.users.filter(
+                    user => user.id !== id
+                )
+            }
+        },
   }
 };
 </script>

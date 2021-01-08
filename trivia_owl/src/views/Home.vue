@@ -34,13 +34,31 @@
         <b-col>
           <h4 id="title">Utilizadores</h4>
           <div>
-            <b-table
-              id="userTable"
-              class="text-left"
-              :items="users"
-              :fields="fields1"
-              :borderless="borderless"
-            ></b-table>
+            <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Nome</th>
+              <th scope="col">Pontos</th>
+              <th scope="col">Nível</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img id="firstMedal" src="../assets/medalha1.png" alt=""></td>
+              <td id="nameTd">{{users[0].name}}</td>
+              <td>{{users[0].points}}</td>
+              <td>{{users[0].level}}</td>
+            </tr>
+
+            <tr>
+              <td><img id="secondMedal" src="../assets/medalha2.png" alt=""></td>
+              <td id="nameTd">{{users[1].name}}</td>
+              <td>{{users[1].points}}</td>
+              <td>{{users[1].level}}</td>
+            </tr>
+          </tbody>
+        </table>
           </div>
         </b-col>
         <b-col>
@@ -124,39 +142,28 @@ export default {
   name: "Home",
   data() {
     return {
-      fields1: [
-        {
-          key: "nome",
-          tdClass: () => {
-            return "text-info";
-          }
-        },
-        {
-          key: "pontos"
-        },
-        {
-          key: "nível"
-        }
-      ],
-      users: [
-        { nome: "João Félix", pontos: 5000, nível: 10 },
-        { nome: "Paula Santos", pontos: 4500, nível: 9 },
-        { nome: "Raquel Soares", pontos: 4120, nível: 7 }
-      ],
+      users: [],
       activities: [],
       borderless: true,
     }
   },
   created() {
     this.activities = this.$store.getters.getActivities;
+    this.users = this.$store.getters.getUsers;
 
     this.activities.sort(this.compareActivities)
+    this.users.sort(this.compareUsers)
   },
   methods: {
     compareActivities(a, b) {
             if (a.likes > b.likes) return 1 * -1
             if (a.likes < b.likes) return -1 * -1
             if (a.likes === b.likes) return 0
+    },
+    compareUsers(a, b) {
+            if (a.points > b.points) return 1 * -1
+            if (a.points < b.points) return -1 * -1
+            if (a.points === b.points) return 0
         }
   }
 };
@@ -182,7 +189,7 @@ td {
 }
 
 #nameTd {
-  color: #70FFB4;
+  color: #6FFFE9;
 }
 
 #firstActivity {
@@ -199,5 +206,15 @@ td {
 
 #activitiesTable {
   color: white;
+}
+
+#firstMedal {
+  width: 50px;
+  height: 50px;
+}
+
+#secondMedal {
+  width: 50px;
+  height: 50px;
 }
 </style>

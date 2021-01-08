@@ -174,13 +174,13 @@ export default {
         password: ""
       },
       register: {
-        username: "",
-        password: "",
-        password2: "",
-        name: "",
-        birthDate: "",
-        course: "",
-        photo: "",
+        username: "user",
+        password: "1234",
+        password2: "1234",
+        name: "António",
+        birthDate: "10-12-2000",
+        course: "TSIW",
+        photo: "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
         type: "student"
       },
       users: [],

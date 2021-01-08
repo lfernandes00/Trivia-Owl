@@ -140,6 +140,25 @@ export default new Vuex.Store({
         //registo sem sucesso
         throw Error("Username já existente!");
       }
+    },
+    editActivity(context,payload) {
+      context.state.activities.map(
+        activity => {
+            if (activity.id === payload.id) {
+                activity.name = payload.name
+                activity.course = payload.course
+                activity.subject = payload.subject
+                activity.points = payload.points
+                activity.level = payload.level
+                activity.photo = payload.photo
+                activity.question1 = payload.question1
+                activity.question2 = payload.question2
+                activity.question3 = payload.question3
+                activity.question4 = payload.question4
+                activity.question5 = payload.question5
+            }
+        }
+    )
     }
   },
   mutations: {
@@ -152,6 +171,7 @@ export default new Vuex.Store({
     REGISTER(state, user) {
       state.users.push(user);
     }
+
   },
 
   modules: {}
