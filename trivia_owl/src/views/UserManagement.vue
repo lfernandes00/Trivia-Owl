@@ -39,9 +39,7 @@ export default {
     removeUser(id) {
             // Remover objeto com confirmação
             if (confirm('Deseja remover o utilizador?')) {
-                this.users = this.users.filter(
-                    user => user.id !== id
-                )
+               this.$store.dispatch("removeUser", {userId: id});
             }
         },
   }

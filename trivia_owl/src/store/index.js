@@ -150,6 +150,9 @@ export default new Vuex.Store({
         throw Error("Username já existente!");
       }
     },
+    removeUser(context, payload) {
+      context.commit("REMOVEUSER", payload)
+    },
     editActivity(context,payload) {
       context.state.activities.map(
         activity => {
@@ -194,6 +197,9 @@ export default new Vuex.Store({
     },
     REGISTERPROPOSAL(state, proposal) {
       state.proposals.push(proposal);
+    },
+    REMOVEUSER(state, id) {
+      state.users = state.users.filter(user => user.id !== id) 
     },
     ACEPTPROPOSAL(state,proposal) {
       state.activities.push(proposal);

@@ -150,6 +150,8 @@ methods: {
           question4: this.Q4,
           question5: this.Q5
         });
+
+        this.$router.push({name:'ListActivityProposals'})
       } catch (error) {
         alert(error);
       }
