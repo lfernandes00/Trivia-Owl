@@ -199,7 +199,7 @@ export default new Vuex.Store({
       state.proposals.push(proposal);
     },
     REMOVEUSER(state, id) {
-      state.users = state.users.filter(user => user.id !== id) 
+      state.users = state.users.filter((user) => user.id !== id) 
     },
     ACEPTPROPOSAL(state,proposal) {
       state.activities.push(proposal);

@@ -52,10 +52,10 @@
             </tr>
 
             <tr>
-              <td><img id="secondMedal" src="../assets/medalha2.png" alt=""></td>
+              <!-- <td><img id="secondMedal" src="../assets/medalha2.png" alt=""></td>
               <td id="nameTd">{{users[1].name}}</td>
               <td>{{users[1].points}}</td>
-              <td>{{users[1].level}}</td>
+              <td>{{users[1].level}}</td> -->
             </tr>
           </tbody>
         </table>

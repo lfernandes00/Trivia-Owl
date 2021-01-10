@@ -149,8 +149,9 @@ methods: {
           question3: this.Q3,
           question4: this.Q4,
           question5: this.Q5
-        });
 
+        });
+        this.proposals = this.$store.getters.getProposals
         this.$router.push({name:'ListActivityProposals'})
       } catch (error) {
         alert(error);
