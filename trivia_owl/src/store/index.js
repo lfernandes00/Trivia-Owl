@@ -177,6 +177,9 @@ export default new Vuex.Store({
       } else {
         throw Error (`Já existe uma atividade com o nome ${payload.name}`)
       }
+    },
+    aceptProposal(context, payload) {
+      context.commit("ACEPTPROPOSAL", payload);
     }
   },
   mutations: {
@@ -191,6 +194,10 @@ export default new Vuex.Store({
     },
     REGISTERPROPOSAL(state, proposal) {
       state.proposals.push(proposal);
+    },
+    ACEPTPROPOSAL(state,proposal) {
+      state.activities.push(proposal);
+      state.proposals = state.proposals.filter(x => x.id !== proposal.id)
     }
   },
 

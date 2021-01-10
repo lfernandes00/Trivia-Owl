@@ -1,5 +1,5 @@
 <template>
-  <div id="activityProposals">
+  <div id="listActivityProposals">
     <b-container fluid>
       <b-row>
         <h1>Propostas de Atividades</h1>
@@ -24,8 +24,11 @@
               <td id="nameTd">{{proposal.name}}</td>
               <td>{{proposal.points}}</td>
               <td>
-                <b-button pill class="mr-2" id="detailBtn">Ver</b-button>
-                <b-button pill class="ml-2" id="removeBtn">Remover</b-button>
+                <router-link :to="{name: 'ActivityProposal', params: {proposalId: proposal.id}} ">
+                  <b-button pill class="mr-2" id="detailBtn">Ver</b-button>
+                </router-link>
+                
+                <b-button pill class="ml-2" id="removeBtn" @click='removeProposal(proposal.id)'>Remover</b-button>
               </td>
             </tr>
           </tbody>
@@ -36,7 +39,7 @@
 
 <script>
 export default {
-name: 'ActivityProposals',
+name: 'ListActivityProposals',
 data() {
   return {
     proposals: []
@@ -44,6 +47,16 @@ data() {
 },
 created() {
   this.proposals = this.$store.getters.getProposals
+},
+methods: {
+  removeProposal(id) {
+    // Remover objeto com confirmação
+            if (confirm('Deseja remover a proposta?')) {
+                this.proposals = this.proposals.filter(
+                    proposal => proposal.id !== id
+                )
+            }
+  }
 }
 }
 </script>

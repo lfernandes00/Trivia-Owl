@@ -18,7 +18,8 @@ import TeamClassification from "../views/TeamClassification.vue";
 import EditTeam from "../views/EditTeam.vue";
 import ListActivities from "../views/ListActivities.vue";
 import ListActivityManagement from "../views/ListActivityManagement.vue";
-import ActivityProposals from "../views/ActivityProposals.vue";
+import ListActivityProposals from "../views/ListActivityProposals.vue";
+import ActivityProposal from "../views/ActivityProposal.vue";
 
 //components
 import Profile from "../components/Profile.vue";
@@ -119,9 +120,14 @@ const routes = [
     component: EditTeam
   },
   {
-    path: "/admin/activityProposals",
-    name: "ActivityProposals",
-    component: ActivityProposals
+    path: "/admin/listActivityProposals",
+    name: "ListActivityProposals",
+    component: ListActivityProposals
+  },
+  {
+    path: "/admin/activityProposal/:proposalId",
+    name: "ActivityProposal",
+    component: ActivityProposal
   }
 ];
 
