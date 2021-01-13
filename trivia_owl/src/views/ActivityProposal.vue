@@ -134,7 +134,7 @@ methods: {
     aceptProposal() {
         try {
         this.$store.dispatch("aceptProposal", {
-          id: this.getNextId(),
+          id: this.$store.getters.getNextActivityId,
           name: this.name,
           course: this.course,
           subject: this.subject,
@@ -151,18 +151,12 @@ methods: {
           question5: this.Q5
 
         });
-        this.proposals = this.$store.getters.getProposals
+        console.log(this.$store.getters.getNextActivityId)
+        this.$store.dispatch('removeProposal', this.id)
         this.$router.push({name:'ListActivityProposals'})
       } catch (error) {
         alert(error);
       }
-    },
-    getNextId() {
-        if (this.activities.length == 0) {
-            return 0;
-        } else {
-            return this.activities[this.activities.length - 1].id + 1;
-        }
     }
 }
 }

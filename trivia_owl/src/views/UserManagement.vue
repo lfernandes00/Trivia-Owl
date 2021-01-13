@@ -38,11 +38,9 @@ export default {
   methods: {
     removeUser(id) {
             // Remover objeto com confirmação
-            if (confirm('Deseja remover o utilizador?')) {
-               this.$store.dispatch("removeUser", id);
-               this.users = this.$store.getters.getUsers;
-            }
-        },
+            this.$store.dispatch("removeUser", id);
+            this.users = this.$store.getters.getUsers;
+    }
   }
 };
 </script>

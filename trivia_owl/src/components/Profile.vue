@@ -14,7 +14,6 @@
           <b-progress
             height="2.5rem"
             value="75"
-            :style="{ 'background-color': '#01A688' }"
             class="mb-2"
           ></b-progress>
         </b-col>

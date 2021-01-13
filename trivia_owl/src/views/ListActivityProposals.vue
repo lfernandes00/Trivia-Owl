@@ -51,11 +51,11 @@ created() {
 methods: {
   removeProposal(id) {
     // Remover objeto com confirmação
-            if (confirm('Deseja remover a proposta?')) {
-                this.proposals = this.proposals.filter(
-                    proposal => proposal.id !== id
-                )
-            }
+    if (confirm('Deseja remover a proposta?')) {
+      this.$store.dispatch('removeProposal', id)
+    }
+    
+    this.proposals = this.$store.getters.getProposals
   }
 }
 }

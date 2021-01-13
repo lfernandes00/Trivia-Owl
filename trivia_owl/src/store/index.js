@@ -114,10 +114,38 @@ export default new Vuex.Store({
     loggedUser: ""
   },
   getters: {
-    getLoggedUser: state => state.loggedUser,
-    getUsers: state => state.users,
-    getActivities: state => state.activities,
-    getProposals: state => state.proposals
+    getLoggedUser: (state) => {
+      return state.loggedUser;
+    },
+    getUsers: (state) => {
+      return state.users;
+    },
+    getActivities: (state) => {
+      return state.activities;
+    },
+    getProposals: (state) => {
+      return state.proposals;
+    },
+    getNextActivityId: (state) => {
+      return state.activities.length > 0
+        ? state.activities[state.activities.length - 1].id + 1
+        : 1;
+    },
+    getNextUserId: (state) => {
+      if (state.users.length == 0) {
+        return 1;
+      } else {
+        console.log(state.users[state.users.length - 1].id + 1)
+        return state.users[state.users.length - 1].id + 1;
+      }
+    },
+    getNextProposalId: (state) => {
+      if (state.proposals.length == 0) {
+        return 1;
+      } else {
+        return state.proposals[state.proposals.length - 1].id + 1;
+      }
+    },
   },
   actions: {
     login(context, payload) {
@@ -151,7 +179,10 @@ export default new Vuex.Store({
       }
     },
     removeUser(context, payload) {
-      context.commit("REMOVEUSER", payload)
+      if (confirm('Deseja remover o utilizador?')) {
+        context.commit("REMOVEUSER", payload);
+      }
+      
     },
     editActivity(context,payload) {
       context.state.activities.map(
@@ -183,6 +214,9 @@ export default new Vuex.Store({
     },
     aceptProposal(context, payload) {
       context.commit("ACEPTPROPOSAL", payload);
+    },
+    removeProposal(context, id) {
+      context.commit('REMOVEPROPOSAL', id)
     }
   },
   mutations: {
@@ -203,7 +237,9 @@ export default new Vuex.Store({
     },
     ACEPTPROPOSAL(state,proposal) {
       state.activities.push(proposal);
-      state.proposals = state.proposals.filter(x => x.id !== proposal.id)
+    },
+    REMOVEPROPOSAL(state , id) {
+      state.proposals = state.proposals.filter((proposal) => proposal.id !== id);
     }
   },
 

@@ -209,7 +209,7 @@ export default {
       }
       try {
         this.$store.dispatch("register", {
-          id: this.getNextId(),
+          id: this.$store.getters.getNextUserId,
           username: this.register.username,
           password: this.register.password,
           name: this.register.name,
@@ -220,13 +220,6 @@ export default {
         });
       } catch (error) {
         alert(error);
-      }
-    },
-    getNextId() {
-      if (this.users.length == 0) {
-        return 1;
-      } else {
-        return this.users[this.users.length - 1].id + 1;
       }
     }
   },
