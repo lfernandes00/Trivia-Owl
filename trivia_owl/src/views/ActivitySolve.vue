@@ -166,6 +166,7 @@ export default {
     return {
       activities: [],
       id: "",
+      points: "",
       loggedUser: '',
       Q1: "",
       Q2: "",
@@ -229,6 +230,8 @@ export default {
     this.loggedUser = this.$store.getters.getLoggedUser;
 
     const activity = this.activities.find(activity => activity.id === this.id);
+
+    this.points = activity.points;
 
     // pergunta 1
     this.Q1 = activity.question1;
@@ -309,6 +312,21 @@ export default {
         score += 2;
       }
       alert(`O seu resultado final é ${score}`);
+
+      const results = {
+        activityId: this.id,
+        userName: this.loggedUser.name,
+        userPhoto: this.loggedUser.photo,
+        score: score
+      }
+
+      const updateUser = {
+        activityPoints: this.points,
+        userId: this.loggedUser.id,
+      }
+
+      this.$store.dispatch('activitySolve', results);
+      this.$store.dispatch('updateUser', updateUser)
     }
   }
 };

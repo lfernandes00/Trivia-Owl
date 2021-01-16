@@ -10,21 +10,30 @@
         </b-col>
         <b-col cols="6" class="mt-5" style="text-align: start"
           ><br />
-          <h1 style="color: white">CLASSIFICAÇÃO</h1>
+          <h1>CLASSIFICAÇÃO</h1>
         </b-col>
       </b-row>
     </b-container>
 
     <b-container>
-      <b-row class="mt-5">
-        <b-table
-          id="activitiesTable"
-          class="text-left"
-          :items="history"
-          :fields="fields"
-          :borderless="borderless"
-        ></b-table>
-      </b-row>
+      <table class="table table-borderless mt-5">
+        <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col">Nome</th>
+              <th scope="col">Pontuação (0-10)</th>
+            </tr>
+          </thead>
+          <tbody :key="user.userId" v-for="(user, index) in getActivity.classification">
+            <tr>
+              <td>{{index + 1}}</td>
+              <td><b-avatar :src="user.userPhoto"></b-avatar></td>
+              <td id="nameTd">{{user.userName}}</td>
+              <td>{{user.score}}</td>
+            </tr>
+          </tbody>
+      </table>
     </b-container>
   </div>
 </template>
@@ -35,69 +44,46 @@ export default {
   name: "ActivityClassification",
   data() {
     return {
-      fields: [
-        {
-          key: "l"
-        },
-        {
-          key: "f"
-        },
-        {
-          key: "nome",
-          tdClass: () => {
-            return "text-info";
-          }
-        },
-        {
-          key: "pontuação"
-        }
-      ],
-      history: [
-        {
-          l: 1,
-          f: "img",
-          nome: "João Félix",
-          pontuação: 10
-        },
-        {
-          l: 2,
-          f: "img",
-          nome: "Paula Santos",
-          pontuação: 9
-        },
-        {
-          l: 3,
-          f: "img",
-          nome: "Raquel Soares",
-          pontuação: 8.5
-        },
-        {
-          l: 4,
-          f: "img",
-          nome: "Ricardo Sousa",
-          pontuação: 7
-        },
-        {
-          l: 5,
-          f: "img",
-          nome: "Rui Pinto",
-          pontuação: 5
-        }
-      ],
-      borderless: true
+      id: '',
+      activity: {}
     };
+  },
+  created() {
+    this.id = this.$route.params.activityId;
+    this.activity = this.getActivity;
+    console.log(this.getActivity.classification)
+  },
+  methods: {
+    getUser(id) {
+      return this.$store.getters.getUserById(id);
+    }
+  },
+  computed: {
+    getActivity() {
+      return this.$store.getters.getActivityById(this.id)
+    },
+    
+
   }
 };
 </script>
 
 <style scoped>
 /* Estilização dos textos da tabela */
+h1 {
+  color: white;
+  font-weight: bold;
+}
 
-#activitiesTable {
+ td {
   color: white;
 }
 
-.table thead th {
+ th {
   color: #ff7070;
+}
+
+#nameTd {
+  color: #70FFB4;
 }
 </style>

@@ -57,7 +57,8 @@ export default new Vuex.Store({
           "Qual a diferença entre Console.Read() e Console.ReadLine();Em Console.Read() os dados são introduzidos em linha enquanto que em ReadLine são introduzidos num paragráfo a seguir;Não há diferença;A segunda dá mais trabalho a escrever;Em Console.Read() os dados são introduzidos no paragráfo a seguir enquanto que em ReadLine são introduzidos na mesma linha;Q3A4",
         question4: "Como escrever comentários em C#?;/*;//;<--!-->;'';Q4A2",
         question5:
-          "Para criar uma variável de texto devemos escrever:;text;strg;string;txt;Q5A3"
+          "Para criar uma variável de texto devemos escrever:;text;strg;string;txt;Q5A3",
+        classification: [],
       },
       {
         id: 2,
@@ -146,6 +147,11 @@ export default new Vuex.Store({
         return state.proposals[state.proposals.length - 1].id + 1;
       }
     },
+    getActivityById: (state) => (id) => {
+      const activity = state.activities.find((activity) => activity.id === id)
+
+      return activity;
+    },
   },
   actions: {
     login(context, payload) {
@@ -217,6 +223,12 @@ export default new Vuex.Store({
     },
     removeProposal(context, id) {
       context.commit('REMOVEPROPOSAL', id)
+    },
+    activitySolve(context, payload) {
+      context.commit('ACTIVITYSOLVE', payload);
+    },
+    updateUser(context, payload) {
+      context.commit('UPDATEUSER', payload);
     }
   },
   mutations: {
@@ -240,6 +252,32 @@ export default new Vuex.Store({
     },
     REMOVEPROPOSAL(state , id) {
       state.proposals = state.proposals.filter((proposal) => proposal.id !== id);
+    },
+    ACTIVITYSOLVE(state, payload) {
+      const currentActivity = state.activities.find((activity) => activity.id === payload.activityId)
+
+      const newResult = {
+        userId: payload.userId,
+        userName: payload.userName,
+        userPhoto: payload.userPhoto,
+        score: payload.score
+      }
+
+      currentActivity.classification.push(newResult);
+    },
+    UPDATEUSER(state, payload) {
+      const user = state.users.find((user) => user.id === payload.userId)
+
+      let result = parseInt(user.points)
+      let result1 = parseInt(payload.activityPoints)
+
+      state.users.map((user) => {
+        if (user.id === payload.userId) {
+          user.points = result + result1
+          user.doneActivities += 1
+        }
+      })
+
     }
   },
 

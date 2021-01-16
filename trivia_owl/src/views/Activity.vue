@@ -53,7 +53,7 @@
         <b-col cols="6"></b-col>
         <b-col cols="3">
           <!-- Botões que ao serem clicados enviam os utilizadores para a página de classificação ou para as diferentes questões da atividade -->
-          <router-link class="mr-3" :to="{ name: 'ActivityClassification' }"
+          <router-link class="mr-3" :to="{ name: 'ActivityClassification' , params: {activityId: $route.params.activityId}}"
             ><b-button
               pill
               style="background-color: #70FFB4; color: #0B132B; font-weight: bold;"
