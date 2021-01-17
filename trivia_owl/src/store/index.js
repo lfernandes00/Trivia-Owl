@@ -18,7 +18,8 @@ export default new Vuex.Store({
           "https://telegram.org/file/811140509/b45/dQTLEwKZ9gs.22232.gif/4580677d940852f30e",
         type: "admin",
         doneActivities: 1,
-        points: 0
+        points: 0,
+        
       },
       {
         id: 2,
@@ -30,9 +31,10 @@ export default new Vuex.Store({
         level: 1,
         photo:
           "https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        type: "admin",
+        type: "estudante",
         doneActivities: 0,
-        points: 100
+        points: 100,
+        historic: []
       }
     ],
     proposals: [],
@@ -48,7 +50,7 @@ export default new Vuex.Store({
         desc: '.',
         photo:
           "https://arquivo.devmedia.com.br/cursos/imagem/curso_o-que-e-csharp_1983.png",
-        likes: 1,
+        likes: [],
         question1:
           'Qual é a forma correta para imprimir na consola "Hello World";Printl("Hello World");print("Hello world");Console.WriteLine("Hello World");Hello World;Q1A3',
         question2:
@@ -70,7 +72,7 @@ export default new Vuex.Store({
         type: "Quizz",
         desc: '.',
         photo: "https://www.motc.gov.qa/sites/default/files/c-programming.png",
-        likes: 2
+        likes: []
       },
       {
         id: 3,
@@ -83,7 +85,7 @@ export default new Vuex.Store({
         desc: '.',
         photo:
           "https://files.betamax.raywenderlich.com/attachments/collections/161/a3b9ac0f-c565-41b1-97bd-d49a3705e204.png",
-        likes: 3
+        likes: []
       },
       {
         id: 4,
@@ -96,7 +98,7 @@ export default new Vuex.Store({
         desc: '.',
         photo:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2VyyttfkRVOUfPRzJBEtINxI-UELSkU_EPw&usqp=CAU",
-        likes: 4
+        likes: []
       },
       {
         id: 5,
@@ -109,7 +111,7 @@ export default new Vuex.Store({
         desc: '.',
         photo:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2VyyttfkRVOUfPRzJBEtINxI-UELSkU_EPw&usqp=CAU",
-        likes: 5
+        likes: []
       }
     ],
     loggedUser: ""
@@ -207,7 +209,7 @@ export default new Vuex.Store({
                 activity.question5 = payload.question5
             }
         }
-    )
+      )
     },
     addProposal(context,payload) {
       const proposal = context.state.proposals.find(proposal => proposal.name === proposal.name);
@@ -229,6 +231,15 @@ export default new Vuex.Store({
     },
     updateUser(context, payload) {
       context.commit('UPDATEUSER', payload);
+    },
+    likeActivity(context, payload) {
+      const activity = context.state.activities.find((activity) => activity.id === payload.activityId)
+
+      if (activity.likes.indexOf(payload.username) == -1) {
+        context.commit('LIKEACTIVITY', payload);    
+      } else {
+        context.commit('REMOVELIKE', payload);
+      }
     }
   },
   mutations: {
@@ -278,6 +289,25 @@ export default new Vuex.Store({
         }
       })
 
+      const activityHistoric = {
+        id: payload.activityId,
+        name: payload.activityName,
+        course: payload.activityCourse,
+        points: payload.activityPoints
+      }
+
+      user.historic.push(activityHistoric);
+
+    },
+    LIKEACTIVITY(state, payload) {
+      const activity = state.activities.find((activity) => activity.id === payload.activityId)
+
+      activity.likes.push(payload.username);
+    },
+    REMOVELIKE(state, payload) {
+      const activity = state.activities.find((activity) => activity.id === payload.activityId)
+
+      activity.likes = activity.likes.filter((like) => like !== payload.username)
     }
   },
 

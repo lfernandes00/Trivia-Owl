@@ -45,10 +45,10 @@
             size="lg"
             class="mb-2"
             style="background-color:#70FFB4; color: #0B132B; "
-          >
+            @click='likeActivity()'>
             <b-icon icon="hand-thumbs-up"></b-icon> </b-button
           ><br />
-          <b>Gostos: </b> <strong>{{ $route.params.activityLikes }}</strong>
+          <b>Gostos: </b> <strong>{{getActivity.likes.length}}</strong>
         </b-col>
         <b-col cols="6"></b-col>
         <b-col cols="3">
@@ -89,22 +89,29 @@ export default {
   name: "Activity",
   data() {
     return {
-      activities: []
+      activities: [],
+      user: '',
+      activityId: '',
     };
   },
   created() {
     this.activities = this.$store.getters.getActivities;
+    this.user = this.$store.getters.getLoggedUser;
+    this.activityId = this.$route.params.activityId;
   },
   methods: {
-    // giveLike(id) {
-    //   this.activities.map(
-    //             activity => {
-    //                 if (activity.id === id) {
-    //                     activity.likes += 1;
-    //                 }
-    //             }
-    //         )
-    // }
+    likeActivity() {
+      const like = {
+        username: this.user.username,
+        activityId: this.activityId
+      }
+      this.$store.dispatch('likeActivity', like)
+    }
+  }, 
+  computed: {
+    getActivity() {
+      return this.$store.getters.getActivityById(this.$route.params.activityId)
+    }
   }
 };
 </script>

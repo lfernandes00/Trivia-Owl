@@ -321,6 +321,9 @@ export default {
       }
 
       const updateUser = {
+        activityId: this.id,
+        activityName: this.$route.params.activityName,
+        activityCourse: this.$route.params.activityCourse,
         activityPoints: this.points,
         userId: this.loggedUser.id,
       }

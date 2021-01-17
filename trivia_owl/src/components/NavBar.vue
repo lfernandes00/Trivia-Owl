@@ -153,8 +153,8 @@
 
         <label for="txtRegisterType">Tipo de Utilizador</label><br />
         <select id="txtRegisterType" v-model="register.type" required>
-          <option value="student">Estudante</option>
-          <option value="teacher">Docente</option> </select
+          <option value="estudante">Estudante</option>
+          <option value="docente">Docente</option> </select
         ><br /><br />
 
         <b-button pill id="registerSubmit" type="submit">Registar</b-button>

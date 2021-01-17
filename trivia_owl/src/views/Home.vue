@@ -85,11 +85,11 @@
                 activityLevel: activities[0].level,
                 activityType: activities[0].type,
                 activityPhoto: activities[0].photo,
-                activityLikes: activities[0].likes,
+                activityLikes: activities[0].likes.length,
                 activityQuestion1: activities[0].question1
                 }}"><td id="nameTd">{{activities[0].name}}</td></router-link>
               <td>{{activities[0].course}}</td>
-              <td>{{activities[0].likes}}</td>
+              <td>{{activities[0].likes.length}}</td>
             </tr>
 
             <tr>
@@ -103,11 +103,11 @@
                 activityLevel: activities[1].level,
                 activityType: activities[1].type,
                 activityPhoto: activities[1].photo,
-                activityLikes: activities[1].likes,
+                activityLikes: activities[1].likes.length,
                 activityQuestion1: activities[1].question1
                 }}"><td id="nameTd">{{activities[1].name}}</td></router-link>
               <td>{{activities[1].course}}</td>
-              <td>{{activities[1].likes}}</td>
+              <td>{{activities[1].likes.length}}</td>
             </tr>
 
             <tr>
@@ -121,11 +121,11 @@
                 activityLevel: activities[2].level,
                 activityType: activities[2].type,
                 activityPhoto: activities[2].photo,
-                activityLikes: activities[2].likes,
+                activityLikes: activities[2].likes.length,
                 activityQuestion1: activities[2].question1
                 }}"><td id="nameTd">{{activities[2].name}}</td></router-link>
               <td>{{activities[2].course}}</td>
-              <td>{{activities[2].likes}}</td>
+              <td>{{activities[2].likes.length}}</td>
             </tr>
           </tbody>
         </table>
@@ -156,9 +156,9 @@ export default {
   },
   methods: {
     compareActivities(a, b) {
-            if (a.likes > b.likes) return 1 * -1
-            if (a.likes < b.likes) return -1 * -1
-            if (a.likes === b.likes) return 0
+            if (a.likes.length > b.likes.length) return 1 * -1
+            if (a.likes.length < b.likes.length) return -1 * -1
+            if (a.likes.length === b.likes.length) return 0
     },
     compareUsers(a, b) {
             if (a.points > b.points) return 1 * -1

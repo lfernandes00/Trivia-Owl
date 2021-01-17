@@ -34,17 +34,26 @@
           </div>
         </b-col>
         <b-col cols="6" class="mt-5" style="padding: 0px; width: 500px">
-          <b-table id="historyTable" :items="history" :fields="fields">
-            <template #cell(actions)="row">
-              <b-button
-                pill
-                size="md"
-                @click="row.item"
-                class="mr-1 btn btn-danger"
-                >Ir</b-button
-              >
-            </template>
-          </b-table>
+          <table class="table table-borderless mt-5">
+        <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Curso</th>
+              <th scope="col">Pontos</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody :key="activity.id" v-for="activity in getUser.historic">
+            <tr>
+              <td>{{activity.name}}</td>
+              <td>{{activity.course}}</td>
+              <td>{{activity.points}}</td>
+              <td><router-link :to="{name: 'Activity', params: {activityId: activity.id}}">
+                <b-button pill variant="danger">Ir</b-button>
+              </router-link></td>
+            </tr>
+          </tbody>
+      </table>
         </b-col>
       </b-row>
 
@@ -81,22 +90,26 @@ export default {
   name: "Profile",
   data() {
     return {
-      fields: ["nome", "curso", "pontos", "actions"],
-      history: [
-        { nome: "Atividade 1", curso: "TSIW", pontos: 35 },
-        { nome: "Atividade 2", curso: "Multimédia", pontos: 50 }
-      ]
+
     };
   },
   computed: {
     getUser() {
       return this.$store.getters.getLoggedUser;
-    }
+    },
   }
 };
 </script>
 
 <style scoped>
+th {
+  color: #ff7070;
+}
+
+td {
+  color: white;
+}
+
 h6 {
   color: #70ffb4;
 }
