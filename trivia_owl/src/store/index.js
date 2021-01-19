@@ -211,6 +211,20 @@ export default new Vuex.Store({
         }
       )
     },
+    editUser(context, payload) {
+      context.state.users.map(
+        user => {
+          if (user.id === payload.id) {
+            user.username = payload.username
+            user.password = payload.password
+            user.name = payload.name
+            user.birthDate = payload.birthDate
+            user.course = payload.course
+            user.photo = payload.photo
+          }
+        }
+      )
+    },
     addProposal(context,payload) {
       const proposal = context.state.proposals.find(proposal => proposal.name === proposal.name);
 

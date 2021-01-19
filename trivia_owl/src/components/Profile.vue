@@ -70,9 +70,8 @@
             style="background-color: #70FFB4; color: #0B132B"
             >Criar Equipa</b-button
           >
-          <b-button pill style="background-color: #70FFB4; color: #0B132B"
-            >Editar</b-button
-          >
+          <router-link :to='{name: "EditProfile"}'><b-button pill style="background-color: #70FFB4; color: #0B132B">Editar</b-button></router-link>
+          
         </b-col>
         <b-col cols="3" class="mt-5">
           <p>1º</p>
