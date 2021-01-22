@@ -56,7 +56,7 @@
                 >Equipa</router-link
               ></b-dropdown-item-button
             >
-            <b-dropdown-item-button>
+            <b-dropdown-item-button @click='logout'>
                 Sair</b-dropdown-item-button
             >
           </b-nav-item-dropdown>
@@ -221,6 +221,9 @@ export default {
       } catch (error) {
         alert(error);
       }
+    },
+    logout() {
+      this.$store.dispatch('logout');
     }
   },
   computed: {

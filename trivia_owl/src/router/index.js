@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Store from '../store'; 
 
 //views
 import Home from "../views/Home.vue";
@@ -37,102 +38,167 @@ const routes = [
   {
     path: "/listactivities",
     name: "ListActivities",
-    component: ListActivities
+    component: ListActivities,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/classification",
     name: "Classification",
-    component: Classification
+    component: Classification,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/interaction",
     name: "Interaction",
-    component: Interaction
+    component: Interaction,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/profile",
     name: "Profile",
-    component: Profile
+    component: Profile,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/admin/userManagement",
     name: "UserManagement",
-    component: UserManagement
+    component: UserManagement,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/admin/ListActivityManagement",
     name: "ListActivityManagement",
-    component: ListActivityManagement
+    component: ListActivityManagement,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/team",
     name: "Team",
-    component: Team
+    component: Team,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/activity/add",
     name: "AddActivity",
-    component: AddActivity
+    component: AddActivity,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/activity/:activityId",
     name: "Activity",
-    component: Activity
+    component: Activity,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/activity/:activityId/classification",
     name: "ActivityClassification",
-    component: ActivityClassification
+    component: ActivityClassification,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/activity/:activityId/solve",
     name: "ActivitySolve",
-    component: ActivitySolve
+    component: ActivitySolve,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/admin/activityManagement/:activityId/edit",
     name: "EditActivity",
-    component: EditActivity
+    component: EditActivity,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/profile/trophies",
     name: "Trophies",
-    component: Trophies
+    component: Trophies,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/profile/edit",
     name: "EditProfile",
-    component: EditProfile
+    component: EditProfile,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/profile/addTeam",
     name: "AddTeam",
-    component: AddTeam
+    component: AddTeam,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/team/teamId/classification",
     name: "TeamClassification",
-    component: TeamClassification
+    component: TeamClassification,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/team/teamId/edit",
     name: "EditTeam",
-    component: EditTeam
+    component: EditTeam,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/admin/listActivityProposals",
     name: "ListActivityProposals",
-    component: ListActivityProposals
+    component: ListActivityProposals,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/admin/activityProposal/:proposalId",
     name: "ActivityProposal",
-    component: ActivityProposal
+    component: ActivityProposal,
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 
 const router = new VueRouter({
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && !Store.getters.getLoggedUser) {    
+    next({name: 'Home'})
+  } else {
+    next();  
+  }
 });
 
 export default router;

@@ -33,8 +33,8 @@
         <!-- Criação de 2 tabelas, ambas borderless, uma para os utilizadores e outra para as atividades -->
         <b-col>
           <h4 id="title">Utilizadores</h4>
-          <div>
-            <table class="table table-borderless">
+          <div v-if="users.length >= 3">
+          <table class="table table-borderless">
           <thead>
             <tr>
               <th scope="col"></th>
@@ -52,13 +52,40 @@
             </tr>
 
             <tr>
-              <!-- <td><img id="secondMedal" src="../assets/medalha2.png" alt=""></td>
+              <td><img id="secondMedal" src="../assets/medalha2.png" alt=""></td>
               <td id="nameTd">{{users[1].name}}</td>
               <td>{{users[1].points}}</td>
-              <td>{{users[1].level}}</td> -->
+              <td>{{users[1].level}}</td>
+            </tr>
+
+            <tr>
+              <td><img id="secondMedal" src="../assets/medalha2.png" alt=""></td>
+              <td id="nameTd">{{users[2].name}}</td>
+              <td>{{users[2].points}}</td>
+              <td>{{users[2].level}}</td>
             </tr>
           </tbody>
-        </table>
+          </table>
+          </div>
+          <div v-else>
+            <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Nome</th>
+              <th scope="col">Pontos</th>
+              <th scope="col">Nível</th>
+            </tr>
+          </thead>
+          <tbody :key='user.id' v-for="(user, index) in users">
+            <tr>
+              <td>{{index + 1}}</td>
+              <td id="nameTd">{{user.name}}</td>
+              <td>{{user.points}}</td>
+              <td>{{user.level}}</td>
+            </tr>
+          </tbody>
+          </table>
           </div>
         </b-col>
         <b-col>

@@ -34,7 +34,8 @@ export default new Vuex.Store({
         type: "estudante",
         doneActivities: 0,
         points: 100,
-        historic: []
+        historic: [],
+        trophies: []
       }
     ],
     proposals: [],
@@ -171,6 +172,9 @@ export default new Vuex.Store({
         //login sem sucesso
         throw Error("Login inválido!");
       }
+    },
+    logout(context) {
+      context.commit('LOGOUT');
     },
     register(context, payload) {
       //verificar se o user já existe

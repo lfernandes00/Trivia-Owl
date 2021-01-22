@@ -34,7 +34,10 @@
           </div>
         </b-col>
         <b-col cols="6" class="mt-5" style="padding: 0px; width: 500px">
-          <table class="table table-borderless mt-5">
+          <h2 style="color:white;">Histórico</h2>
+          <div v-if='getUser.historic.length == 0' style="color: white;">Não participou em atividades</div>
+          <div v-else>
+            <table class="table table-borderless mt-5">
         <thead>
             <tr>
               <th scope="col">Nome</th>
@@ -54,6 +57,8 @@
             </tr>
           </tbody>
       </table>
+          </div>
+          
         </b-col>
       </b-row>
 
@@ -77,7 +82,7 @@
           <p>1º</p>
         </b-col>
         <b-col cols="3" class="mt-5">
-          <p>10</p>
+          <p>{{getUser.trophies.length}}</p>
         </b-col>
       </b-row>
     </b-container>
@@ -89,13 +94,15 @@ export default {
   name: "Profile",
   data() {
     return {
-
     };
+  },
+  created() {
+    this.users = this.$store.getters.getUsers;
   },
   computed: {
     getUser() {
       return this.$store.getters.getLoggedUser;
-    },
+    }
   }
 };
 </script>
