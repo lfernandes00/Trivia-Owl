@@ -115,6 +115,38 @@ export default new Vuex.Store({
         likes: []
       }
     ],
+    trophies: [
+      {
+        id: 1,
+        desc: 'Completar 1 atividade',
+        points: 10,
+        competed: []
+      },
+      {
+        id: 2,
+        desc: 'Completar 5 atividades',
+        points: 20,
+        competed: []
+      },
+      {
+        id: 3,
+        desc: 'Completar 10 atividades',
+        points: 30,
+        competed: []
+      },
+      {
+        id: 4,
+        desc: 'Completar 20 atividades',
+        points: 30,
+        competed: []
+      },
+      {
+        id: 5,
+        desc: 'Completar 1 atividade sem errar',
+        points: 20,
+        competed: []
+      }
+    ],
     loggedUser: ""
   },
   getters: {
@@ -155,6 +187,9 @@ export default new Vuex.Store({
 
       return activity;
     },
+    getAllTrophies: (state) => {
+      return state.trophies;
+    }
   },
   actions: {
     login(context, payload) {
