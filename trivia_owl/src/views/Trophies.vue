@@ -29,10 +29,13 @@
           <tbody :key="trophy.id" v-for="trophy in getTrophies">
             <tr>
               <td>{{trophy.id}}</td>
-              <td></td>
+              <td><b-icon icon="trophy-fill" style="color: #70FFB4; font-size: 25px;"></b-icon></td>
               <td id="descTd">{{trophy.desc}}</td>
               <td>{{trophy.points}}</td>
-              <td>asdf</td>
+              <td :key="user" v-for="user in trophy.completed">
+                <p v-if='user == loggedUser.username && trophy.completed.length != 0'>Feito!</p>
+                <p v-else>Bloqueado!</p>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -45,8 +48,11 @@ export default {
   name: "trophies",
   data() {
     return {
-
+      loggedUser: ''
     }
+  },
+  created() {
+    this.loggedUser = this.$store.getters.getLoggedUser;
   },
   computed: {
     getTrophies() {

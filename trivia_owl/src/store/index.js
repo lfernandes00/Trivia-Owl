@@ -8,23 +8,23 @@ export default new Vuex.Store({
     users: [
       {
         id: 1,
-        username: "admin",
-        password: "admin",
-        name: "Luis",
+        username: "Admin",
+        password: "Esmad_2021",
+        name: "Admin",
         birthDate: "10-10-2000",
         course: "1",
         level: 1,
         photo:
           "https://telegram.org/file/811140509/b45/dQTLEwKZ9gs.22232.gif/4580677d940852f30e",
         type: "admin",
-        doneActivities: 1,
+        doneActivities: 0,
         points: 0,
         
       },
       {
         id: 2,
-        username: "user1",
-        password: "1234",
+        username: "User",
+        password: "Esmad_2021",
         name: "João",
         birthDate: "10-10-2000",
         course: "1",
@@ -33,7 +33,7 @@ export default new Vuex.Store({
           "https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         type: "estudante",
         doneActivities: 0,
-        points: 100,
+        points: 0,
         historic: [],
         trophies: []
       }
@@ -120,31 +120,37 @@ export default new Vuex.Store({
         id: 1,
         desc: 'Completar 1 atividade',
         points: 10,
-        competed: []
+        completed: []
       },
       {
         id: 2,
         desc: 'Completar 5 atividades',
         points: 20,
-        competed: []
+        completed: []
       },
       {
         id: 3,
         desc: 'Completar 10 atividades',
         points: 30,
-        competed: []
+        completed: []
       },
       {
         id: 4,
         desc: 'Completar 20 atividades',
-        points: 30,
-        competed: []
+        points: 40,
+        completed: []
       },
       {
         id: 5,
         desc: 'Completar 1 atividade sem errar',
         points: 20,
-        competed: []
+        completed: []
+      },
+      {
+        id: 6,
+        desc: 'Completar 1 atividade sem errar',
+        points: 20,
+        completed: []
       }
     ],
     loggedUser: ""
@@ -171,7 +177,6 @@ export default new Vuex.Store({
       if (state.users.length == 0) {
         return 1;
       } else {
-        console.log(state.users[state.users.length - 1].id + 1)
         return state.users[state.users.length - 1].id + 1;
       }
     },
@@ -293,6 +298,9 @@ export default new Vuex.Store({
       } else {
         context.commit('REMOVELIKE', payload);
       }
+    },
+    completeTrophy(context, payload) {
+      context.commit('COMPLETETROPHY', payload);
     }
   },
   mutations: {
@@ -361,6 +369,23 @@ export default new Vuex.Store({
       const activity = state.activities.find((activity) => activity.id === payload.activityId)
 
       activity.likes = activity.likes.filter((like) => like !== payload.username)
+    },
+    COMPLETETROPHY(state, payload) {
+      const trophy = state.trophies.find((trophy) => trophy.id === payload.trophyId)
+
+      trophy.completed.push(payload.username);
+
+      const currentUser = state.users.find((user) => user.id === payload.userId)
+      currentUser.trophies.push(trophy);
+
+      let result = parseInt(currentUser.points)
+      let result1 = parseInt(payload.trophyPoints)
+
+      state.users.map((user) => {
+        if (user.id === payload.userId) {
+          user.points = result + result1
+        }
+      })
     }
   },
 

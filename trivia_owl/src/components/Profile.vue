@@ -82,7 +82,7 @@
           <p>1º</p>
         </b-col>
         <b-col cols="3" class="mt-5">
-          <router-link :to='{name: "Trophies"}'>Ir</router-link>
+          <router-link :to='{name: "Trophies"}'><b-icon icon="trophy-fill"></b-icon></router-link>
           <p>{{getUser.trophies.length}}</p>
         </b-col>
       </b-row>

@@ -143,7 +143,7 @@ methods: {
           photo: this.photo,
           type: this.type,
           desc: this.desc,
-          likes: '0',
+          likes: [],
           question1: this.Q1,
           question2: this.Q2,
           question3: this.Q3,

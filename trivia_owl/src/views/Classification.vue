@@ -26,7 +26,7 @@
               <th scope="col">Atividades Realizadas</th>
             </tr>
           </thead>
-          <tbody :key="user.id" v-for="(user,index) in users">
+          <tbody :key="user.id" v-for="(user,index) in getAllUsers">
             <tr>
               <td>{{index + 1}}</td>
               <td><b-avatar :src="user.photo"></b-avatar></td>
@@ -59,13 +59,13 @@ export default {
       const allUsers = [];
 
       for (let user of this.users) {
-        if (allNames.indexOf(user.username) == -1)
+        if (allNames.indexOf(user.username) == -1 && user.type == 'estudante')
           allUsers.push({
-            l: user.id,
-            f: user.photo,
-            nome: user.name,
-            pontos: user.points,
-            atividades_realizadas: user.doneActivities
+            id: user.id,
+            photo: user.photo,
+            name: user.name,
+            points: user.points,
+            doneActivities: user.doneActivities
           });
       }
       return allUsers;
@@ -75,7 +75,7 @@ export default {
      sortUsers() {
             // ordenar users pelos pontos (alterando entre ordenação crescente e decrescente)
             this.flagSort = this.flagSort * -1
-            this.users.sort(this.compareUsers)
+            this.getAllUsers.sort(this.compareUsers)
         },
         compareUsers(a, b) {
             if (a.points > b.points) return 1 * this.flagSort

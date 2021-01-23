@@ -33,7 +33,7 @@
         <!-- Criação de 2 tabelas, ambas borderless, uma para os utilizadores e outra para as atividades -->
         <b-col>
           <h4 id="title">Utilizadores</h4>
-          <div v-if="users.length >= 3">
+          <div v-if="getAllUsers.length >= 3">
           <table class="table table-borderless">
           <thead>
             <tr>
@@ -46,23 +46,23 @@
           <tbody>
             <tr>
               <td><img id="firstMedal" src="../assets/medalha1.png" alt=""></td>
-              <td id="nameTd">{{users[0].name}}</td>
-              <td>{{users[0].points}}</td>
-              <td>{{users[0].level}}</td>
+              <td id="nameTd">{{getAllUsers[0].name}}</td>
+              <td>{{getAllUsers[0].points}}</td>
+              <td>{{getAllUsers[0].level}}</td>
             </tr>
 
             <tr>
               <td><img id="secondMedal" src="../assets/medalha2.png" alt=""></td>
               <td id="nameTd">{{users[1].name}}</td>
-              <td>{{users[1].points}}</td>
-              <td>{{users[1].level}}</td>
+              <td>{{getAllUsers[1].points}}</td>
+              <td>{{getAllUsers[1].level}}</td>
             </tr>
 
             <tr>
               <td><img id="secondMedal" src="../assets/medalha2.png" alt=""></td>
-              <td id="nameTd">{{users[2].name}}</td>
-              <td>{{users[2].points}}</td>
-              <td>{{users[2].level}}</td>
+              <td id="nameTd">{{getAllUsers[2].name}}</td>
+              <td>{{getAllUsers[2].points}}</td>
+              <td>{{getAllUsers[2].level}}</td>
             </tr>
           </tbody>
           </table>
@@ -77,7 +77,7 @@
               <th scope="col">Nível</th>
             </tr>
           </thead>
-          <tbody :key='user.id' v-for="(user, index) in users">
+          <tbody :key='user.id' v-for="(user, index) in getAllUsers">
             <tr>
               <td>{{index + 1}}</td>
               <td id="nameTd">{{user.name}}</td>
@@ -179,7 +179,7 @@ export default {
     this.users = this.$store.getters.getUsers;
 
     this.activities.sort(this.compareActivities)
-    this.users.sort(this.compareUsers)
+    this.getAllUsers.sort(this.compareUsers)
   },
   methods: {
     compareActivities(a, b) {
@@ -192,6 +192,25 @@ export default {
             if (a.points < b.points) return -1 * -1
             if (a.points === b.points) return 0
         }
+  },
+  computed: {
+    getAllUsers() {
+      const allNames = [];
+      const allUsers = [];
+
+      for (let user of this.users) {
+        if (allNames.indexOf(user.username) == -1 && user.type == 'estudante')
+          allUsers.push({
+            id: user.id,
+            photo: user.photo,
+            name: user.name,
+            points: user.points,
+            doneActivities: user.doneActivities,
+            level: user.level
+          });
+      }
+      return allUsers;
+    }
   }
 };
 </script>

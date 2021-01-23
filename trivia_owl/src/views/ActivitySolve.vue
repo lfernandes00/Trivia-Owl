@@ -164,6 +164,7 @@ export default {
   name: "ActivitySolve",
   data() {
     return {
+      trophies: [],
       activities: [],
       id: "",
       points: "",
@@ -228,6 +229,7 @@ export default {
     this.activities = this.$store.getters.getActivities;
     this.id = this.$route.params.activityId;
     this.loggedUser = this.$store.getters.getLoggedUser;
+    this.trophies = this.$store.getters.getAllTrophies;
 
     const activity = this.activities.find(activity => activity.id === this.id);
 
@@ -313,6 +315,63 @@ export default {
       }
       alert(`O seu resultado final é ${score}`);
 
+      //troféus
+      //Completar 1 atividade
+      if (this.loggedUser.doneActivities == 0) {
+        const data = {
+          trophyId: this.trophies[0].id,
+          trophyPoints: this.trophies[0].points,
+          userId: this.loggedUser.id,
+          username: this.loggedUser.username
+        }
+
+        this.$store.dispatch('completeTrophy', data)
+      }
+      //Completar 5 atividades
+      if (this.loggedUser.doneActivities == 4) {
+        const data = {
+          trophyId: this.trophies[1].id,
+          trophyPoints: this.trophies[1].points,
+          userId: this.loggedUser.id,
+          username: this.loggedUser.username
+        }
+
+        this.$store.dispatch('completeTrophy', data)
+      }
+      //Completar 10 atividades
+      if (this.loggedUser.doneActivities == 9) {
+        const data = {
+          trophyId: this.trophies[2].id,
+          trophyPoints: this.trophies[2].points,
+          userId: this.loggedUser.id,
+          username: this.loggedUser.username
+        }
+
+        this.$store.dispatch('completeTrophy', data)
+      }
+      //Completar 20 atividades
+      if (this.loggedUser.doneActivities == 19) {
+        const data = {
+          trophyId: this.trophies[3].id,
+          trophyPoints: this.trophies[3].points,
+          userId: this.loggedUser.id,
+          username: this.loggedUser.username
+        }
+
+        this.$store.dispatch('completeTrophy', data)
+      }
+      //completar 1 atividade sem errar
+      if (score == 10) {
+        const data = {
+          trophyId: this.trophies[4].id,
+          trophyPoints: this.trophies[4].points,
+          userId: this.loggedUser.id,
+          username: this.loggedUser.username
+        }
+
+        this.$store.dispatch('completeTrophy', data)
+      }
+
       const results = {
         activityId: this.id,
         userName: this.loggedUser.name,
@@ -328,8 +387,22 @@ export default {
         userId: this.loggedUser.id,
       }
 
+      const activity = this.activities.find(activity => activity.id === this.id);
+
       this.$store.dispatch('activitySolve', results);
-      this.$store.dispatch('updateUser', updateUser)
+      this.$store.dispatch('updateUser', updateUser);
+      this.$router.push({name:'Activity', params: {
+            activityId: activity.id,
+            activityName: activity.name,
+            activityCourse: activity.course,
+            activitySubject: activity.subject,
+            activityPoints: activity.points,
+            activityLevel: activity.level,
+            activityType: activity.type,
+            activityPhoto: activity.photo,
+            activityLikes: activity.likes,
+            activityQuestion1: activity.question1
+      }});
     }
   }
 };

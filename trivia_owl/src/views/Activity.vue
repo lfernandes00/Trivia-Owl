@@ -72,14 +72,14 @@
             }"
             ><b-button
               pill
-              style="background-color: #70FFB4; color: #0B132B; font-weight: bold;"
+              id="solveBtn"
+              :disabled='disabled'
               >Resolver</b-button
             ></router-link
           >
         </b-col>
       </b-row>
     </b-container>
-
     <br /><br />
   </div>
 </template>
@@ -92,12 +92,22 @@ export default {
       activities: [],
       user: '',
       activityId: '',
+      disabled: false
     };
   },
   created() {
     this.activities = this.$store.getters.getActivities;
     this.user = this.$store.getters.getLoggedUser;
     this.activityId = this.$route.params.activityId;
+
+    for (let activity of this.user.historic) {
+      if (activity.id === this.activityId) {
+        this.disabled = true;
+      } else {
+        this.disabled = false;
+      }
+    }
+
   },
   methods: {
     likeActivity() {
@@ -128,5 +138,11 @@ b {
 
 strong {
   color: white;
+}
+
+#solveBtn {
+  background-color: #70FFB4;
+  color: #0B132B;
+  font-weight: bold;
 }
 </style>
