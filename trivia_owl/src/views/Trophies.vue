@@ -16,7 +16,7 @@
     </b-container>
 
     <b-container>
-      <table class="table table-borderless mt-5">
+      <table id="trophyTable" class="table table-borderless mt-5 ">
           <thead>
             <tr>
               <th scope="col"></th>
@@ -29,7 +29,7 @@
           <tbody :key="trophy.id" v-for="trophy in getTrophies">
             <tr>
               <td>{{trophy.id}}</td>
-              <td><b-icon icon="trophy-fill" style="color: #70FFB4; font-size: 25px;"></b-icon></td>
+              <td><b-icon class="h1" icon="trophy-fill" style="color: #70FFB4; font-size: 25px;"></b-icon></td>
               <td id="descTd">{{trophy.desc}}</td>
               <td>{{trophy.points}}</td>
               <td :key="user" v-for="user in trophy.completed">
@@ -78,5 +78,9 @@ h1 {
 
 #descTd {
   color: #70FFB4;
+}
+
+#trophyTable {
+  text-align: start;
 }
 </style>

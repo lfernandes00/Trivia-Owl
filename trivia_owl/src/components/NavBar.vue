@@ -21,23 +21,24 @@
             ><p class="mt-3">Interação</p></router-link
           >
 
-          <b-nav-item-dropdown id="dropdown" right class="mr-2">
+          <b-nav-item-dropdown id="dropdown" right class="mr-2" >
             <!-- Using 'button-content' slot -->
             <template #button-content>
               <em><b-avatar :src="getUser.photo"></b-avatar></em>
             </template>
-            <b-dropdown-item-button href="#"
+            <b-dropdown-item-button href="#" :style="{visibility: show.profile}"
               ><router-link id="firstDropdownItem" :to="{ name: 'Profile' }"
                 >Perfil</router-link
               ></b-dropdown-item-button
             >
-            <b-dropdown-item-button id="secondDropdownItem" v-b-modal.modalLogin
+            <b-dropdown-item-button id="secondDropdownItem" v-b-modal.modalLogin :style="{visibility: show.login}"
               >Entrar</b-dropdown-item-button
             >
-            <b-dropdown-item-button id="thirdDropdownItem"
+            <b-dropdown-item-button id="thirdDropdownItem" :style="{visibility: show.notification}"
               >Notificações</b-dropdown-item-button
             >
             <b-dropdown-item-button
+            :style="{visibility: show.userManagement}"
               ><router-link
                 id="fourthDropdownItem"
                 :to="{ name: 'UserManagement' }"
@@ -45,6 +46,7 @@
               ></b-dropdown-item-button
             >
             <b-dropdown-item-button
+            :style="{visibility: show.activityManagement}"
               ><router-link
                 id="fifthDropdownItem"
                 :to="{ name: 'ListActivityManagement' }"
@@ -52,11 +54,12 @@
               ></b-dropdown-item-button
             >
             <b-dropdown-item-button
+            :style="{visibility: show.team}"
               ><router-link id="sixthDropdownItem" :to="{ name: 'Team' }"
                 >Equipa</router-link
               ></b-dropdown-item-button
             >
-            <b-dropdown-item-button @click='logout'>
+            <b-dropdown-item-button @click='logout' :style="{visibility: show.logout}"> 
                 Sair</b-dropdown-item-button
             >
           </b-nav-item-dropdown>
@@ -183,11 +186,65 @@ export default {
         type: "student"
       },
       users: [],
-      user: ""
+      user: "",
+      loggedUser: '',
+      show: {
+        profile: 'visible',
+        login: 'visible',
+        notification: 'visible',
+        userManagement: 'visible',
+        activityManagement: 'visible',
+        team: 'visible',
+        logout: 'visible'
+      }
     };
   },
   created() {
     this.users = this.$store.getters.getUsers;
+    this.loggedUser = this.$store.getters.getLoggedUser;
+
+    if (this.loggedUser == '') {
+      this.show.profile = 'hidden';
+      this.show.login = 'visible';
+      this.show.notification = 'hidden';
+      this.show.userManagement = 'hidden';
+      this.show.activityManagement = 'hidden';
+      this.show.team = 'hidden';
+      this.show.logout = 'hidden';
+    }
+
+    if (this.loggedUser.type == 'estudante') {
+      this.show.profile = 'visible';
+      this.show.login = 'hidden';
+      this.show.notification = 'visible';
+      this.show.userManagement = 'hidden';
+      this.show.activityManagement = 'hidden';
+      this.show.team = 'visible';
+      this.show.logout = 'visible';
+    }
+
+    if (this.loggedUser.type == 'docente') {
+      this.show.profile = 'visible';
+      this.show.login = 'hidden';
+      this.show.notification = 'visible';
+      this.show.userManagement = 'hidden';
+      this.show.activityManagement = 'visible';
+      this.show.team = 'hidden';
+      this.show.logout = 'visible';
+    }
+
+    if (this.loggedUser.type == 'admin') {
+      this.show.profile = 'visible';
+      this.show.login = 'hidden';
+      this.show.notification = 'visible';
+      this.show.userManagement = 'visible';
+      this.show.activityManagement = 'visible';
+      this.show.team = 'hidden';
+      this.show.logout = 'visible';
+    }
+
+    
+
   },
   methods: {
     Login() {
@@ -197,11 +254,46 @@ export default {
           username: this.login.username,
           password: this.login.password
         });
+        this.loggedUser = this.$store.getters.getLoggedUser;
+        this.hideModal("modalLogin");
+
+        if (this.loggedUser.type == 'estudante') {
+      this.show.profile = 'visible';
+      this.show.login = 'hidden';
+      this.show.notification = 'visible';
+      this.show.userManagement = 'hidden';
+      this.show.activityManagement = 'hidden';
+      this.show.team = 'visible';
+      this.show.logout = 'visible';
+    }
+
+    if (this.loggedUser.type == 'docente') {
+      this.show.profile = 'visible';
+      this.show.login = 'hidden';
+      this.show.notification = 'visible';
+      this.show.userManagement = 'hidden';
+      this.show.activityManagement = 'visible';
+      this.show.team = 'hidden';
+      this.show.logout = 'visible';
+    }
+
+    if (this.loggedUser.type == 'admin') {
+      this.show.profile = 'visible';
+      this.show.login = 'hidden';
+      this.show.notification = 'visible';
+      this.show.userManagement = 'visible';
+      this.show.activityManagement = 'visible';
+      this.show.team = 'hidden';
+      this.show.logout = 'visible';
+    }
         //fechar a modal login
       } catch (error) {
         //mudar para sweetalert
         alert(error);
       }
+    },
+    hideModal (id) {
+        this.$root.$emit('bv::hide::modal',id)
     },
     Register() {
       if (this.register.password != this.register.password2) {
@@ -218,12 +310,25 @@ export default {
           photo: this.register.photo,
           type: this.register.type
         });
+        this.hideModal("modalRegister");
       } catch (error) {
         alert(error);
       }
     },
     logout() {
       this.$store.dispatch('logout');
+      this.loggedUser = this.$store.getters.getLoggedUser;
+      this.$router.push({name:'Home'});
+
+      if (this.loggedUser == '') {
+      this.show.profile = 'hidden';
+      this.show.login = 'visible';
+      this.show.notification = 'hidden';
+      this.show.userManagement = 'hidden';
+      this.show.activityManagement = 'hidden';
+      this.show.team = 'hidden';
+      this.show.logout = 'hidden';
+    }
     }
   },
   computed: {

@@ -16,7 +16,7 @@
     </b-container>
 
     <b-container>
-      <table class="table table-borderless mt-5">
+      <table id="classificationTable" class="table table-borderless mt-5">
           <thead>
             <tr>
               <th scope="col"></th>
@@ -104,5 +104,9 @@ h1 {
 
 #nameTd {
   color: #70FFB4;
+}
+
+#classificationTable {
+  text-align: start;
 }
 </style>

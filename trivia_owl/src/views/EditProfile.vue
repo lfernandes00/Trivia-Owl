@@ -3,7 +3,7 @@
     <b-container fluid>
       <b-row>
         <b-col cols="6">
-          <b-form @submit.prevent='onSubmit'>
+          <b-form @submit.prevent='onSubmit' class="mt-4 ml-4">
         <b-form-group id="input-group-1" label="Username" label-for="input-1">
           <b-form-input id="input-1" v-model="user.username" type="text" ></b-form-input>
         </b-form-group>
@@ -32,7 +32,7 @@
       </b-form>
         </b-col>
         <b-col cols="6">
-          <b-avatar :src="user.photo" size="200px"></b-avatar>
+          <b-avatar class="mt-4 ml-2" id="avatar" :src="user.photo" size="200px"></b-avatar>
         </b-col>
       </b-row>
       
@@ -87,4 +87,50 @@ export default {
 </script>
 
 <style scoped>
+#input-group-1 {
+  color: #6FFFE9;
+  text-align: start;
+}
+
+#input-group-2 {
+  color: #6FFFE9;
+  text-align: start;
+}
+
+#input-group-3 {
+  color: #6FFFE9;
+  text-align: start;
+}
+
+#input-group-4 {
+  color: #6FFFE9;
+  text-align: start;
+}
+
+#input-group-5 {
+  color: #6FFFE9;
+  text-align: start;
+}
+
+#input-group-6 {
+  color: #6FFFE9;
+  text-align: start;
+}
+
+#input-group-7 {
+  color: #6FFFE9;
+  text-align: start;
+}
+
+#avatar {
+  float:none;
+}
+
+#submitBtn {
+  background-color: #70FFB4;
+  color: #0B132B;
+  width: 100px;
+  height: 50px;
+  float: right;
+}
 </style>

@@ -145,7 +145,7 @@
               }}</b-form-radio>
             </b-form-group>
 
-            <b-button pill id="submitBtn" type="submit">Submeter</b-button>
+            <b-button pill id="submitBtn" :disabled='disabled' type="submit">Submeter</b-button>
           </b-form>
         </div>
       </b-row>
@@ -222,7 +222,8 @@ export default {
           fourthOption: "",
           correctOption: ""
         }
-      }
+      },
+      disabled: false
     };
   },
   created() {
@@ -294,6 +295,16 @@ export default {
     this.questions.question5.thirdOption = Question5[3];
     this.questions.question5.fourthOption = Question5[4];
     this.questions.question5.correctOption = Question5[5];
+
+    if (this.loggedUser.type == 'docente') {
+      this.disabled = true;
+    }
+    if (this.loggedUser.type == 'admin') {
+      this.disabled = true;
+    }
+    if (this.loggedUser.type == 'estudante') {
+      this.disabled = false;
+    }
   },
   methods: {
     submit() {

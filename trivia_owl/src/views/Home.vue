@@ -34,7 +34,7 @@
         <b-col>
           <h4 id="title">Utilizadores</h4>
           <div v-if="getAllUsers.length >= 3">
-          <table class="table table-borderless">
+          <table id="usersTable" class="table table-borderless">
           <thead>
             <tr>
               <th scope="col"></th>
@@ -45,21 +45,21 @@
           </thead>
           <tbody>
             <tr>
-              <td><img id="firstMedal" src="../assets/medalha1.png" alt=""></td>
+              <td>1</td>
               <td id="nameTd">{{getAllUsers[0].name}}</td>
               <td>{{getAllUsers[0].points}}</td>
               <td>{{getAllUsers[0].level}}</td>
             </tr>
 
             <tr>
-              <td><img id="secondMedal" src="../assets/medalha2.png" alt=""></td>
+              <td>2</td>
               <td id="nameTd">{{users[1].name}}</td>
               <td>{{getAllUsers[1].points}}</td>
               <td>{{getAllUsers[1].level}}</td>
             </tr>
 
             <tr>
-              <td><img id="secondMedal" src="../assets/medalha2.png" alt=""></td>
+              <td>3</td>
               <td id="nameTd">{{getAllUsers[2].name}}</td>
               <td>{{getAllUsers[2].points}}</td>
               <td>{{getAllUsers[2].level}}</td>
@@ -68,7 +68,7 @@
           </table>
           </div>
           <div v-else>
-            <table class="table table-borderless">
+            <table id="usersTable" class="table table-borderless">
           <thead>
             <tr>
               <th scope="col"></th>
@@ -91,7 +91,7 @@
         <b-col>
           <h4>Atividades</h4>
           <div>
-            <table class="table table-borderless">
+            <table id="activitiesTable" class="table table-borderless">
           <thead>
             <tr>
               <th scope="col"></th>
@@ -254,13 +254,13 @@ td {
   color: white;
 }
 
-#firstMedal {
-  width: 25px;
-  height: 25px;
+#activitiesTable {
+  text-align: start;
 }
 
-#secondMedal {
-  width: 25px;
-  height: 25px;
+#usersTable {
+  text-align: start;
 }
+
+
 </style>

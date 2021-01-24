@@ -71,19 +71,19 @@
         >
           <b-button
             pill
+            id="teamBtn"
             class="mr-3"
             style="background-color: #70FFB4; color: #0B132B"
             >Criar Equipa</b-button
           >
-          <router-link :to='{name: "EditProfile"}'><b-button pill style="background-color: #70FFB4; color: #0B132B">Editar</b-button></router-link>
+          <router-link :to='{name: "EditProfile"}'><b-button pill id="editBtn" style="background-color: #70FFB4; color: #0B132B">Editar</b-button></router-link>
           
         </b-col>
         <b-col cols="3" class="mt-5">
-          <p>1º</p>
+          <router-link class="h1" :to='{name: "Classification"}'><b-icon style="color: #70FFB4; font-size: 60px;" icon="people-fill"></b-icon></router-link>
         </b-col>
         <b-col cols="3" class="mt-5">
-          <router-link :to='{name: "Trophies"}'><b-icon icon="trophy-fill"></b-icon></router-link>
-          <p>{{getUser.trophies.length}}</p>
+          <router-link class="h1" :to='{name: "Trophies"}'><b-icon style="color: #70FFB4; font-size: 60px;" icon="trophy-fill"></b-icon></router-link>
         </b-col>
       </b-row>
     </b-container>
@@ -136,5 +136,16 @@ p {
 
 #historyTable {
   color: white;
+}
+
+#teamBtn {
+  width: 100px;
+  height: 50px;
+  font-size: 13px;
+}
+
+#editBtn {
+  width: 100px;
+  height: 50px;
 }
 </style>

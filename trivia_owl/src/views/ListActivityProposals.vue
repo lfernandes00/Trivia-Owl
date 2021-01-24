@@ -7,7 +7,7 @@
     </b-container>
 
     <b-container>
-      <table class="table table-borderless mt-5">
+      <table id="proposalTable" class="table table-borderless mt-5">
           <thead>
             <tr>
               <th scope="col"></th>
@@ -89,5 +89,9 @@ h1 {
   background-color: #FF7070;
   color:  #0B132B;
   width: 100px;
+}
+
+#proposalTable {
+  text-align: start;
 }
 </style>

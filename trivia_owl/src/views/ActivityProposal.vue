@@ -148,7 +148,8 @@ methods: {
           question2: this.Q2,
           question3: this.Q3,
           question4: this.Q4,
-          question5: this.Q5
+          question5: this.Q5,
+          classification: []
 
         });
         console.log(this.$store.getters.getNextActivityId)

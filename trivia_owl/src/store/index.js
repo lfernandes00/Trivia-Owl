@@ -19,15 +19,16 @@ export default new Vuex.Store({
         type: "admin",
         doneActivities: 0,
         points: 0,
-        
+        historic: [],
+        trophies: []
       },
       {
         id: 2,
         username: "User",
         password: "Esmad_2021",
         name: "João",
-        birthDate: "10-10-2000",
-        course: "1",
+        birthDate: "29-01-2000",
+        course: "TSIW",
         level: 1,
         photo:
           "https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
@@ -42,13 +43,13 @@ export default new Vuex.Store({
     activities: [
       {
         id: 1,
-        name: "Quizz C# 1",
+        name: "Quizz C#",
         course: "TSIW",
         subject: "AED",
         points: 50,
         level: 1,
         type: "Quizz",
-        desc: '.',
+        desc: 'Testa os teus conhecimentos nesta atividade! Prova para estudantes iniciantes sobre C#! Estudar nunca foi tão divertido!',
         photo:
           "https://arquivo.devmedia.com.br/cursos/imagem/curso_o-que-e-csharp_1983.png",
         likes: [],
@@ -65,55 +66,73 @@ export default new Vuex.Store({
       },
       {
         id: 2,
-        name: "Quizz C# 2",
-        course: "TS",
-        subject: "AE",
-        points: 50,
+        name: "Quizz Vue",
+        course: "TSIW",
+        subject: "PW1",
+        points: 60,
         level: 1,
         type: "Quizz",
-        desc: '.',
-        photo: "https://www.motc.gov.qa/sites/default/files/c-programming.png",
-        likes: []
+        desc: 'Testa os teus conhecimentos sobre Vue! Mostra que és um ás da programação!',
+        photo: "https://miro.medium.com/max/6416/1*7OCwu--TWqVluPMsZdzWKw.png",
+        likes: [],
+        question1:
+          'O que significa "npm"?;New Project Management;New Private Media;Node Package Manager;Nenhuma das anteriores;Q1A3',
+        question2:
+          "Para criar um projeto via UI escreva;npm run serve;vue ui;cd new project;vue create;Q2A2",
+        question3:
+          "Para que serve a pasta 'public'?;Coloca os arquivos não desejados a processar através do Webpack;Mostra as pastas ao público;Publicar a aplicação;Nenhuma das anteriores;Q3A1",
+        question4: "A pasta 'public' contém os seguintes ficheiros;index.html e app.js;app.js e store;router e store;index.html e favicon.ico;Q4A4",
+        question5:
+          "O que é o 'Vue-router'?;Extensão para alterar as cores;Extensão para guardar dados;Extensão para lidar com o roteamento da app;Nenhuma das anteriores;Q5A3",
+        classification: [],
       },
       {
         id: 3,
-        name: "Quizz C# 3",
+        name: "Quizz Design Gráfico",
         course: "TSIW",
-        subject: "A",
-        points: 50,
+        subject: "DG",
+        points: 20,
         level: 1,
         type: "Quizz",
-        desc: '.',
+        desc: 'Testa os seus conhecimentos de Design Gráfico nesta atividade!',
         photo:
-          "https://files.betamax.raywenderlich.com/attachments/collections/161/a3b9ac0f-c565-41b1-97bd-d49a3705e204.png",
-        likes: []
+          "https://comunidade.rockcontent.com/wp-content/uploads/2017/11/design-gr%C3%A1fico-o-que-%C3%A9-SOCIAL.png",
+        likes: [],
+        question1:
+          "Qual destes programas devemos usar para edição de imagem?;Abode Reader;After Effects;Adobe Photoshop;Access;Q1A3",
+        question2:
+          "Qual destes programas devemos usar para edição de vídeo?;Adobe Illustrator;Adobe Photoshop;Excel;After Effects;Q2A4",
+        question3:
+          "Qual destes programas devemos usar para prototipar uma página web?;Adobe XD;Word;MySQL Workbench;Visual Studio Code;Q3A1",
+        question4: "Qual destes elementos não é importante no design de um protótipo?;Som;Paleta de cores;Tipografia;Layout;Q4A1",
+        question5:
+          "Qual destes elementos gráficos é importante para a promoção de um protótipo?;Documentação;Poster;Testes de utilizadores;Manual de utilizadores;Q5A2",
+        classification: [],
       },
       {
         id: 4,
-        name: "Quizz C# 4",
-        course: "TS",
-        subject: "AE",
-        points: 50,
+        name: "Quizz Matemática",
+        course: "Matemática",
+        subject: "Matemática I",
+        points: 35,
         level: 1,
         type: "Quizz",
-        desc: '.',
+        desc: 'Teste os seus conhecimentos de Matemática nesta atividade!',
         photo:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2VyyttfkRVOUfPRzJBEtINxI-UELSkU_EPw&usqp=CAU",
-        likes: []
+          "https://s2.glbimg.com/NNbJWCWpPiTmrRTP6Vq_NWVXZw8=/e.glbimg.com/og/ed/f/original/2018/10/31/math-1500720_1920.jpg",
+        likes: [],
+        question1:
+          "Quanto é 90º em radianos?;π;π/2;π/4;3π/2;Q1A2",
+        question2:
+          "Quanto é 3π/2 em graus?;45º;60º;180º;270º;Q2A4",
+        question3:
+          "Numa matriz identidade o número 1 está disposto de que forma?;Diagonal;Vertical;Horizontal;Na matriz identidade não existe 1;Q3A1",
+        question4:
+         "Qual é a inversa da derivada;Inversa;Negativa;Positiva;Integral;Q4A4",
+        question5:
+          "1+1 = ?;3;1.5;2;2.5;Q5A3",
+        classification: [],
       },
-      {
-        id: 5,
-        name: "Quizz C# 4",
-        course: "TSI",
-        subject: "AED",
-        points: 50,
-        level: 1,
-        type: "Quizz",
-        desc: '.',
-        photo:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2VyyttfkRVOUfPRzJBEtINxI-UELSkU_EPw&usqp=CAU",
-        likes: []
-      }
     ],
     trophies: [
       {
@@ -146,12 +165,6 @@ export default new Vuex.Store({
         points: 20,
         completed: []
       },
-      {
-        id: 6,
-        desc: 'Completar 1 atividade sem errar',
-        points: 20,
-        completed: []
-      }
     ],
     loggedUser: ""
   },
