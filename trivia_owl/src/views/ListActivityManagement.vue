@@ -136,7 +136,7 @@ img {
 }
 
 select {
-  background-color: #70ffb4;
+  background-color: white;
   height: 50px;
   border-radius: 7%;
   color: #0b132b;

@@ -43,6 +43,7 @@ export default {
             // Remover objeto com confirmação
             this.$store.dispatch("removeUser", id);
             this.users = this.$store.getters.getUsers;
+            
     }
   },
   computed: {

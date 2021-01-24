@@ -67,6 +67,7 @@
                 activityId: $route.params.activityId,
                 activityPhoto: $route.params.activityPhoto,
                 activityName: $route.params.activityName,
+                activityCourse: $route.params.activityCourse,
                 activityQuestion1: $route.params.activityQuestion1
               }
             }"

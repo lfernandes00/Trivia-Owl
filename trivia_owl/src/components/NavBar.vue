@@ -167,6 +167,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
 export default {
   name: "NavBar",
   data() {
@@ -289,7 +290,13 @@ export default {
         //fechar a modal login
       } catch (error) {
         //mudar para sweetalert
-        alert(error);
+        Swal.fire({
+      title: 'Erro!',
+      text: error,
+      buttonsStyling: false,
+      confirmButtonClass: 'btn btn-danger',
+      icon: 'error'
+    })
       }
     },
     hideModal (id) {
@@ -297,11 +304,17 @@ export default {
     },
     Register() {
       if (this.register.password != this.register.password2) {
-        alert("As palavras passes não são iguais!");
+        Swal.fire({
+      title: 'Erro!',
+      text: 'As palavras passe não são iguais',
+      buttonsStyling: false,
+      confirmButtonClass: 'btn btn-danger',
+      icon: 'error'
+    })
       }
       try {
         this.$store.dispatch("register", {
-          id: this.$store.getters.getNextUserId,
+          id: this.getNextUserId(),
           username: this.register.username,
           password: this.register.password,
           name: this.register.name,
@@ -312,7 +325,20 @@ export default {
         });
         this.hideModal("modalRegister");
       } catch (error) {
-        alert(error);
+        Swal.fire({
+      title: 'Erro!',
+      text: error,
+      buttonsStyling: false,
+      confirmButtonClass: 'btn btn-danger',
+      icon: 'error'
+    })
+      }
+    },
+    getNextUserId() {
+      if (this.users.length == 0) {
+        return 1;
+      } else {
+        return this.users[this.users.length - 1].id + 1;
       }
     },
     logout() {

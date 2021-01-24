@@ -81,6 +81,7 @@ export default {
       }
 
       this.$store.dispatch('editUser', newValue);
+      this.$router.push({name:'Profile'});
     }
   }
 };

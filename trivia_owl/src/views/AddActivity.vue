@@ -175,7 +175,7 @@ export default {
         let question5 = this.activity.question5.enunciated + ';' + this.activity.question5.firstAnswer + ';' + this.activity.question5.secondAnswer + ';' + this.activity.question5.thirdAnswer + ';' + this.activity.question5.fourthAnswer + ';' + this.activity.question5.correctAnswer
 
         this.$store.dispatch("addProposal", {
-          id: this.$store.getters.getNextProposalId,
+          id: this.getNextProposalId(),
           name: this.activity.name,
           course: this.activity.course,
           subject: this.activity.subject,
@@ -191,6 +191,13 @@ export default {
           question5: question5
         });
         this.$router.push({name:'ListActivities'})
+      },
+      getNextProposalId() {
+        if (this.proposals.length == 0) {
+          return 1;
+        } else {
+          return this.proposals[this.proposals.length - 1].id + 1;
+        }
       }
   }
 

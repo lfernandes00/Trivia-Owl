@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
 export default {
 name: 'ListActivityProposals',
 data() {
@@ -50,12 +51,21 @@ created() {
 },
 methods: {
   removeProposal(id) {
-    // Remover objeto com confirmação
-    if (confirm('Deseja remover a proposta?')) {
-      this.$store.dispatch('removeProposal', id)
-    }
     
+
+    Swal.fire({
+  title: 'Deseja remover a proposta?',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Sim!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    this.$store.dispatch('removeProposal', id)
     this.proposals = this.$store.getters.getProposals
+  }
+})
   }
 }
 }

@@ -160,6 +160,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
 export default {
   name: "ActivitySolve",
   data() {
@@ -324,7 +325,14 @@ export default {
       if (this.answers.A5 === this.questions.question5.correctOption) {
         score += 2;
       }
-      alert(`O seu resultado final é ${score}`);
+
+      Swal.fire({
+      title: 'Parabéns!!',
+      text: `Concluiu a atividade com uma pontuação de ${score}`,
+      buttonsStyling: false,
+      confirmButtonClass: 'btn btn-success',
+      icon: 'success'
+    });
 
       //troféus
       //Completar 1 atividade
