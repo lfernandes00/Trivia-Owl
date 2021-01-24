@@ -140,38 +140,40 @@ export default new Vuex.Store({
           classification: [],
         },
     ],
-    trophies: [
-      {
-        id: 1,
-        desc: 'Completar 1 atividade',
-        points: 10,
-        completed: []
-      },
-      {
-        id: 2,
-        desc: 'Completar 5 atividades',
-        points: 20,
-        completed: []
-      },
-      {
-        id: 3,
-        desc: 'Completar 10 atividades',
-        points: 30,
-        completed: []
-      },
-      {
-        id: 4,
-        desc: 'Completar 20 atividades',
-        points: 40,
-        completed: []
-      },
-      {
-        id: 5,
-        desc: 'Completar 1 atividade sem errar',
-        points: 20,
-        completed: []
-      },
-    ],
+    trophies: localStorage.getItem("trophies")
+      ? JSON.parse(localStorage.getItem("trophies"))
+      : [
+        {
+          id: 1,
+          desc: 'Completar 1 atividade',
+          points: 10,
+          completed: []
+        },
+        {
+          id: 2,
+          desc: 'Completar 5 atividades',
+          points: 20,
+          completed: []
+        },
+        {
+          id: 3,
+          desc: 'Completar 10 atividades',
+          points: 30,
+          completed: []
+        },
+        {
+          id: 4,
+          desc: 'Completar 20 atividades',
+          points: 40,
+          completed: []
+        },
+        {
+          id: 5,
+          desc: 'Completar 1 atividade sem errar',
+          points: 20,
+          completed: []
+        },
+        ],
     loggedUser: ""
   },
   getters: {
@@ -321,6 +323,7 @@ export default new Vuex.Store({
     completeTrophy(context, payload) {
       context.commit('COMPLETETROPHY', payload);
       localStorage.setItem('users', JSON.stringify(context.state.users))
+      localStorage.setItem('trophies', JSON.stringify(context.state.trophies))
     }
   },
   mutations: {
