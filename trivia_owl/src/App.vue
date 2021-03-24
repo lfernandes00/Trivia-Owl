@@ -16,7 +16,7 @@ export default {
 };
 </script>
 
-<style>
+<style rel="stylesheet" media='(min-with:20em)'>
 #app {
   font-family: comfortaa, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
