@@ -321,7 +321,12 @@ export default {
           birthDate: this.register.birthDate,
           course: this.register.course,
           photo: this.register.photo,
-          type: this.register.type
+          type: this.register.type,
+          points: 0,
+          historic: [],
+          trophies: [],
+          level: 1,
+          doneActivities: 0
         });
         this.hideModal("modalRegister");
       } catch (error) {

@@ -68,11 +68,13 @@ export default {
             doneActivities: user.doneActivities
           });
       }
+
+      allUsers.sort(this.compareUsers)
       return allUsers;
     }
   },
   methods: {
-     sortUsers() {
+        sortUsers() {
             // ordenar users pelos pontos (alterando entre ordenação crescente e decrescente)
             this.flagSort = this.flagSort * -1
             this.getAllUsers.sort(this.compareUsers)
