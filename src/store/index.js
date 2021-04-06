@@ -174,6 +174,18 @@ export default new Vuex.Store({
           completed: []
         },
         ],
+        teams: localStorage.getItem("teams")
+        ? JSON.parse(localStorage.getItem("teams"))
+        : [
+          {
+            id: 1,
+            name: 'Team1',
+            creater: 'User',
+            photo: '',
+            level: 1,
+            members: []
+          }
+        ],
     loggedUser: ""
   },
   getters: {
