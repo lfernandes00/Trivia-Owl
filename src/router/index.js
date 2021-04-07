@@ -21,6 +21,7 @@ import ListActivities from "../views/ListActivities.vue";
 import ListActivityManagement from "../views/ListActivityManagement.vue";
 import ListActivityProposals from "../views/ListActivityProposals.vue";
 import ActivityProposal from "../views/ActivityProposal.vue";
+import ListTeams from "../views/ListTeams.vue";
 
 //components
 import Profile from "../components/Profile.vue";
@@ -84,7 +85,7 @@ const routes = [
     }
   },
   {
-    path: "/team",
+    path: "/team/:teamId",
     name: "Team",
     component: Team,
     meta: {
@@ -183,6 +184,14 @@ const routes = [
     path: "/admin/activityProposal/:proposalId",
     name: "ActivityProposal",
     component: ActivityProposal,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/listTeams",
+    name: "ListTeams",
+    component: ListTeams,
     meta: {
       requiresAuth: true
     }

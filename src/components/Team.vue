@@ -1,10 +1,10 @@
 <template>
-  <div id="Profile">
+  <div id="team">
 
     <b-container fluid>
       <b-row class="mt-5">
         <b-col cols="4"
-          ><b-avatar :src="getUser.photo" size="200px"></b-avatar
+          ><b-avatar :src="getTeam.photo" size="200px"></b-avatar
         ></b-col>
         <b-col cols="6" class="mt-5">
           <h6>Nível</h6>
@@ -20,39 +20,32 @@
         <b-col cols="1"></b-col>
         <b-col cols="3" class="mt-5 ml-3">
           <div style="text-align: start">
-            <b class="mr-4">Nome: </b> <strong>{{ getUser.name }}</strong>
+            <b class="mr-4">Nome: </b> <strong>{{ getTeam.name }}</strong>
             <br /><br />
             <b class="mr-4">Membros: </b>
-            <strong>{{ getUser.birthDate }}</strong> <br /><br />
-            <b class="mr-4">Criador: </b> <strong>{{ getUser.course }}</strong>
+            <strong>{{ getTeam.members.length }}</strong> <br /><br />
+            <b class="mr-4">Criador: </b> <strong>{{ getTeam.creater }}</strong>
             <br />
           </div>
         </b-col>
         <b-col cols="6" class="mt-5" style="padding: 0px; width: 500px">
-          <h2 style="color:white;">Histórico</h2>
-          <div v-if='getUser.historic.length == 0' style="color: white;">Não participou em atividades</div>
-          <div v-else>
+          <h2 style="color:white;">Membros</h2>
             <table class="table table-borderless mt-5">
         <thead>
             <tr>
               <th scope="col">Nome</th>
               <th scope="col">Curso</th>
-              <th scope="col">Pontos</th>
               <th scope="col"></th>
             </tr>
           </thead>
-          <tbody :key="activity.id" v-for="activity in getUser.historic">
+          <tbody :key="user.id" v-for="user in getTeam.members">
             <tr>
-              <td>{{activity.name}}</td>
-              <td>{{activity.course}}</td>
-              <td>{{activity.points}}</td>
-              <td><router-link :to="{name: 'Activity', params: {activityId: activity.id}}">
-                <b-button pill variant="danger">Ir</b-button>
-              </router-link></td>
+              <td>{{user.name}}</td>
+              <td>{{user.course}}</td>  
+              <td><b-button pill variant="danger">Eliminar</b-button></td>
             </tr>
           </tbody>
       </table>
-          </div>
           
         </b-col>
       </b-row>
@@ -69,7 +62,7 @@
             id="teamBtn"
             class="mr-3"
             style="background-color: #70FFB4; color: #0B132B"
-            >Editar</b-button
+            >Classificação</b-button
           >
           <router-link :to='{name: "EditTeam"}'><b-button pill id="editBtn" style="background-color: #70FFB4; color: #0B132B">Editar</b-button></router-link>
           
@@ -87,7 +80,7 @@
 
 <script>
 export default {
-  name: "Profile",
+  name: "Team",
   data() {
     return {
     };
@@ -96,8 +89,8 @@ export default {
     this.users = this.$store.getters.getUsers;
   },
   computed: {
-    getUser() {
-      return this.$store.getters.getLoggedUser;
+    getTeam() {
+      return this.$store.getters.getTeamById(this.$route.params.teamId);
     }
   }
 };

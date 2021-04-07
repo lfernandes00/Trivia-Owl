@@ -1,0 +1,107 @@
+<template>
+  <div id="listTeams">
+    <b-container fluid>
+      <b-row>
+        <h1>Equipas</h1>
+      </b-row>
+    </b-container>
+
+    <b-container>
+      <table id="teamsTable" class="table table-borderless mt-5">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col">Nome</th>
+              <th scope="col">Membros</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody :key="team.id" v-for="(team,index) in teams">
+            <tr>
+              <td>{{index + 1}}</td>
+              <td><b-avatar :src="team.photo"></b-avatar></td>
+              <td id="nameTd">{{team.name}}</td>
+              <td>{{team.members.length}}</td>
+              <td>
+                <router-link :to="{name: 'Team', params: {teamId: team.id}} ">
+                  <b-button pill class="mr-2" id="detailBtn">Ver</b-button>
+                </router-link>
+                
+                <b-button pill class="ml-2" id="removeBtn" @click='removeTeam(team.id)'>Remover</b-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </b-container>
+  </div>
+</template>
+
+<script>
+import Swal from 'sweetalert2';
+export default {
+name: 'ListTeams',
+data() {
+  return {
+    teams: []
+  }
+},
+created() {
+  this.teams = this.$store.getters.getTeams
+},
+methods: {
+  removeTeam(id) {
+    
+
+    Swal.fire({
+  title: 'Deseja remover a equipa?',
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Sim!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    this.$store.dispatch('removeProposal', id)
+    this.proposals = this.$store.getters.getProposals
+  }
+})
+  }
+}
+}
+</script>
+
+<style scoped>
+h1 {
+  color: white;
+  font-weight: bold;
+}
+
+ td {
+  color: white;
+}
+
+ th {
+  color: #ff7070;
+}
+
+#nameTd {
+  color: #70FFB4;
+}
+
+#detailBtn {
+  background-color: #70FFB4;
+  color: #0B132B;
+  width: 100px;
+}
+
+#removeBtn {
+  background-color: #FF7070;
+  color:  #0B132B;
+  width: 100px;
+}
+
+#teamsTable {
+  text-align: start;
+}
+</style>

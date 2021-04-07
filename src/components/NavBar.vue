@@ -55,7 +55,7 @@
             >
             <b-dropdown-item-button
             :style="{visibility: show.team}"
-              ><router-link id="sixthDropdownItem" :to="{ name: 'Team' }"
+              ><router-link id="sixthDropdownItem" :to="{ name: 'ListTeams' }"
                 >Equipa</router-link
               ></b-dropdown-item-button
             >
@@ -326,7 +326,8 @@ export default {
           historic: [],
           trophies: [],
           level: 1,
-          doneActivities: 0
+          doneActivities: 0,
+          team: 0
         });
         this.hideModal("modalRegister");
       } catch (error) {

@@ -22,7 +22,8 @@ export default new Vuex.Store({
           doneActivities: 0,
           points: 0,
           historic: [],
-          trophies: []
+          trophies: [],
+          team: 0
         },
         {
           id: 2,
@@ -38,7 +39,8 @@ export default new Vuex.Store({
           doneActivities: 0,
           points: 0,
           historic: [],
-          trophies: []
+          trophies: [],
+          team: 1
         }
         ],
         proposals: localStorage.getItem("proposals")
@@ -183,7 +185,8 @@ export default new Vuex.Store({
             creater: 'User',
             photo: '',
             level: 1,
-            members: []
+            members: [{id: 2}],
+            trophies: []
           }
         ],
     loggedUser: ""
@@ -210,6 +213,14 @@ export default new Vuex.Store({
       const activity = state.activities.find((activity) => activity.id === id)
 
       return activity;
+    },
+    getTeamById: (state) => (id) => {
+      const team = state.teams.find((team) => team.id == id)
+
+      return team;
+    },
+    getTeams: (state) => {
+      return state.teams;
     },
     getAllTrophies: (state) => {
       return state.trophies;
