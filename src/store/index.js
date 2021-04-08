@@ -185,8 +185,9 @@ export default new Vuex.Store({
             creater: 'User',
             photo: '',
             level: 1,
-            members: [{id: 2}],
-            trophies: []
+            members: [{username: 'User', name: 'João', course: 'TSIW'}],
+            trophies: [],
+            points: 0
           }
         ],
     loggedUser: ""
@@ -207,6 +208,11 @@ export default new Vuex.Store({
     getNextActivityId: (state) => {
       return state.activities.length > 0
         ? state.activities[state.activities.length - 1].id + 1
+        : 1;
+    },
+    getTeamNextId: (state) => {
+      return state.teams.length > 0
+        ? state.teams[state.teams.length - 1].id + 1
         : 1;
     },
     getActivityById: (state) => (id) => {
@@ -324,6 +330,10 @@ export default new Vuex.Store({
       context.commit('REMOVEPROPOSAL', id)
       localStorage.setItem("proposals", JSON.stringify(context.state.proposals));
     },
+    removeTeam(context, id) {
+      context.commit('REMOVETEAM', id)
+      localStorage.setItem("teams", JSON.stringify(context.state.teams));
+    },
     activitySolve(context, payload) {
       context.commit('ACTIVITYSOLVE', payload);
       localStorage.setItem('activities', JSON.stringify(context.state.activities))
@@ -331,6 +341,10 @@ export default new Vuex.Store({
     updateUser(context, payload) {
       context.commit('UPDATEUSER', payload);
       localStorage.setItem('users', JSON.stringify(context.state.users))
+    },
+    createTeam(context, payload) {
+      context.commit('CREATETEAM', payload);
+      localStorage.setItem('teams', JSON.stringify(context.state.teams))
     },
     likeActivity(context, payload) {
       const activity = context.state.activities.find((activity) => activity.id === payload.activityId)
@@ -370,6 +384,12 @@ export default new Vuex.Store({
     },
     REMOVEPROPOSAL(state , id) {
       state.proposals = state.proposals.filter((proposal) => proposal.id !== id);
+    },
+    REMOVETEAM(state , id) {
+      state.teams = state.teams.filter((team) => team.id !== id);
+    },
+    CREATETEAM(state, newTeam) {
+      state.teams.push(newTeam);
     },
     ACTIVITYSOLVE(state, payload) {
       const currentActivity = state.activities.find((activity) => activity.id === payload.activityId)

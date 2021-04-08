@@ -28,7 +28,7 @@
                   <b-button pill class="mr-2" id="detailBtn">Ver</b-button>
                 </router-link>
                 
-                <b-button pill class="ml-2" id="removeBtn" @click='removeTeam(team.id)'>Remover</b-button>
+                <b-button pill class="ml-2" id="removeBtn" :style="{visibility: show}" @click='removeTeam(team.id)'>Remover</b-button>
               </td>
             </tr>
           </tbody>
@@ -43,11 +43,20 @@ export default {
 name: 'ListTeams',
 data() {
   return {
-    teams: []
+    teams: [],
+    loggedUser: '',
+    show: 'visible'
   }
 },
 created() {
   this.teams = this.$store.getters.getTeams
+  this.loggedUser = this.$store.getters.getLoggedUser;
+
+  if (this.loggedUser.type == 'admin') {
+    this.show = 'visible';
+  } else {
+    this.show = 'hidden';
+  }
 },
 methods: {
   removeTeam(id) {
@@ -62,8 +71,8 @@ methods: {
   confirmButtonText: 'Sim!'
 }).then((result) => {
   if (result.isConfirmed) {
-    this.$store.dispatch('removeProposal', id)
-    this.proposals = this.$store.getters.getProposals
+    this.$store.dispatch('removeTeam', id)
+    this.teams = this.$store.getters.getTeams
   }
 })
   }

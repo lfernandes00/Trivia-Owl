@@ -25,7 +25,8 @@
             <b class="mr-4">Membros: </b>
             <strong>{{ getTeam.members.length }}</strong> <br /><br />
             <b class="mr-4">Criador: </b> <strong>{{ getTeam.creater }}</strong>
-            <br />
+            <br /><br>
+            <b class="mr-4">Pontos: </b> <strong>{{ getTeam.points  }}</strong>
           </div>
         </b-col>
         <b-col cols="6" class="mt-5" style="padding: 0px; width: 500px">
@@ -42,7 +43,7 @@
             <tr>
               <td>{{user.name}}</td>
               <td>{{user.course}}</td>  
-              <td><b-button pill variant="danger">Eliminar</b-button></td>
+              <td><b-button pill variant="danger" :style="{visibility: show}">Eliminar</b-button></td>
             </tr>
           </tbody>
       </table>
@@ -64,7 +65,7 @@
             style="background-color: #70FFB4; color: #0B132B"
             >Classificação</b-button
           >
-          <router-link :to='{name: "EditTeam"}'><b-button pill id="editBtn" style="background-color: #70FFB4; color: #0B132B">Editar</b-button></router-link>
+          <router-link :to='{name: "EditTeam"}'><b-button pill id="editBtn" :disabled='disabled' style="background-color: #70FFB4; color: #0B132B">Editar</b-button></router-link>
           
         </b-col>
         <b-col cols="3" class="mt-5">
@@ -83,10 +84,23 @@ export default {
   name: "Team",
   data() {
     return {
+      show: 'visible',
+      loggedUser: '',
+      disabled: false
     };
   },
   created() {
     this.users = this.$store.getters.getUsers;
+    this.loggedUser = this.$store.getters.getLoggedUser;
+
+    if (this.loggedUser.username == this.getTeam.creater) {
+      this.show = 'visible';
+      this.disabled = false;
+    } else {
+      this.show = 'hidden';
+      this.disabled = true;
+    }
+
   },
   computed: {
     getTeam() {

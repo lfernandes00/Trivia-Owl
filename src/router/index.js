@@ -22,6 +22,7 @@ import ListActivityManagement from "../views/ListActivityManagement.vue";
 import ListActivityProposals from "../views/ListActivityProposals.vue";
 import ActivityProposal from "../views/ActivityProposal.vue";
 import ListTeams from "../views/ListTeams.vue";
+import CreateTeam from "../views/CreateTeam.vue";
 
 //components
 import Profile from "../components/Profile.vue";
@@ -192,6 +193,14 @@ const routes = [
     path: "/listTeams",
     name: "ListTeams",
     component: ListTeams,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/createTeam",
+    name: "CreateTeam",
+    component: CreateTeam,
     meta: {
       requiresAuth: true
     }

@@ -274,7 +274,7 @@ export default {
       this.show.notification = 'visible';
       this.show.userManagement = 'hidden';
       this.show.activityManagement = 'visible';
-      this.show.team = 'hidden';
+      this.show.team = 'visible';
       this.show.logout = 'visible';
     }
 
@@ -284,7 +284,7 @@ export default {
       this.show.notification = 'visible';
       this.show.userManagement = 'visible';
       this.show.activityManagement = 'visible';
-      this.show.team = 'hidden';
+      this.show.team = 'visible';
       this.show.logout = 'visible';
     }
         //fechar a modal login

@@ -1,6 +1,5 @@
 <template>
   <div id="Profile">
-
     <b-container fluid>
       <b-row class="mt-5">
         <b-col cols="4"
@@ -8,11 +7,7 @@
         ></b-col>
         <b-col cols="6" class="mt-5">
           <h6>Nível</h6>
-          <b-progress
-            height="2.5rem"
-            value="75"
-            class="mb-2"
-          ></b-progress>
+          <b-progress height="2.5rem" value="75" class="mb-2"></b-progress>
         </b-col>
       </b-row>
 
@@ -31,31 +26,39 @@
           </div>
         </b-col>
         <b-col cols="6" class="mt-5" style="padding: 0px; width: 500px">
-          <h2 style="color:white;">Histórico</h2>
-          <div v-if='getUser.historic.length == 0' style="color: white;">Não participou em atividades</div>
+          <h2 style="color: white">Histórico</h2>
+          <div v-if="getUser.historic.length == 0" style="color: white">
+            Não participou em atividades
+          </div>
           <div v-else>
             <table class="table table-borderless mt-5">
-        <thead>
-            <tr>
-              <th scope="col">Nome</th>
-              <th scope="col">Curso</th>
-              <th scope="col">Pontos</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody :key="activity.id" v-for="activity in getUser.historic">
-            <tr>
-              <td>{{activity.name}}</td>
-              <td>{{activity.course}}</td>
-              <td>{{activity.points}}</td>
-              <td><router-link :to="{name: 'Activity', params: {activityId: activity.id}}">
-                <b-button pill variant="danger">Ir</b-button>
-              </router-link></td>
-            </tr>
-          </tbody>
-      </table>
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Curso</th>
+                  <th scope="col">Pontos</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody :key="activity.id" v-for="activity in getUser.historic">
+                <tr>
+                  <td>{{ activity.name }}</td>
+                  <td>{{ activity.course }}</td>
+                  <td>{{ activity.points }}</td>
+                  <td>
+                    <router-link
+                      :to="{
+                        name: 'Activity',
+                        params: { activityId: activity.id },
+                      }"
+                    >
+                      <b-button pill variant="danger">Ir</b-button>
+                    </router-link>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          
         </b-col>
       </b-row>
 
@@ -64,23 +67,43 @@
         <b-col
           cols="3"
           class="mt-5 ml-3"
-          style="display: flex; items-align: start;"
+          style="display: flex; items-align: start"
         >
-          <b-button
-            pill
-            id="teamBtn"
-            class="mr-3"
-            style="background-color: #70FFB4; color: #0B132B"
-            >Criar Equipa</b-button
+          <router-link :to="{ name: 'CreateTeam' }">
+            <b-button
+              pill
+              id="teamBtn"
+              class="mr-3"
+              style="background-color: #70ffb4; color: #0b132b"
+              :disabled="disabled"
+              >Criar Equipa</b-button
+            >
+          </router-link>
+
+          <router-link :to="{ name: 'EditProfile' }"
+            ><b-button
+              pill
+              id="editBtn"
+              style="background-color: #70ffb4; color: #0b132b"
+              >Editar</b-button
+            ></router-link
           >
-          <router-link :to='{name: "EditProfile"}'><b-button pill id="editBtn" style="background-color: #70FFB4; color: #0B132B">Editar</b-button></router-link>
-          
         </b-col>
         <b-col cols="3" class="mt-5">
-          <router-link class="h1" :to='{name: "Classification"}'><b-icon style="color: #70FFB4; font-size: 60px;" icon="people-fill"></b-icon></router-link>
+          <router-link class="h1" :to="{ name: 'Classification' }"
+            ><b-icon
+              style="color: #70ffb4; font-size: 60px"
+              icon="people-fill"
+            ></b-icon
+          ></router-link>
         </b-col>
         <b-col cols="3" class="mt-5">
-          <router-link class="h1" :to='{name: "Trophies"}'><b-icon style="color: #70FFB4; font-size: 60px;" icon="trophy-fill"></b-icon></router-link>
+          <router-link class="h1" :to="{ name: 'Trophies' }"
+            ><b-icon
+              style="color: #70ffb4; font-size: 60px"
+              icon="trophy-fill"
+            ></b-icon
+          ></router-link>
         </b-col>
       </b-row>
     </b-container>
@@ -92,16 +115,25 @@ export default {
   name: "Profile",
   data() {
     return {
+      loggedUser: "",
+      disabled: false,
     };
   },
   created() {
     this.users = this.$store.getters.getUsers;
+    this.loggedUser = this.$store.getters.getLoggedUser;
+
+    if (this.loggedUser.team == 0) {
+      this.disabled = false;
+    } else {
+      this.disabled = true;
+    }
   },
   computed: {
     getUser() {
       return this.$store.getters.getLoggedUser;
-    }
-  }
+    },
+  },
 };
 </script>
 
