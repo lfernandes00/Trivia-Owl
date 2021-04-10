@@ -166,7 +166,7 @@ const routes = [
     }
   },
   {
-    path: "/team/teamId/edit",
+    path: "/team/:teamId/edit",
     name: "EditTeam",
     component: EditTeam,
     meta: {

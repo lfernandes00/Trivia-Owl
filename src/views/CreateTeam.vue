@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: "EditProfile",
+  name: "CreateTeam",
   data() {
     return {
       userLogged: '',
@@ -58,7 +58,8 @@ export default {
         level: this.team.level,
         members: this.team.members,
         trophies: this.team.trophies,
-        points: this.team.points
+        points: this.team.points,
+        userId: this.userLogged.id
       }
 
       this.$store.dispatch('createTeam', newTeam);

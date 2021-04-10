@@ -311,6 +311,10 @@ export default new Vuex.Store({
       )
       localStorage.setItem('users', JSON.stringify(context.state.users))
     },
+    editTeam(context, payload) {
+      context.commit('EDITTEAM', payload);
+      localStorage.setItem('teams', JSON.stringify(context.state.teams));
+    },
     addProposal(context,payload) {
       const proposal = context.state.proposals.find(proposal => proposal.name === proposal.name);
 
@@ -345,6 +349,7 @@ export default new Vuex.Store({
     createTeam(context, payload) {
       context.commit('CREATETEAM', payload);
       localStorage.setItem('teams', JSON.stringify(context.state.teams))
+      localStorage.setItem('users', JSON.stringify(context.state.users))
     },
     likeActivity(context, payload) {
       const activity = context.state.activities.find((activity) => activity.id === payload.activityId)
@@ -388,8 +393,24 @@ export default new Vuex.Store({
     REMOVETEAM(state , id) {
       state.teams = state.teams.filter((team) => team.id !== id);
     },
-    CREATETEAM(state, newTeam) {
-      state.teams.push(newTeam);
+    CREATETEAM(state, payload) {
+      state.users.map((user) => {
+        if (user.id === payload.userId) {
+          user.team = 1;
+        }
+      })
+
+
+      state.teams.push({
+        id: payload.id,
+        name: payload.name,
+        creater: payload.creater,
+        photo: payload.photo,
+        level: payload.level,
+        members: payload.members,
+        trophies: payload.trophies,
+        points: payload.points, 
+      });
     },
     ACTIVITYSOLVE(state, payload) {
       const currentActivity = state.activities.find((activity) => activity.id === payload.activityId)
@@ -425,6 +446,14 @@ export default new Vuex.Store({
 
       user.historic.push(activityHistoric);
 
+    },
+    EDITTEAM(state, payload) {
+      state.teams.map((team) => {
+        if (team.id == payload.id) {
+          team.name = payload.name
+          team.photo = payload.photo
+        }
+      })
     },
     LIKEACTIVITY(state, payload) {
       const activity = state.activities.find((activity) => activity.id === payload.activityId)
