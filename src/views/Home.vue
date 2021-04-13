@@ -15,16 +15,16 @@
           style="text-shadow: 1px 1px 2px #333"
         >
           <!-- Text slides with image -->
-          <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=52">
+          <b-carousel-slide rel="preload" img-src="https://picsum.photos/1024/480/?image=52">
             <h1>TÍTULO DA NOTÍCIA</h1>
           </b-carousel-slide>
 
           <!-- Slides with custom text -->
-          <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
+          <b-carousel-slide rel="preload" img-src="https://picsum.photos/1024/480/?image=54">
           </b-carousel-slide>
 
           <!-- Slides with image only -->
-          <b-carousel-slide
+          <b-carousel-slide rel="preload"
             img-src="https://picsum.photos/1024/480/?image=58"
           ></b-carousel-slide>
         </b-carousel>
