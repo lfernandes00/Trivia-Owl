@@ -2,7 +2,7 @@
   <div id="navbar">
     <b-navbar toggleable="lg" style="height: 60px">
       <router-link :to="{ name: 'Home' }"
-        ><img id="logo" src="../assets/logo_trivia_owl_escuro.png"
+        ><img id="logo" alt="" src="../assets/logo_trivia_owl_escuro.png"
       /></router-link>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
