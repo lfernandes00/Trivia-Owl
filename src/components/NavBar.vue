@@ -377,9 +377,9 @@ export default {
   background-color: #0B132B;
 }
 
-#firstDropdownItem:hover {
+/* #firstDropdownItem:hover {
   text-decoration: none;
-}
+} */
 
 #secondDropdownItem:hover {
   text-decoration: none;
@@ -562,4 +562,3 @@ input[type="url"] {
   float: right;
 }
 </style>
-// luis gay 
