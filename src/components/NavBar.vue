@@ -21,12 +21,12 @@
             ><p class="mt-3">Interação</p></router-link
           >
 
-          <b-nav-item-dropdown id="dropdown" right class="mr-2" >
+          <b-nav-item-dropdown id="dropdown"  right class="mr-2" >
             <!-- Using 'button-content' slot -->
             <template #button-content>
               <em><b-avatar :src="getUser.photo"></b-avatar></em>
             </template>
-            <b-dropdown-item-button href="#" :style="{visibility: show.profile}"
+            <b-dropdown-item-button  href="#" :style="{visibility: show.profile}"
               ><router-link id="firstDropdownItem" :to="{ name: 'Profile' }"
                 >Perfil</router-link
               ></b-dropdown-item-button
@@ -377,9 +377,10 @@ export default {
   background-color: #0B132B;
 }
 
-/* #firstDropdownItem:hover {
+
+#firstDropdownItem:hover {
   text-decoration: none;
-} */
+}
 
 #secondDropdownItem:hover {
   text-decoration: none;
