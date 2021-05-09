@@ -71,7 +71,7 @@
     <b-modal id="modalLogin" size="sm"  hide-header  hide-footer content-class="my-class">
       <div id="mdlLoginHeader">
         <h1 class="mt-5">Login</h1>
-        <img src="../assets/logo_trivia_owl_escuro.png" width="115px" />
+        <img src="../assets/logo_trivia_owl_escuro.png" alt="" width="115px" />
       </div>
       <form @submit.prevent="Login">
         <label for="txtUsername">Nome de Utilizador</label><br />

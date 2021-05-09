@@ -3,7 +3,7 @@
     <b-container fluid>
       <b-row class="mt-5">
         <b-col cols="4"
-          ><b-avatar :src="getUser.photo" size="200px"></b-avatar
+          ><b-avatar :src="getUser.photo" alt="" size="200px"></b-avatar
         ></b-col>
         <b-col cols="6" class="mt-5">
           <h6>Nível</h6>

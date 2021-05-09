@@ -89,6 +89,7 @@
               id="activityImg"
               class="mt-4 mr-4"
               :src="activity.photo"
+              alt=""
               style="width: 330px; height: 300px;display:flex; justify-content: start"
             ></b-img>
         </b-col>

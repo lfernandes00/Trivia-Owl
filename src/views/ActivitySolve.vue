@@ -7,6 +7,7 @@
             <b-img
               class="ml-4"
               :src="$route.params.activityPhoto"
+              alt=""
               style="width: 330px; height: 300px;display:flex; justify-content: start"
             ></b-img>
           </div>
