@@ -21,12 +21,12 @@
             ><p class="mt-3">Interação</p></router-link
           >
 
-          <b-nav-item-dropdown id="dropdown" right class="mr-2" >
+          <b-nav-item-dropdown id="dropdown"  right class="mr-2" >
             <!-- Using 'button-content' slot -->
             <template #button-content>
               <em><b-avatar :src="getUser.photo"></b-avatar></em>
             </template>
-            <b-dropdown-item-button href="#" :style="{visibility: show.profile}"
+            <b-dropdown-item-button  href="#" :style="{visibility: show.profile}"
               ><router-link id="firstDropdownItem" :to="{ name: 'Profile' }"
                 >Perfil</router-link
               ></b-dropdown-item-button
@@ -71,7 +71,7 @@
     <b-modal id="modalLogin" size="sm"  hide-header  hide-footer content-class="my-class">
       <div id="mdlLoginHeader">
         <h1 class="mt-5">Login</h1>
-        <img src="../assets/logo_trivia_owl_escuro.png" width="115px" />
+        <img src="../assets/logo_trivia_owl_escuro.png" alt="" width="115px" />
       </div>
       <form @submit.prevent="Login">
         <label for="txtUsername">Nome de Utilizador</label><br />
@@ -376,6 +376,7 @@ export default {
 /deep/ .my-class {
   background-color: #0B132B;
 }
+
 
 #firstDropdownItem:hover {
   text-decoration: none;
