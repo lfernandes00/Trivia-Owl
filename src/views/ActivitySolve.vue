@@ -341,10 +341,15 @@ export default {
           trophyId: this.trophies[0].id,
           trophyPoints: this.trophies[0].points,
           userId: this.loggedUser.id,
-          username: this.loggedUser.username
+          username: this.loggedUser.username,
+          teamId: this.loggedUser.team
         }
 
         this.$store.dispatch('completeTrophy', data)
+
+        if (data.teamId !== 0) {
+          this.$store.dispatch('completeTeamTrophy',data);
+        }
       }
       //Completar 5 atividades
       if (this.loggedUser.doneActivities == 4) {
@@ -352,10 +357,15 @@ export default {
           trophyId: this.trophies[1].id,
           trophyPoints: this.trophies[1].points,
           userId: this.loggedUser.id,
-          username: this.loggedUser.username
+          username: this.loggedUser.username,
+          teamId: this.loggedUser.team
         }
 
         this.$store.dispatch('completeTrophy', data)
+
+        if (data.teamId !== 0) {
+          this.$store.dispatch('completeTeamTrophy',data);
+        }
       }
       //Completar 10 atividades
       if (this.loggedUser.doneActivities == 9) {
@@ -363,10 +373,15 @@ export default {
           trophyId: this.trophies[2].id,
           trophyPoints: this.trophies[2].points,
           userId: this.loggedUser.id,
-          username: this.loggedUser.username
+          username: this.loggedUser.username,
+          teamId: this.loggedUser.team
         }
 
         this.$store.dispatch('completeTrophy', data)
+
+        if (data.teamId !== 0) {
+          this.$store.dispatch('completeTeamTrophy',data);
+        }
       }
       //Completar 20 atividades
       if (this.loggedUser.doneActivities == 19) {
@@ -374,10 +389,15 @@ export default {
           trophyId: this.trophies[3].id,
           trophyPoints: this.trophies[3].points,
           userId: this.loggedUser.id,
-          username: this.loggedUser.username
+          username: this.loggedUser.username,
+          teamId: this.loggedUser.team
         }
 
         this.$store.dispatch('completeTrophy', data)
+        
+        if (data.teamId !== 0) {
+          this.$store.dispatch('completeTeamTrophy',data);
+        }
       }
       //completar 1 atividade sem errar
       if (score == 10) {
@@ -385,10 +405,15 @@ export default {
           trophyId: this.trophies[4].id,
           trophyPoints: this.trophies[4].points,
           userId: this.loggedUser.id,
-          username: this.loggedUser.username
+          username: this.loggedUser.username,
+          teamId: this.loggedUser.team
         }
 
         this.$store.dispatch('completeTrophy', data)
+
+        if (data.teamId !== 0) {
+          this.$store.dispatch('completeTeamTrophy',data);
+        }
       }
 
       const results = {
@@ -406,10 +431,16 @@ export default {
         userId: this.loggedUser.id,
       }
 
+      const updateTeam = {
+        activityPoints: this.points,
+        teamId: this.loggedUser.team
+      }
+
       const activity = this.activities.find(activity => activity.id === this.id);
 
       this.$store.dispatch('activitySolve', results);
       this.$store.dispatch('updateUser', updateUser);
+      this.$store.dispatch('updateTeam', updateTeam);
       this.$router.push({name:'Activity', params: {
             activityId: activity.id,
             activityName: activity.name,

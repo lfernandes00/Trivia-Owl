@@ -346,6 +346,10 @@ export default new Vuex.Store({
       context.commit('UPDATEUSER', payload);
       localStorage.setItem('users', JSON.stringify(context.state.users))
     },
+    updateTeam(context, payload) {
+      context.commit('UPDATETEAM', payload);
+      localStorage.setItem('teams', JSON.stringify(context.state.teams))
+    },
     createTeam(context, payload) {
       context.commit('CREATETEAM', payload);
       localStorage.setItem('teams', JSON.stringify(context.state.teams))
@@ -366,6 +370,10 @@ export default new Vuex.Store({
       context.commit('COMPLETETROPHY', payload);
       localStorage.setItem('users', JSON.stringify(context.state.users))
       localStorage.setItem('trophies', JSON.stringify(context.state.trophies))
+    },
+    completeTeamTrophy(context, payload) {
+      context.commit('COMPLETETEAMTROPHY', payload);
+      localStorage.setItem('teams', JSON.stringify(context.state.teams))
     }
   },
   mutations: {
@@ -447,6 +455,18 @@ export default new Vuex.Store({
       user.historic.push(activityHistoric);
 
     },
+    UPDATETEAM(state, payload) {
+      const team = state.teams.find((team) => team.id === payload.teamId)
+
+      let result = parseInt(team.points)
+      let result1 = parseInt(payload.activityPoints)
+
+      state.teams.map((team) => {
+        if (team.id === payload.teamId) {
+          team.points = result + result1
+        }
+      })
+    },
     EDITTEAM(state, payload) {
       state.teams.map((team) => {
         if (team.id == payload.id) {
@@ -476,9 +496,28 @@ export default new Vuex.Store({
       let result = parseInt(currentUser.points)
       let result1 = parseInt(payload.trophyPoints)
 
+      
+
       state.users.map((user) => {
         if (user.id === payload.userId) {
+          console.log(result, result1, user.points);
           user.points = result + result1
+        }
+      })
+    },
+    COMPLETETEAMTROPHY(state, payload) {
+      const trophy = state.trophies.find((trophy) => trophy.id === payload.trophyId)
+
+      const currentTeam = state.teams.find((team) => team.id === payload.teamId)
+      currentTeam.trophies.push(trophy);
+
+      let result = parseInt(currentTeam.points)
+      let result1 = parseInt(payload.trophyPoints)
+
+      state.teams.map((team) => {
+        if (team.id === payload.teamId) {
+          console.log(result, result1, team.points);
+          team.points = result + result1
         }
       })
     }
