@@ -63,18 +63,18 @@ methods: {
     
 
     Swal.fire({
-  title: 'Deseja remover a equipa?',
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Sim!'
-}).then((result) => {
-  if (result.isConfirmed) {
-    this.$store.dispatch('removeTeam', id)
-    this.teams = this.$store.getters.getTeams
-  }
-})
+      title: 'Deseja remover a equipa?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+      this.$store.dispatch('removeTeam', id)
+      this.teams = this.$store.getters.getTeams
+      }
+    })
   }
 }
 }
@@ -84,6 +84,8 @@ methods: {
 h1 {
   color: white;
   font-weight: bold;
+  margin: auto;
+  margin-top: 50px
 }
 
  td {

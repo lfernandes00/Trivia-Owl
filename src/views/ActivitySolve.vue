@@ -6,7 +6,7 @@
           <div>
             <b-img
               class="ml-4"
-              :src="$route.params.activityPhoto"
+              :src="getActivity.photo"
               alt=""
               style="width: 330px; height: 300px;display:flex; justify-content: start"
             ></b-img>
@@ -15,7 +15,7 @@
 
         <b-col>
           <div style="text-align: start" class="mt-3">
-            <h1 style="color: #FF7070">{{ $route.params.activityName }}</h1>
+            <h1 style="color: #FF7070">{{ getActivity.name }}</h1>
             <br />
 
             <h3></h3>
@@ -454,6 +454,11 @@ export default {
             activityLikes: activity.likes,
             activityQuestion1: activity.question1
       }});
+    }
+  },
+  computed: {
+    getActivity() {
+      return this.$store.getters.getActivityById(this.$route.params.activityId)
     }
   }
 };

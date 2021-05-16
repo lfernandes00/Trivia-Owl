@@ -6,7 +6,7 @@
           <div>
             <b-img
               class="ml-4"
-              :src="$route.params.activityPhoto"
+              :src="getActivity.photo"
               style="width: 330px; height: 300px;display:flex; justify-content: start"
             ></b-img>
           </div>
@@ -15,19 +15,19 @@
         <b-col>
           <div style="text-align: start" class="mt-3">
             <b class="mr-4">Nome: </b>
-            <strong>{{ $route.params.activityName }}</strong> <br /><br />
+            <strong>{{ getActivity.name }}</strong> <br /><br />
             <b class="mr-4">Curso: </b>
-            <strong>{{ $route.params.activityCourse }}</strong> <br /><br />
+            <strong>{{ getActivity.course }}</strong> <br /><br />
             <b class="mr-2">Cadeira: </b>
-            <strong>{{ $route.params.activitySubject }}</strong> <br /><br />
+            <strong>{{ getActivity.subject }}</strong> <br /><br />
             <b class="mr-3">Pontos: </b>
-            <strong>{{ $route.params.activityPoints }}</strong
+            <strong>{{ getActivity.points }}</strong
             ><br /><br />
             <b class="mr-4">Nível: </b>
-            <strong>{{ $route.params.activityLevel }}</strong
+            <strong>{{ getActivity.level }}</strong
             ><br /><br />
             <b class="mr-4">Tipo: </b>
-            <strong>{{ $route.params.activityType }}</strong
+            <strong>{{ getActivity.level }}</strong
             ><br />
           </div>
         </b-col>
@@ -65,10 +65,6 @@
               name: 'ActivitySolve',
               params: {
                 activityId: $route.params.activityId,
-                activityPhoto: $route.params.activityPhoto,
-                activityName: $route.params.activityName,
-                activityCourse: $route.params.activityCourse,
-                activityQuestion1: $route.params.activityQuestion1
               }
             }"
             ><b-button

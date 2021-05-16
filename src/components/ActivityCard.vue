@@ -6,15 +6,7 @@
           name: 'Activity',
           params: {
             activityId: activity.id,
-            activityName: activity.name,
-            activityCourse: activity.course,
-            activitySubject: activity.subject,
-            activityPoints: activity.points,
-            activityLevel: activity.level,
-            activityType: activity.type,
-            activityPhoto: activity.photo,
-            activityLikes: activity.likes,
-            activityQuestion1: activity.question1
+           
           }
         }"
       >

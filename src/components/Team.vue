@@ -58,13 +58,12 @@
           class="mt-5 ml-3"
           style="display: flex; items-align: start;"
         >
-          <b-button
+          <router-link :to='{name: "TeamClassification"}'><b-button
             pill
-            id="teamBtn"
+            id="classificationBtn"
             class="mr-3"
             style="background-color: #70FFB4; color: #0B132B"
-            >Classificação</b-button
-          >
+            >Classificação</b-button></router-link>
           <router-link :to='{name: "EditTeam"}'><b-button pill id="editBtn" :disabled='disabled' style="background-color: #70FFB4; color: #0B132B">Editar</b-button></router-link>
           
         </b-col>
@@ -140,14 +139,14 @@ p {
   color: white;
 }
 
-#teamBtn {
-  width: 100px;
+#classificationBtn {
+  width: 110px;
   height: 50px;
   font-size: 13px;
 }
 
 #editBtn {
-  width: 100px;
+  width: 110px;
   height: 50px;
 }
 </style>
