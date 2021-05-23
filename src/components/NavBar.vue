@@ -1,5 +1,7 @@
 <template>
+
   <div id="navbar">
+    <Dropdown></Dropdown>
     <b-navbar toggleable="lg" style="height: 60px">
       <router-link :to="{ name: 'Home' }"
         ><img id="logo" alt="" src="../assets/logo_trivia_owl_escuro.png"
@@ -20,49 +22,8 @@
           <router-link id="thirdNav" :to="{ name: 'Interaction' }"
             ><p class="mt-3">Interação</p></router-link
           >
-
-          <b-nav-item-dropdown id="dropdown"  right class="mr-2" >
-            <!-- Using 'button-content' slot -->
-            <template #button-content>
-              <em><b-avatar :src="getUser.photo"></b-avatar></em>
-            </template>
-            <b-dropdown-item-button  href="#" :style="{visibility: show.profile}"
-              ><router-link id="firstDropdownItem" :to="{ name: 'Profile' }"
-                >Perfil</router-link
-              ></b-dropdown-item-button
-            >
-            <b-dropdown-item-button id="secondDropdownItem" v-b-modal.modalLogin :style="{visibility: show.login}"
-              >Entrar</b-dropdown-item-button
-            >
-            <b-dropdown-item-button id="thirdDropdownItem" :style="{visibility: show.notification}"
-              >Notificações</b-dropdown-item-button
-            >
-            <b-dropdown-item-button
-            :style="{visibility: show.userManagement}"
-              ><router-link
-                id="fourthDropdownItem"
-                :to="{ name: 'UserManagement' }"
-                >Gerir Utilizadores</router-link
-              ></b-dropdown-item-button
-            >
-            <b-dropdown-item-button
-            :style="{visibility: show.activityManagement}"
-              ><router-link
-                id="fifthDropdownItem"
-                :to="{ name: 'ListActivityManagement' }"
-                >Gerir Atividades</router-link
-              ></b-dropdown-item-button
-            >
-            <b-dropdown-item-button
-            :style="{visibility: show.team}"
-              ><router-link id="sixthDropdownItem" :to="{ name: 'ListTeams' }"
-                >Equipa</router-link
-              ></b-dropdown-item-button
-            >
-            <b-dropdown-item-button @click='logout' :style="{visibility: show.logout}"> 
-                Sair</b-dropdown-item-button
-            >
-          </b-nav-item-dropdown>
+          <Dropdown>
+          </Dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -168,10 +129,16 @@
 
 <script>
 import Swal from 'sweetalert2';
+import Dropdown from "./Dropdown";
 export default {
   name: "NavBar",
+  components: {
+    Dropdown
+  },
   data() {
     return {
+      isVisible: false,
+      focusedIndex: 0,
       login: {
         username: "",
         password: ""
@@ -248,6 +215,13 @@ export default {
 
   },
   methods: {
+    toggleVisibility() {
+      this.isVisible = !this.isVisible
+    },
+    hideDropdown() {
+      this.isVisible = false
+      this.focusedIndex = 0
+    },
     Login() {
       try {
         //chamar a ação login que está na store
@@ -361,6 +335,9 @@ export default {
       this.show.team = 'hidden';
       this.show.logout = 'hidden';
     }
+    },
+    focusItem() {
+      this.$refs.dropdown.children[this.focusedIndex].children[0].focus()
     }
   },
   computed: {
@@ -562,4 +539,11 @@ input[type="url"] {
   width: 120px;
   float: right;
 }
+.dropdown-fade-enter-active, .dropdown-fade-leave-active {
+    transition: all .1s ease-in-out;
+  }
+  .dropdown-fade-enter, .dropdown-fade-leave-to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
 </style>
