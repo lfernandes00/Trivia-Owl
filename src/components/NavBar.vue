@@ -1,7 +1,5 @@
 <template>
-
   <div id="navbar">
-    <Dropdown></Dropdown>
     <b-navbar toggleable="lg" style="height: 60px">
       <router-link :to="{ name: 'Home' }"
         ><img id="logo" alt="" src="../assets/logo_trivia_owl_escuro.png"
@@ -22,13 +20,35 @@
           <router-link id="thirdNav" :to="{ name: 'Interaction' }"
             ><p class="mt-3">Interação</p></router-link
           >
-         
+          <div class="dropdown dropleft">
+            <button
+              class="btn btn-secondary dropdown-toggle dropdownBtn " 
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <b-avatar :src="getUser.photo"></b-avatar>
+            </button>
+            <div class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item dropdownItem" href="#">Action</a>
+              <a class="dropdown-item dropdownItem" href="#">Another action</a>
+              <a class="dropdown-item dropdownItem" href="#">Something else here</a>
+            </div>
+          </div>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
 
     <!-- modal Login -->
-    <b-modal id="modalLogin" size="sm"  hide-header  hide-footer content-class="my-class">
+    <b-modal
+      id="modalLogin"
+      size="sm"
+      hide-header
+      hide-footer
+      content-class="my-class"
+    >
       <div id="mdlLoginHeader">
         <h1 class="mt-5">Login</h1>
         <img src="../assets/logo_trivia_owl_escuro.png" alt="" width="115px" />
@@ -117,7 +137,7 @@
         <label for="txtRegisterType">Tipo de Utilizador</label><br />
         <select id="txtRegisterType" v-model="register.type" required>
           <option value="estudante">Estudante</option>
-          <option value="docente">Docente</option> </select
+          <option value="docente">Docente</option></select
         ><br /><br />
 
         <b-button pill id="registerSubmit" type="submit">Registar</b-button>
@@ -127,20 +147,17 @@
 </template>
 
 <script>
-import Swal from 'sweetalert2';
-import Dropdown from "./Dropdown";
+import Swal from "sweetalert2";
+
 export default {
   name: "NavBar",
-  components: {
-    Dropdown
-  },
   data() {
     return {
       isVisible: false,
       focusedIndex: 0,
       login: {
         username: "",
-        password: ""
+        password: "",
       },
       register: {
         username: "user",
@@ -149,141 +166,139 @@ export default {
         name: "António",
         birthDate: "10-12-2000",
         course: "TSIW",
-        photo: "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
-        type: "student"
+        photo:
+          "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
+        type: "student",
       },
       users: [],
       user: "",
-      loggedUser: '',
+      loggedUser: "",
       show: {
-        profile: 'visible',
-        login: 'visible',
-        notification: 'visible',
-        userManagement: 'visible',
-        activityManagement: 'visible',
-        team: 'visible',
-        logout: 'visible'
-      }
+        profile: "visible",
+        login: "visible",
+        notification: "visible",
+        userManagement: "visible",
+        activityManagement: "visible",
+        team: "visible",
+        logout: "visible",
+      },
     };
   },
   created() {
     this.users = this.$store.getters.getUsers;
     this.loggedUser = this.$store.getters.getLoggedUser;
 
-    if (this.loggedUser == '') {
-      this.show.profile = 'hidden';
-      this.show.login = 'visible';
-      this.show.notification = 'hidden';
-      this.show.userManagement = 'hidden';
-      this.show.activityManagement = 'hidden';
-      this.show.team = 'hidden';
-      this.show.logout = 'hidden';
+    if (this.loggedUser == "") {
+      this.show.profile = "hidden";
+      this.show.login = "visible";
+      this.show.notification = "hidden";
+      this.show.userManagement = "hidden";
+      this.show.activityManagement = "hidden";
+      this.show.team = "hidden";
+      this.show.logout = "hidden";
     }
 
-    if (this.loggedUser.type == 'estudante') {
-      this.show.profile = 'visible';
-      this.show.login = 'hidden';
-      this.show.notification = 'visible';
-      this.show.userManagement = 'hidden';
-      this.show.activityManagement = 'hidden';
-      this.show.team = 'visible';
-      this.show.logout = 'visible';
+    if (this.loggedUser.type == "estudante") {
+      this.show.profile = "visible";
+      this.show.login = "hidden";
+      this.show.notification = "visible";
+      this.show.userManagement = "hidden";
+      this.show.activityManagement = "hidden";
+      this.show.team = "visible";
+      this.show.logout = "visible";
     }
 
-    if (this.loggedUser.type == 'docente') {
-      this.show.profile = 'visible';
-      this.show.login = 'hidden';
-      this.show.notification = 'visible';
-      this.show.userManagement = 'hidden';
-      this.show.activityManagement = 'visible';
-      this.show.team = 'hidden';
-      this.show.logout = 'visible';
+    if (this.loggedUser.type == "docente") {
+      this.show.profile = "visible";
+      this.show.login = "hidden";
+      this.show.notification = "visible";
+      this.show.userManagement = "hidden";
+      this.show.activityManagement = "visible";
+      this.show.team = "hidden";
+      this.show.logout = "visible";
     }
 
-    if (this.loggedUser.type == 'admin') {
-      this.show.profile = 'visible';
-      this.show.login = 'hidden';
-      this.show.notification = 'visible';
-      this.show.userManagement = 'visible';
-      this.show.activityManagement = 'visible';
-      this.show.team = 'hidden';
-      this.show.logout = 'visible';
+    if (this.loggedUser.type == "admin") {
+      this.show.profile = "visible";
+      this.show.login = "hidden";
+      this.show.notification = "visible";
+      this.show.userManagement = "visible";
+      this.show.activityManagement = "visible";
+      this.show.team = "hidden";
+      this.show.logout = "visible";
     }
-
-    
-
   },
   methods: {
     toggleVisibility() {
-      this.isVisible = !this.isVisible
+      this.isVisible = !this.isVisible;
     },
     hideDropdown() {
-      this.isVisible = false
-      this.focusedIndex = 0
+      this.isVisible = false;
+      this.focusedIndex = 0;
     },
     Login() {
       try {
         //chamar a ação login que está na store
         this.$store.dispatch("login", {
           username: this.login.username,
-          password: this.login.password
+          password: this.login.password,
         });
         this.loggedUser = this.$store.getters.getLoggedUser;
         this.hideModal("modalLogin");
 
-        if (this.loggedUser.type == 'estudante') {
-      this.show.profile = 'visible';
-      this.show.login = 'hidden';
-      this.show.notification = 'visible';
-      this.show.userManagement = 'hidden';
-      this.show.activityManagement = 'hidden';
-      this.show.team = 'visible';
-      this.show.logout = 'visible';
-    }
+        if (this.loggedUser.type == "estudante") {
+          this.show.profile = "visible";
+          this.show.login = "hidden";
+          this.show.notification = "visible";
+          this.show.userManagement = "hidden";
+          this.show.activityManagement = "hidden";
+          this.show.team = "visible";
+          this.show.logout = "visible";
+        }
 
-    if (this.loggedUser.type == 'docente') {
-      this.show.profile = 'visible';
-      this.show.login = 'hidden';
-      this.show.notification = 'visible';
-      this.show.userManagement = 'hidden';
-      this.show.activityManagement = 'visible';
-      this.show.team = 'visible';
-      this.show.logout = 'visible';
-    }
+        if (this.loggedUser.type == "docente") {
+          this.show.profile = "visible";
+          this.show.login = "hidden";
+          this.show.notification = "visible";
+          this.show.userManagement = "hidden";
+          this.show.activityManagement = "visible";
+          this.show.team = "visible";
+          this.show.logout = "visible";
+        }
 
-    if (this.loggedUser.type == 'admin') {
-      this.show.profile = 'visible';
-      this.show.login = 'hidden';
-      this.show.notification = 'visible';
-      this.show.userManagement = 'visible';
-      this.show.activityManagement = 'visible';
-      this.show.team = 'visible';
-      this.show.logout = 'visible';
-    }
+        if (this.loggedUser.type == "admin") {
+          this.show.profile = "visible";
+          this.show.login = "hidden";
+          this.show.notification = "visible";
+          this.show.userManagement = "visible";
+          this.show.activityManagement = "visible";
+          this.show.team = "visible";
+          this.show.logout = "visible";
+        }
         //fechar a modal login
       } catch (error) {
         //mudar para sweetalert
         Swal.fire({
-      title: 'Erro!',
-      text: error,
-      buttonsStyling: false,
-      confirmButtonClass: 'btn btn-danger',
-      icon: 'error'
-    })
+          title: "Erro!",
+          text: error,
+          buttonsStyling: false,
+          confirmButtonClass: "btn btn-danger",
+          icon: "error",
+        });
       }
     },
-    hideModal (id) {
-        this.$root.$emit('bv::hide::modal',id)
+    hideModal(id) {
+      this.$root.$emit("bv::hide::modal", id);
     },
     Register() {
       if (this.register.password != this.register.password2) {
         Swal.fire({
-      title: 'Erro!',
-      text: 'As palavras passe não são iguais',
-      buttonsStyling: false,
-      confirmButtonClass: 'btn btn-danger',
-      icon: 'error'
-    })
+          title: "Erro!",
+          text: "As palavras passe não são iguais",
+          buttonsStyling: false,
+          confirmButtonClass: "btn btn-danger",
+          icon: "error",
+        });
       }
       try {
         this.$store.dispatch("register", {
@@ -300,17 +315,17 @@ export default {
           trophies: [],
           level: 1,
           doneActivities: 0,
-          team: 0
+          team: 0,
         });
         this.hideModal("modalRegister");
       } catch (error) {
         Swal.fire({
-      title: 'Erro!',
-      text: error,
-      buttonsStyling: false,
-      confirmButtonClass: 'btn btn-danger',
-      icon: 'error'
-    })
+          title: "Erro!",
+          text: error,
+          buttonsStyling: false,
+          confirmButtonClass: "btn btn-danger",
+          icon: "error",
+        });
       }
     },
     getNextUserId() {
@@ -321,39 +336,59 @@ export default {
       }
     },
     logout() {
-      this.$store.dispatch('logout');
+      this.$store.dispatch("logout");
       this.loggedUser = this.$store.getters.getLoggedUser;
-      this.$router.push({name:'Home'});
+      this.$router.push({ name: "Home" });
 
-      if (this.loggedUser == '') {
-      this.show.profile = 'hidden';
-      this.show.login = 'visible';
-      this.show.notification = 'hidden';
-      this.show.userManagement = 'hidden';
-      this.show.activityManagement = 'hidden';
-      this.show.team = 'hidden';
-      this.show.logout = 'hidden';
-    }
+      if (this.loggedUser == "") {
+        this.show.profile = "hidden";
+        this.show.login = "visible";
+        this.show.notification = "hidden";
+        this.show.userManagement = "hidden";
+        this.show.activityManagement = "hidden";
+        this.show.team = "hidden";
+        this.show.logout = "hidden";
+      }
     },
     focusItem() {
-      this.$refs.dropdown.children[this.focusedIndex].children[0].focus()
-    }
+      this.$refs.dropdown.children[this.focusedIndex].children[0].focus();
+    },
   },
   computed: {
     getUser() {
       // this.user = this.$store.getters.getLoggedUser
-      return this.$store.getters.getLoggedUser
-    }
-  }
+      return this.$store.getters.getLoggedUser;
+    },
+  },
 };
 </script>
 
 <style scoped>
 /deep/ .my-class {
-  background-color: #0B132B;
+  background-color: #0b132b;
 }
-
-
+.dropdownMenu{
+  background-color: #1C2541;
+  
+}
+.dropdownBtn{
+  background-color: transparent;
+  border: none;
+  
+}
+.dropdownBtn:focus{
+  background-color: #1C2541 !important;
+  border: none;
+  outline: none !important;
+  outline-width: 0px;
+  
+}
+.dropdownItem{
+  color: #6FFFE9;
+}
+.dropdownBtn:hover{
+  background-color: transparent;
+}
 #firstDropdownItem:hover {
   text-decoration: none;
 }
@@ -538,11 +573,13 @@ input[type="url"] {
   width: 120px;
   float: right;
 }
-.dropdown-fade-enter-active, .dropdown-fade-leave-active {
-    transition: all .1s ease-in-out;
-  }
-  .dropdown-fade-enter, .dropdown-fade-leave-to {
-    opacity: 0;
-    transform: translateY(-12px);
-  }
+.dropdown-fade-enter-active,
+.dropdown-fade-leave-active {
+  transition: all 0.1s ease-in-out;
+}
+.dropdown-fade-enter,
+.dropdown-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-12px);
+}
 </style>
