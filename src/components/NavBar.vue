@@ -22,8 +22,7 @@
           <router-link id="thirdNav" :to="{ name: 'Interaction' }"
             ><p class="mt-3">Interação</p></router-link
           >
-          <Dropdown>
-          </Dropdown>
+         
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
