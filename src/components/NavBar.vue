@@ -31,10 +31,26 @@
             >
               <b-avatar :src="getUser.photo"></b-avatar>
             </button>
-            <div class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item dropdownItem" href="#">Action</a>
-              <a class="dropdown-item dropdownItem" href="#">Another action</a>
-              <a class="dropdown-item dropdownItem" href="#">Something else here</a>
+            <div v-if="loggedUser == ''" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item dropdownItem" href="#" v-b-modal.modalLogin >Entrar</a>
+            </div>
+            <div v-else-if="loggedUser.type == 'admin'" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item dropdownItem" href="#"><router-link :to="{name: 'Profile'}">Perfil</router-link></a>
+              <a class="dropdown-item dropdownItem" href="#"><router-link :to="{name: 'UserManagement'}">Gerir Utilizadores</router-link></a>
+              <a class="dropdown-item dropdownItem" href="#"><router-link :to="{name: 'ListActivityManagement'}">Gerir Atividades</router-link></a>
+              <a class="dropdown-item dropdownItem" href="#"><router-link :to="{name: 'ListTeams'}">Equipa</router-link></a>
+              <a class="dropdown-item dropdownItem" href="#" @click='logout'>Sair</a>
+            </div>
+            <div v-else-if="loggedUser.type == 'docente'" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item dropdownItem" href="#"><router-link :to="{name: 'Profile'}">Perfil</router-link></a>
+              <a class="dropdown-item dropdownItem" href="#"><router-link :to="{name: 'ListActivityManagement'}">Gerir Atividades</router-link></a>
+              <a class="dropdown-item dropdownItem" href="#"><router-link :to="{name: 'ListTeams'}">Equipa</router-link></a>
+              <a class="dropdown-item dropdownItem" href="#" @click='logout'>Sair</a>
+            </div>
+            <div v-else-if="loggedUser.type == 'estudante'" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item dropdownItem" href="#"><router-link :to="{name: 'Profile'}">Perfil</router-link></a>
+              <a class="dropdown-item dropdownItem" href="#"><router-link :to="{name: 'ListTeams'}">Equipa</router-link></a>
+              <a class="dropdown-item dropdownItem" href="#" @click='logout'>Sair</a>
             </div>
           </div>
         </b-navbar-nav>
