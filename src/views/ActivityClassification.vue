@@ -4,7 +4,7 @@
       <b-row>
         <b-col cols="3" class="mt-5 ml-5">
           <img
-            src="../assets/classificacao.png" alt=""
+            src="../assets/classificacao.webp" alt=""
             style="width: 100px; height: 100px"
           />
         </b-col>

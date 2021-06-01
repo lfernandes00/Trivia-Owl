@@ -2,7 +2,7 @@
   <div id="navbar">
     <b-navbar toggleable="lg" style="height: 60px">
       <router-link :to="{ name: 'Home' }"
-        ><img id="logo" alt="" src="../assets/logo_trivia_owl_escuro.png"
+        ><img id="logo" alt="" src="../assets/logo_trivia_owl_escuro.webp"
       /></router-link>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -67,7 +67,7 @@
     >
       <div id="mdlLoginHeader">
         <h1 class="mt-5">Login</h1>
-        <img src="../assets/logo_trivia_owl_escuro.png" alt="" width="115px" />
+        <img src="../assets/logo_trivia_owl_escuro.webp" alt="" width="115px" />
       </div>
       <form @submit.prevent="Login">
         <label for="txtUsername">Nome de Utilizador</label><br />
@@ -98,7 +98,7 @@
     >
       <div id="mdlRegisterHeader">
         <h1 class="mt-5">Registo</h1>
-        <img src="../assets/logo_trivia_owl_escuro.png" width="115px" />
+        <img src="../assets/logo_trivia_owl_escuro.webp" width="115px" />
       </div>
       <form @submit.prevent="Register">
         <label for="txtRegisterUsername">Nome de Utilizador</label><br />
