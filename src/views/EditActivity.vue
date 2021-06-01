@@ -230,7 +230,5 @@ export default {
 </script>
 
 <style scoped>
-#activityImg {
-  border-radius: 10%;
-}
+#activityImg{border-radius:10%}
 </style>

@@ -218,50 +218,7 @@ export default {
 
 <style scoped>
 /* Estilização da tabela */
-h4,
-.h4 {
-  color: #ff7070;
-}
-
-#userTable {
-  color: white;
-}
-
-th {
-  color: #ff7070;
-}
-
-td {
-  color: white;
-}
-
-#nameTd {
-  color: #6FFFE9;
-}
-
-#firstActivity {
-  text-decoration: none;
-}
-
-#secondActivity {
-  text-decoration: none;
-}
-
-#thirdActivity {
-  text-decoration: none;
-}
-
-#activitiesTable {
-  color: white;
-}
-
-#activitiesTable {
-  text-align: start;
-}
-
-#usersTable {
-  text-align: start;
-}
+.h4,h4{color:#ff7070}#userTable{color:#fff}th{color:#ff7070}td{color:#fff}#nameTd{color:#6fffe9}#firstActivity{text-decoration:none}#secondActivity{text-decoration:none}#thirdActivity{text-decoration:none}#activitiesTable{color:#fff}#activitiesTable{text-align:start}#usersTable{text-align:start}
 
 
 </style>

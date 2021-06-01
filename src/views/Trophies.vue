@@ -64,24 +64,5 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  color: white;
-  font-weight: bold;
-}
-
- td {
-  color: white;
-}
-
- th {
-  color: #ff7070;
-}
-
-#descTd {
-  color: #70FFB4;
-}
-
-#trophyTable {
-  text-align: start;
-}
+h1{color:#fff;font-weight:700}td{color:#fff}th{color:#ff7070}#descTd{color:#70ffb4}#trophyTable{text-align:start}
 </style>

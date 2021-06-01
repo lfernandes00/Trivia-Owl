@@ -125,29 +125,5 @@ export default {
 
 <style scoped>
 /* Estilização das bordas da imagem da atividade */
-img {
-  border-radius: 10%;
-}
-/* Estilização dos diferentes textos da informação */
-b {
-  color: #ff7070;
-}
-
-strong {
-  color: white;
-}
-
-h4 {
-  color: #93DBCB;
-}
-
-#solveBtn {
-  background-color: #70FFB4;
-  color: #0B132B;
-  font-weight: bold;
-}
-
-#desc {
-  text-align: left;
-}
+img{border-radius:10%}b{color:#ff7070}strong{color:#fff}h4{color:#93dbcb}#solveBtn{background-color:#70ffb4;color:#0b132b;font-weight:700}#desc{text-align:left}
 </style>

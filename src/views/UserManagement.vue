@@ -69,20 +69,5 @@ export default {
 </script>
 
 <style scoped>
-th {
-  color: #ff7070;
-}
-
-td {
- color: white
-}
-
-#removeBtn {
-  background-color: #FF7070;
-  color: #0B132B;
-}
-
-#usersTable {
-  text-align: start;
-}
+th{color:#ff7070}td{color:#fff}#removeBtn{background-color:#ff7070;color:#0b132b}#usersTable{text-align:start}
 </style>

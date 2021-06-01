@@ -114,32 +114,6 @@ export default {
 </script>
 
 <style scoped>
-#addBtn {
-  width: 100px;
-  height: 50px;
-  background-color: #ff7070;
-}
-
-#sortBtn {
-  height: 50px;
-  background-color: #70ffb4;
-  color: #0b132b;
-}
-
-#btnDiv {
-  display: flex;
-  justify-content: space-between;
-}
-
-img {
-  border-radius: 10%;
-}
-
-select {
-  background-color: white;
-  height: 50px;
-  border-radius: 7%;
-  color: #0b132b;
-}
+#addBtn{width:100px;height:50px;background-color:#ff7070}#sortBtn{height:50px;background-color:#70ffb4;color:#0b132b}#btnDiv{display:flex;justify-content:space-between}img{border-radius:10%}select{background-color:#fff;height:50px;border-radius:7%;color:#0b132b}
 </style>
 

@@ -138,43 +138,5 @@ export default {
 </script>
 
 <style scoped>
-th {
-  color: #ff7070;
-}
-
-td {
-  color: white;
-}
-
-h6 {
-  color: #70ffb4;
-}
-b {
-  color: #ff7070;
-}
-strong {
-  color: #93dbcb;
-}
-
-b-button pill {
-  background-color: #70ffb4;
-}
-p {
-  color: #00b89c;
-}
-
-#historyTable {
-  color: white;
-}
-
-#teamBtn {
-  width: 100px;
-  height: 50px;
-  font-size: 13px;
-}
-
-#editBtn {
-  width: 100px;
-  height: 50px;
-}
+th{color:#ff7070}td{color:#fff}h6{color:#70ffb4}b{color:#ff7070}strong{color:#93dbcb}b-button pill{background-color:#70ffb4}p{color:#00b89c}#historyTable{color:#fff}#teamBtn{width:100px;height:50px;font-size:13px}#editBtn{width:100px;height:50px}
 </style>

@@ -92,24 +92,5 @@ export default {
 
 <style scoped>
 /* Estilização da tabela */
-h1 {
-  color: white;
-  font-weight: bold;
-}
-
- td {
-  color: white;
-}
-
- th {
-  color: #ff7070;
-}
-
-#nameTd {
-  color: #70FFB4;
-}
-
-#classificationTable {
-  text-align: start;
-}
+h1{color:#fff;font-weight:700}td{color:#fff}th{color:#ff7070}#nameTd{color:#70ffb4}#classificationTable{text-align:start}
 </style>

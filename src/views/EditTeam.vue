@@ -71,50 +71,5 @@ export default {
 </script>
 
 <style scoped>
-#input-group-1 {
-  color: #6fffe9;
-  text-align: start;
-}
-
-#input-group-2 {
-  color: #6fffe9;
-  text-align: start;
-}
-
-#input-group-3 {
-  color: #6fffe9;
-  text-align: start;
-}
-
-#input-group-4 {
-  color: #6fffe9;
-  text-align: start;
-}
-
-#input-group-5 {
-  color: #6fffe9;
-  text-align: start;
-}
-
-#input-group-6 {
-  color: #6fffe9;
-  text-align: start;
-}
-
-#input-group-7 {
-  color: #6fffe9;
-  text-align: start;
-}
-
-#avatar {
-  float: none;
-}
-
-#submitBtn {
-  background-color: #70ffb4;
-  color: #0b132b;
-  width: 100px;
-  height: 50px;
-  float: right;
-}
+#input-group-1{color:#6fffe9;text-align:start}#input-group-2{color:#6fffe9;text-align:start}#input-group-3{color:#6fffe9;text-align:start}#input-group-4{color:#6fffe9;text-align:start}#input-group-5{color:#6fffe9;text-align:start}#input-group-6{color:#6fffe9;text-align:start}#input-group-7{color:#6fffe9;text-align:start}#avatar{float:none}#submitBtn{background-color:#70ffb4;color:#0b132b;width:100px;height:50px;float:right}
 </style>

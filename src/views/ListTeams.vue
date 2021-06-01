@@ -81,38 +81,5 @@ methods: {
 </script>
 
 <style scoped>
-h1 {
-  color: white;
-  font-weight: bold;
-  margin: auto;
-  margin-top: 50px
-}
-
- td {
-  color: white;
-}
-
- th {
-  color: #ff7070;
-}
-
-#nameTd {
-  color: #70FFB4;
-}
-
-#detailBtn {
-  background-color: #70FFB4;
-  color: #0B132B;
-  width: 100px;
-}
-
-#removeBtn {
-  background-color: #FF7070;
-  color:  #0B132B;
-  width: 100px;
-}
-
-#teamsTable {
-  text-align: start;
-}
+h1{color:#fff;font-weight:700;margin:auto;margin-top:50px}td{color:#fff}th{color:#ff7070}#nameTd{color:#70ffb4}#detailBtn{background-color:#70ffb4;color:#0b132b;width:100px}#removeBtn{background-color:#ff7070;color:#0b132b;width:100px}#teamsTable{text-align:start}
 </style>

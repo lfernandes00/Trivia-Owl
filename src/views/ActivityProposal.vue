@@ -165,22 +165,5 @@ methods: {
 </script>
 
 <style scoped>
-img {
-  border-radius: 10%;
-}
-/* Estilização dos diferentes textos da informação */
-b {
-  color: #ff7070;
-}
-
-#aceptBtn {
-    background-color: #70FFB4;
-    color: #0B132B;
-    width: 100px;
-    float: right;
-}
-
-strong {
-  color: white;
-}
+img{border-radius:10%}b{color:#ff7070}#aceptBtn{background-color:#70ffb4;color:#0b132b;width:100px;float:right}strong{color:#fff}
 </style>
