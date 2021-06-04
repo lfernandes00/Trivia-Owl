@@ -31,21 +31,21 @@
             >
               <b-avatar :src="getUser.photo"></b-avatar>
             </button>
-            <div v-if="loggedUser == ''" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
+            <div v-if="getUser == ''" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item dropdownItem" href="#" v-b-modal.modalLogin >Entrar</a>
             </div>
-            <div v-else-if="loggedUser.type == 'admin'" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
+            <div v-else-if="getUser.type == 'admin'" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item dropdownItem" href="#"><router-link class="profileDrop" :to="{name: 'Profile'}">Perfil</router-link></a>
               <a class="dropdown-item dropdownItem" href="#"><router-link :to="{name: 'UserManagement'}">Gerir Utilizadores</router-link></a>
               <a class="dropdown-item dropdownItem" href="#"><router-link :to="{name: 'ListActivityManagement'}">Gerir Atividades</router-link></a>
               <a class="dropdown-item dropdownItem" href="#" @click='logout'>Sair</a>
             </div>
-            <div v-else-if="loggedUser.type == 'docente'" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
+            <div v-else-if="getUser.type == 'docente'" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item dropdownItem" href="#"><router-link class="profileDrop" :to="{name: 'Profile'}">Perfil</router-link></a>
               <a class="dropdown-item dropdownItem" href="#"><router-link :to="{name: 'ListActivityManagement'}">Gerir Atividades</router-link></a>
               <a class="dropdown-item dropdownItem" href="#" @click='logout'>Sair</a>
             </div>
-            <div v-else-if="loggedUser.type == 'estudante'" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
+            <div v-else-if="getUser.type == 'estudante'" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item dropdownItem" href="#"><router-link class="profileDrop" :to="{name: 'Profile'}">Perfil</router-link></a>    
               <a class="dropdown-item dropdownItem" href="#" @click='logout'>Sair</a>
             </div>
@@ -66,15 +66,15 @@
         <h1 class="mt-5">Login</h1>
         <img src="../assets/logo_trivia_owl_escuro.webp" alt="" width="115px" />
       </div>
-      <form @submit.prevent="Login">
+      <form @submit.prevent="handleLogin">
         <label for="txtUsername">Nome de Utilizador</label><br />
-        <input type="text" id="txtUsername" v-model="login.username" /><br />
+        <input type="text" id="txtUsername" v-model="userLogin.username" /><br />
 
         <label class="mt-3" for="txtPassword">Palavra Passe</label><br />
         <input
           type="password"
           id="txtPassword"
-          v-model="login.password"
+          v-model="userLogin.password"
         /><br /><br />
 
         <b-button pill id="loginSubmit" type="submit">Entrar</b-button>
@@ -97,60 +97,53 @@
         <h1 class="mt-5">Registo</h1>
         <img src="../assets/logo_trivia_owl_escuro.webp" width="115px" />
       </div>
-      <form @submit.prevent="Register">
+      <form @submit.prevent="handleRegister">
         <label for="txtRegisterUsername">Nome de Utilizador</label><br />
         <input
           type="text"
           id="txtRegisterUsername"
-          v-model="register.username"
+          v-model="user.username"
         /><br /><br />
 
         <label for="txtRegisterPassword">Palavra Passe</label><br />
         <input
           type="password"
           id="txtRegisterPassword"
-          v-model="register.password"
-        /><br /><br />
-
-        <label for="txtRegisterPassword2">Confirmar Palavra Passe</label><br />
-        <input
-          type="password"
-          id="txtRegisterPassword2"
-          v-model="register.password2"
+          v-model="user.password"
         /><br /><br />
 
         <label for="txtRegisterName">Nome</label><br />
         <input
           type="text"
           id="txtRegisterName"
-          v-model="register.name"
+          v-model="user.name"
         /><br /><br />
 
         <label for="txtRegisterBirthDate">Data Nascimento</label><br />
         <input
           type="date"
           id="txtRegisterBirthDate"
-          v-model="register.birthDate"
+          v-model="user.birthDate"
         /><br /><br />
 
         <label for="txtRegisterCourse">Curso</label><br />
         <input
           type="text"
           id="txtRegisterCourse"
-          v-model="register.course"
+          v-model="user.course"
         /><br /><br />
 
         <label for="registerPhoto">Foto</label><br />
         <input
           type="url"
           id="registerPhoto"
-          v-model="register.photo"
+          v-model="user.photo"
         /><br /><br />
 
         <label for="txtRegisterType">Tipo de Utilizador</label><br />
-        <select id="txtRegisterType" v-model="register.type" required>
-          <option value="estudante">Estudante</option>
-          <option value="docente">Docente</option></select
+        <select id="txtRegisterType" v-model="user.typeId" required>
+          <option value="2">Estudante</option>
+          <option value="3">Docente</option></select
         ><br /><br />
 
         <b-button pill id="registerSubmit" type="submit">Registar</b-button>
@@ -162,29 +155,42 @@
 <script>
 import Swal from "sweetalert2";
 
+class User {
+  constructor (username, password, name, birthDate, course, level, photo, doneActivities, points, typeId) {
+    this.username = username;
+    this.password = password;
+    this.name = name;
+    this.birthDate = birthDate;
+    this.course = course;
+    this.level = level;
+    this.photo = photo;
+    this.doneActivities = doneActivities;
+    this.points = points;
+    this.typeId = typeId
+  }
+}
+
+class UserLogin {
+  constructor ( username, password) {
+    this.username = username;
+    this.password = password;
+  }
+}
 export default {
   name: "NavBar",
   data() {
     return {
+      user: new User (null, null, null, null, null,"iniciante",null,0,0,null),
+      userLogin: new UserLogin ("",""),
+      message: "",
+      errors: [],
       isVisible: false,
       focusedIndex: 0,
       login: {
         username: "",
         password: "",
       },
-      register: {
-        username: "user",
-        password: "1234",
-        password2: "1234",
-        name: "António",
-        birthDate: "10-12-2000",
-        course: "TSIW",
-        photo:
-          "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW58ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
-        type: "student",
-      },
       users: [],
-      user: "",
       loggedUser: "",
       show: {
         profile: "visible",
@@ -200,46 +206,6 @@ export default {
   created() {
     this.users = this.$store.getters.getUsers;
     this.loggedUser = this.$store.getters.getLoggedUser;
-
-    if (this.loggedUser == "") {
-      this.show.profile = "hidden";
-      this.show.login = "visible";
-      this.show.notification = "hidden";
-      this.show.userManagement = "hidden";
-      this.show.activityManagement = "hidden";
-      this.show.team = "hidden";
-      this.show.logout = "hidden";
-    }
-
-    if (this.loggedUser.type == "estudante") {
-      this.show.profile = "visible";
-      this.show.login = "hidden";
-      this.show.notification = "visible";
-      this.show.userManagement = "hidden";
-      this.show.activityManagement = "hidden";
-      this.show.team = "visible";
-      this.show.logout = "visible";
-    }
-
-    if (this.loggedUser.type == "docente") {
-      this.show.profile = "visible";
-      this.show.login = "hidden";
-      this.show.notification = "visible";
-      this.show.userManagement = "hidden";
-      this.show.activityManagement = "visible";
-      this.show.team = "hidden";
-      this.show.logout = "visible";
-    }
-
-    if (this.loggedUser.type == "admin") {
-      this.show.profile = "visible";
-      this.show.login = "hidden";
-      this.show.notification = "visible";
-      this.show.userManagement = "visible";
-      this.show.activityManagement = "visible";
-      this.show.team = "hidden";
-      this.show.logout = "visible";
-    }
   },
   methods: {
     toggleVisibility() {
@@ -249,96 +215,133 @@ export default {
       this.isVisible = false;
       this.focusedIndex = 0;
     },
-    Login() {
-      try {
-        //chamar a ação login que está na store
-        this.$store.dispatch("login", {
-          username: this.login.username,
-          password: this.login.password,
+    // Login() {
+    //   try {
+    //     //chamar a ação login que está na store
+    //     this.$store.dispatch("login", {
+    //       username: this.login.username,
+    //       password: this.login.password,
+    //     });
+    //     this.loggedUser = this.$store.getters.getLoggedUser;
+    //     this.hideModal("modalLogin");
+    //     //fechar a modal login
+    //   } catch (error) {
+    //     //mudar para sweetalert
+        // Swal.fire({
+        //   title: "Erro!",
+        //   text: error,
+        //   buttonsStyling: false,
+        //   confirmButtonClass: "btn btn-danger",
+        //   icon: "error",
+        // });
+    //   }
+    // },
+    async handleLogin() {
+      console.log(this.userLogin.username , this.userLogin.password)
+      this.errors = [];
+      if (this.userLogin.username && this.userLogin.password) {
+        //makes request by dispatching an action
+        try {
+          await this.$store.dispatch("login", this.userLogin);
+          this.hideModal("modalLogin");
+          
+        } catch (error) {
+          this.message =
+            (error.response && error.response.data) ||
+            error.message ||
+            error.toString();
+            Swal.fire({
+              title: "Erro!",
+              text: this.message,
+              buttonsStyling: false,
+              confirmButtonClass: "btn btn-danger",
+              icon: "error",
         });
-        this.loggedUser = this.$store.getters.getLoggedUser;
-        this.hideModal("modalLogin");
-
-        if (this.loggedUser.type == "estudante") {
-          this.show.profile = "visible";
-          this.show.login = "hidden";
-          this.show.notification = "visible";
-          this.show.userManagement = "hidden";
-          this.show.activityManagement = "hidden";
-          this.show.team = "visible";
-          this.show.logout = "visible";
         }
-
-        if (this.loggedUser.type == "docente") {
-          this.show.profile = "visible";
-          this.show.login = "hidden";
-          this.show.notification = "visible";
-          this.show.userManagement = "hidden";
-          this.show.activityManagement = "visible";
-          this.show.team = "visible";
-          this.show.logout = "visible";
+      } else {
+        if (!this.userLogin.username) {
+          this.errors.push("Username required.");
         }
-
-        if (this.loggedUser.type == "admin") {
-          this.show.profile = "visible";
-          this.show.login = "hidden";
-          this.show.notification = "visible";
-          this.show.userManagement = "visible";
-          this.show.activityManagement = "visible";
-          this.show.team = "visible";
-          this.show.logout = "visible";
+        if (!this.userLogin.password) {
+          this.errors.push("Password required.");
         }
-        //fechar a modal login
-      } catch (error) {
-        //mudar para sweetalert
-        Swal.fire({
-          title: "Erro!",
-          text: error,
-          buttonsStyling: false,
-          confirmButtonClass: "btn btn-danger",
-          icon: "error",
-        });
       }
     },
     hideModal(id) {
       this.$root.$emit("bv::hide::modal", id);
     },
-    Register() {
-      if (this.register.password != this.register.password2) {
-        Swal.fire({
-          title: "Erro!",
-          text: "As palavras passe não são iguais",
-          buttonsStyling: false,
-          confirmButtonClass: "btn btn-danger",
-          icon: "error",
-        });
-      }
+    // Register() {
+    //   if (this.register.password != this.register.password2) {
+    //     Swal.fire({
+    //       title: "Erro!",
+    //       text: "As palavras passe não são iguais",
+    //       buttonsStyling: false,
+    //       confirmButtonClass: "btn btn-danger",
+    //       icon: "error",
+    //     });
+    //   }
+    //   try {
+    //     this.$store.dispatch("register", {
+    //       id: this.getNextUserId(),
+    //       username: this.register.username,
+    //       password: this.register.password,
+    //       name: this.register.name,
+    //       birthDate: this.register.birthDate,
+    //       course: this.register.course,
+    //       photo: this.register.photo,
+    //       type: this.register.type,
+    //       points: 0,
+    //       historic: [],
+    //       trophies: [],
+    //       level: 1,
+    //       doneActivities: 0,
+    //       team: 0,
+    //     });
+    //     this.hideModal("modalRegister");
+    //   } catch (error) {
+    //     Swal.fire({
+    //       title: "Erro!",
+    //       text: error,
+    //       buttonsStyling: false,
+    //       confirmButtonClass: "btn btn-danger",
+    //       icon: "error",
+    //     });
+    //   }
+    // },
+    async handleRegister() {
+      this.message = "";
+      // this.loading = true;
+      // this.successful = false;
+       this.errors = [];
+      if (this.user.username && this.user.password) {
+            //makes request by dispatching an action
       try {
-        this.$store.dispatch("register", {
-          id: this.getNextUserId(),
-          username: this.register.username,
-          password: this.register.password,
-          name: this.register.name,
-          birthDate: this.register.birthDate,
-          course: this.register.course,
-          photo: this.register.photo,
-          type: this.register.type,
-          points: 0,
-          historic: [],
-          trophies: [],
-          level: 1,
-          doneActivities: 0,
-          team: 0,
-        });
+        await this.$store.dispatch("register", this.user);
         this.hideModal("modalRegister");
+        // console.log("REGISTER OK");
+        // this.message = this.$store.getters.getMessage;
+        // this.successful = true;
       } catch (error) {
-        Swal.fire({
-          title: "Erro!",
-          text: error,
-          buttonsStyling: false,
-          confirmButtonClass: "btn btn-danger",
-          icon: "error",
-        });
+        console.log(error)
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+          Swal.fire({
+            title: "Erro!",
+            text: this.message,
+            buttonsStyling: false,
+            confirmButtonClass: "btn btn-danger",
+            icon: "error",
+         });
+      }
+     } else {
+        if (!this.user.username) {
+          this.errors.push("Username required.");
+        }
+        if (!this.user.password) {
+          this.errors.push("Password required.");
+        }
       }
     },
     getNextUserId() {
@@ -348,20 +351,9 @@ export default {
         return this.users[this.users.length - 1].id + 1;
       }
     },
-    logout() {
+    async logout() {
       this.$store.dispatch("logout");
-      this.loggedUser = this.$store.getters.getLoggedUser;
       this.$router.push({ name: "Home" });
-
-      if (this.loggedUser == "") {
-        this.show.profile = "hidden";
-        this.show.login = "visible";
-        this.show.notification = "hidden";
-        this.show.userManagement = "hidden";
-        this.show.activityManagement = "hidden";
-        this.show.team = "hidden";
-        this.show.logout = "hidden";
-      }
     },
     focusItem() {
       this.$refs.dropdown.children[this.focusedIndex].children[0].focus();
@@ -369,7 +361,6 @@ export default {
   },
   computed: {
     getUser() {
-      // this.user = this.$store.getters.getLoggedUser
       return this.$store.getters.getLoggedUser;
     },
   },

@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
+import {AuthService} from '@/services/auth.service';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -190,7 +192,8 @@ export default new Vuex.Store({
             points: 0
           }
         ],
-    loggedUser: ""
+    loggedUser: "",
+    loggedIn: false,
   },
   getters: {
     getLoggedUser: (state) => {
@@ -233,42 +236,72 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    login(context, payload) {
-      //verificar se o user já existe
-      const user = context.state.users.find(
-        user =>
-          user.username === payload.username &&
-          user.password === payload.password
-      );
-
-      if (user != undefined) {
-        //login com sucesso
-        context.commit("LOGIN", user);
-        localStorage.setItem("loggedUser", JSON.stringify(user));
-      } else {
-        //login sem sucesso
-        throw Error("Login inválido!");
+    // async getAPIRoot({ commit }) {
+    //   const result = await UserService.getPublicContent()
+    //   commit("SET_MESSAGE", result.message);
+    // },
+    async register({ commit }, user) {
+      try{
+          const response = await AuthService.register(user);
+          // console.log("STORE REGISTER SUCCES: response is...")
+          // console.log(response)
+          commit('SET_MESSAGE', response.message);
+      }
+      catch(error)
+      {
+          console.log('STORE REGISTER FAILS')
+          console.log(error)
+          throw error;
       }
     },
-    logout(context) {
-      context.commit('LOGOUT');
-      localStorage.removeItem("loggedUser");
-    },
-    register(context, payload) {
-      //verificar se o user já existe
-      const user = context.state.users.find(
-        user => user.username === payload.username
-      );
+    // login(context, payload) {
+    //   //verificar se o user já existe
+    //   const user = context.state.users.find(
+    //     user =>
+    //       user.username === payload.username &&
+    //       user.password === payload.password
+    //   );
 
-      if (user == undefined) {
-        //registo com sucesso
-        context.commit("REGISTER", payload);
-        localStorage.setItem('users', JSON.stringify(context.state.users))
-      } else {
-        //registo sem sucesso
-        throw Error("Username já existente!");
+    //   if (user != undefined) {
+    //     //login com sucesso
+    //     context.commit("LOGIN", user);
+    //     localStorage.setItem("loggedUser", JSON.stringify(user));
+    //   } else {
+    //     //login sem sucesso
+    //     throw Error("Login inválido!");
+    //   }
+    // },
+    async login({ commit }, user) {
+      try{
+          const loggedUser = await AuthService.login(user);
+          commit('loginSuccess', loggedUser);
+      }
+      catch(error)
+      {
+          commit('loginFailure');
+          throw error;
       }
     },
+    logout({ commit }) {
+      AuthService.logout();
+      // commit mutation logout
+      commit('logout');
+    },
+    // register(context, payload) {
+    //   //verificar se o user já existe
+    //   const user = context.state.users.find(
+    //     user => user.username === payload.username
+    //   );
+
+    //   if (user == undefined) {
+    //     //registo com sucesso
+    //     context.commit("REGISTER", payload);
+    //     localStorage.setItem('users', JSON.stringify(context.state.users))
+    //   } else {
+    //     //registo sem sucesso
+    //     throw Error("Username já existente!");
+    //   }
+    // },
     removeUser(context, payload) {
       if (confirm('Deseja remover o utilizador?')) {
         context.commit("REMOVEUSER", payload);
@@ -377,10 +410,16 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    LOGIN(state, user) {
-      state.loggedUser = user;
+    loginSuccess(state, payload) {
+      state.loggedIn = true;
+      state.loggedUser = payload;
     },
-    LOGOUT(state) {
+    loginFailure(state) {
+      state.loggedIn = false;
+      state.loggedUser = "";
+    },
+    logout(state) {
+      state.loggedIn = false;
       state.loggedUser = "";
     },
     REGISTER(state, user) {

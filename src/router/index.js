@@ -38,7 +38,7 @@ const routes = [
     component: Home
   },
   {
-    path: "/listactivities",
+    path: "/activities",
     name: "ListActivities",
     component: ListActivities,
     meta: {
@@ -70,7 +70,7 @@ const routes = [
     }
   },
   {
-    path: "/admin/userManagement",
+    path: "/users/admin",
     name: "UserManagement",
     component: UserManagement,
     meta: {
@@ -78,7 +78,7 @@ const routes = [
     }
   },
   {
-    path: "/admin/ListActivityManagement",
+    path: "/activities/admin",
     name: "ListActivityManagement",
     component: ListActivityManagement,
     meta: {
@@ -118,7 +118,7 @@ const routes = [
     }
   },
   {
-    path: "/activity/:activityId/solve",
+    path: "/activity/:activityId/questions",
     name: "ActivitySolve",
     component: ActivitySolve,
     meta: {
@@ -126,7 +126,7 @@ const routes = [
     }
   },
   {
-    path: "/admin/activityManagement/:activityId/edit",
+    path: "/activities/admin/:activityId/edit",
     name: "EditActivity",
     component: EditActivity,
     meta: {
