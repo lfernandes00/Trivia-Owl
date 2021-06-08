@@ -100,36 +100,63 @@ export default {
     this.getActivity()
     this.user = this.$store.getters.getLoggedUser;
 
-    for (let score of this.activity.Scores) {
-      if (score.id == this.user.id) {
-        this.disabled = true;
-      } else {
-        this.disabled = false;
-      }
-    }
+    
+    console.log(this.activity.Scores)
+    console.log(this.user.id)
 
   },
   methods: {
     likeActivity() {
       const newLike = new Like(this.activity.id, this.user.id)
-      for (let like of this.activity.Likes) {
-        if (like.id == this.user.id) {
-          this.$store.dispatch('removeLike',newLike);
-        } else {
-          this.$store.dispatch('addLike',newLike);
+
+      let place = 0;
+
+      if (this.activity.Likes.length == 0) {
+        this.$store.dispatch('addLike', newLike)
+        this.getActivity()
+      }
+
+      for (const like of this.activity.Likes) {
+        if (like.id === this.user.id) {
+          place = 1;
+          break;
         }
-      }       
+      }
+
+      if (place == 1) {
+        this.$store.dispatch('removeLike', newLike)
+        this.getActivity()
+      }
+      if (place == 0) {
+        this.$store.dispatch('addLike', newLike)
+        this.getActivity()
+      }
+             
     },
     async getActivity() {
       try {
         await this.$store.dispatch("getOneActivity", this.$route.params.activityId);
         this.activity = this.$store.getters.getActivityById;
+        this.enable();
       } catch (error) {
         // console.log(error);
         this.message =
           (error.response && error.response.data) ||
           error.message ||
           error.toString();
+      }
+    },
+    enable() {
+      for (let score of this.activity.Scores) {
+        
+        if (score.id === this.user.id) {
+          // console.log(score.id , this.user.id, 'igual');
+          this.disabled = true;
+          break;
+        } else {
+          // console.log(score.id , this.user.id, 'diferente');
+          this.disabled = false;
+        }
       }
     }
   }, 

@@ -122,8 +122,8 @@ export default new Vuex.Store({
     async getOneActivity({ commit }, id) {
       try {
         const fetchedActivity = await ActivityService.fetchOneActivityByID(id);
-        console.log('STORE getOneUser: ')
-        console.log(fetchedActivity)
+        console.log('STORE getOneActivity: ')
+        // console.log(fetchedActivity)
         commit('SET_ACTIVITY_BY_ID', fetchedActivity);
       }
       catch (error) {

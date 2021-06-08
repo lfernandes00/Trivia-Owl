@@ -30,7 +30,7 @@ export const ActivityService = {
         if (response.ok) {
             let data = await response.json();
             // console.log("ACTIVITY SERVICE - fetch 1 ACTIVITY")
-            // console.log(data)
+            console.log(data)
             return data;
         }
         else {
