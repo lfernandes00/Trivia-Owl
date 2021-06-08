@@ -22,15 +22,15 @@
               <th scope="col"></th>
               <th scope="col"></th>
               <th scope="col">Nome</th>
-              <th scope="col">Pontuação (0-10)</th>
+              <th scope="col" @click="sortScores">Pontuação (0-10)</th>
             </tr>
           </thead>
-          <tbody :key="user.userId" v-for="(user, index) in getActivity.classification">
+          <tbody :key="user.id" v-for="(user, index) in scores">
             <tr>
               <td>{{index + 1}}</td>
-              <td><b-avatar :src="user.userPhoto"></b-avatar></td>
-              <td id="nameTd">{{user.userName}}</td>
-              <td>{{user.score}}</td>
+              <td><b-avatar :src="user.photo"></b-avatar></td>
+              <td id="nameTd">{{user.name}}</td>
+              <td>{{user.activityScore.score}}</td>
             </tr>
           </tbody>
       </table>
@@ -44,27 +44,38 @@ export default {
   name: "ActivityClassification",
   data() {
     return {
-      id: '',
-      activity: {}
+      scores: {},
+      flagSort: -1,
     };
   },
   created() {
-    this.id = this.$route.params.activityId;
-    this.activity = this.getActivity;
-    console.log(this.getActivity.classification)
+    this.getActivityClassification()
   },
   methods: {
-    getUser(id) {
-      return this.$store.getters.getUserById(id);
+    sortScores() {
+      // ordenar users pelos pontos (alterando entre ordenação crescente e decrescente)
+      this.flagSort = this.flagSort * -1;
+      this.scores.sort(this.compareScores);
+    },
+    compareScores(a, b) {
+      if (a.activityScore.score > b.activityScore.score) return 1 * this.flagSort;
+      if (a.activityScore.score < b.activityScore.score) return -1 * this.flagSort;
+      if (a.activityScore.score === b.activityScore.score) return 0;
+    },
+    async getActivityClassification() {
+      try {
+        await this.$store.dispatch("getActivityClassification", this.$route.params.activityId);
+        this.scores = this.$store.getters.getActivityClassification;
+        this.scores.sort(this.compareScores)
+      } catch (error) {
+        // console.log(error);
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+      }
     }
   },
-  computed: {
-    getActivity() {
-      return this.$store.getters.getActivityById(this.id)
-    },
-    
-
-  }
 };
 </script>
 

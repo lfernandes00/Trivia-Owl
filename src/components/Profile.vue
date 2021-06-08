@@ -3,7 +3,7 @@
     <b-container fluid>
       <b-row class="mt-5">
         <b-col cols="4"
-          ><b-avatar :src="getUser.photo" alt="" size="200px"></b-avatar
+          ><b-avatar :src="user.photo" alt="" size="200px"></b-avatar
         ></b-col>
         <b-col cols="6" class="mt-5">
           <h6>Nível</h6>
@@ -15,19 +15,19 @@
         <b-col cols="1"></b-col>
         <b-col cols="3" class="mt-5 ml-3">
           <div style="text-align: start">
-            <b class="mr-4">Nome: </b> <strong>{{ getUser.name }}</strong>
+            <b class="mr-4">Nome: </b> <strong>{{ user.name }}</strong>
             <br /><br />
             <b class="mr-4">Idade: </b>
-            <strong>{{ getUser.birthDate }}</strong> <br /><br />
-            <b class="mr-4">Curso: </b> <strong>{{ getUser.course }}</strong>
+            <strong>{{ user.birthDate }}</strong> <br /><br />
+            <b class="mr-4">Curso: </b> <strong>{{ user.course }}</strong>
             <br /><br />
-            <b class="mr-4">Tipo: </b> <strong>{{ getUser.type }}</strong
+            <b class="mr-4">Tipo: </b> <strong>{{ user.userType.name }}</strong
             ><br />
           </div>
         </b-col>
         <b-col cols="6" class="mt-5" style="padding: 0px; width: 500px">
           <h2 style="color: white">Histórico</h2>
-          <div v-if="getUser.historic.length == 0" style="color: white">
+          <div v-if="user.Scores.length == 0" style="color: white">
             Não participou em atividades
           </div>
           <div v-else>
@@ -40,7 +40,7 @@
                   <th scope="col"></th>
                 </tr>
               </thead>
-              <tbody :key="activity.id" v-for="activity in getUser.historic">
+              <tbody :key="activity.id" v-for="activity in user.Scores">
                 <tr>
                   <td>{{ activity.name }}</td>
                   <td>{{ activity.course }}</td>
@@ -80,7 +80,7 @@
             >
           </router-link>
 
-          <router-link :to="{ name: 'EditProfile' }"
+          <router-link :to="{ name: 'EditProfile', params: {userId: this.user.id} }"
             ><b-button
               pill
               id="editBtn"
@@ -98,7 +98,7 @@
           ></router-link>
         </b-col>
         <b-col cols="3" class="mt-5">
-          <router-link class="h1" :to="{ name: 'Trophies' }"
+          <router-link class="h1" :to="{ name: 'Trophies' , params: {userId: user.id}}"
             ><b-icon
               style="color: #70ffb4; font-size: 60px"
               icon="trophy-fill"
@@ -115,25 +115,30 @@ export default {
   name: "Profile",
   data() {
     return {
-      loggedUser: "",
+      user: '',
       disabled: false,
     };
   },
   created() {
-    this.users = this.$store.getters.getUsers;
-    this.loggedUser = this.$store.getters.getLoggedUser;
+    this.getUser();
 
-    if (this.loggedUser.team == 0) {
-      this.disabled = false;
-    } else {
-      this.disabled = true;
-    }
   },
   computed: {
-    getUser() {
-      return this.$store.getters.getLoggedUser;
-    },
   },
+  methods: {
+    async getUser() {
+      try {
+        await this.$store.dispatch("getOneUser", this.$route.params.userID);
+        this.user = this.$store.getters.getUserById;
+      } catch (error) {
+        // console.log(error);
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+      }
+    }
+  }
 };
 </script>
 

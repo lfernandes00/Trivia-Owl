@@ -35,18 +35,18 @@
               <a class="dropdown-item dropdownItem" href="#" v-b-modal.modalLogin >Entrar</a>
             </div>
             <div v-else-if="getUser.type == 'admin'" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item dropdownItem" href="#"><router-link class="profileDrop" :to="{name: 'Profile'}">Perfil</router-link></a>
+              <a class="dropdown-item dropdownItem" href="#"><router-link class="profileDrop" :to="{name: 'Profile' , params: {userID: getUser.id}}">Perfil</router-link></a>
               <a class="dropdown-item dropdownItem" href="#"><router-link :to="{name: 'UserManagement'}">Gerir Utilizadores</router-link></a>
               <a class="dropdown-item dropdownItem" href="#"><router-link :to="{name: 'ListActivityManagement'}">Gerir Atividades</router-link></a>
               <a class="dropdown-item dropdownItem" href="#" @click='logout'>Sair</a>
             </div>
             <div v-else-if="getUser.type == 'docente'" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item dropdownItem" href="#"><router-link class="profileDrop" :to="{name: 'Profile'}">Perfil</router-link></a>
+              <a class="dropdown-item dropdownItem" href="#"><router-link class="profileDrop" :to="{name: 'Profile' , params: {userID: getUser.id}}">Perfil</router-link></a>
               <a class="dropdown-item dropdownItem" href="#"><router-link :to="{name: 'ListActivityManagement'}">Gerir Atividades</router-link></a>
               <a class="dropdown-item dropdownItem" href="#" @click='logout'>Sair</a>
             </div>
             <div v-else-if="getUser.type == 'estudante'" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item dropdownItem" href="#"><router-link class="profileDrop" :to="{name: 'Profile'}">Perfil</router-link></a>    
+              <a class="dropdown-item dropdownItem" href="#"><router-link class="profileDrop" :to="{name: 'Profile' , params: {userID: getUser.id}}">Perfil</router-link></a>    
               <a class="dropdown-item dropdownItem" href="#" @click='logout'>Sair</a>
             </div>
           </div>
@@ -192,15 +192,6 @@ export default {
       },
       users: [],
       loggedUser: "",
-      show: {
-        profile: "visible",
-        login: "visible",
-        notification: "visible",
-        userManagement: "visible",
-        activityManagement: "visible",
-        team: "visible",
-        logout: "visible",
-      },
     };
   },
   created() {
@@ -215,27 +206,6 @@ export default {
       this.isVisible = false;
       this.focusedIndex = 0;
     },
-    // Login() {
-    //   try {
-    //     //chamar a ação login que está na store
-    //     this.$store.dispatch("login", {
-    //       username: this.login.username,
-    //       password: this.login.password,
-    //     });
-    //     this.loggedUser = this.$store.getters.getLoggedUser;
-    //     this.hideModal("modalLogin");
-    //     //fechar a modal login
-    //   } catch (error) {
-    //     //mudar para sweetalert
-        // Swal.fire({
-        //   title: "Erro!",
-        //   text: error,
-        //   buttonsStyling: false,
-        //   confirmButtonClass: "btn btn-danger",
-        //   icon: "error",
-        // });
-    //   }
-    // },
     async handleLogin() {
       console.log(this.userLogin.username , this.userLogin.password)
       this.errors = [];
@@ -270,44 +240,6 @@ export default {
     hideModal(id) {
       this.$root.$emit("bv::hide::modal", id);
     },
-    // Register() {
-    //   if (this.register.password != this.register.password2) {
-    //     Swal.fire({
-    //       title: "Erro!",
-    //       text: "As palavras passe não são iguais",
-    //       buttonsStyling: false,
-    //       confirmButtonClass: "btn btn-danger",
-    //       icon: "error",
-    //     });
-    //   }
-    //   try {
-    //     this.$store.dispatch("register", {
-    //       id: this.getNextUserId(),
-    //       username: this.register.username,
-    //       password: this.register.password,
-    //       name: this.register.name,
-    //       birthDate: this.register.birthDate,
-    //       course: this.register.course,
-    //       photo: this.register.photo,
-    //       type: this.register.type,
-    //       points: 0,
-    //       historic: [],
-    //       trophies: [],
-    //       level: 1,
-    //       doneActivities: 0,
-    //       team: 0,
-    //     });
-    //     this.hideModal("modalRegister");
-    //   } catch (error) {
-    //     Swal.fire({
-    //       title: "Erro!",
-    //       text: error,
-    //       buttonsStyling: false,
-    //       confirmButtonClass: "btn btn-danger",
-    //       icon: "error",
-    //     });
-    //   }
-    // },
     async handleRegister() {
       this.message = "";
       // this.loading = true;
@@ -316,6 +248,7 @@ export default {
       if (this.user.username && this.user.password) {
             //makes request by dispatching an action
       try {
+        this.hideModal("modalLogin");
         await this.$store.dispatch("register", this.user);
         this.hideModal("modalRegister");
         // console.log("REGISTER OK");
@@ -352,8 +285,8 @@ export default {
       }
     },
     async logout() {
-      this.$store.dispatch("logout");
       this.$router.push({ name: "Home" });
+      this.$store.dispatch("logout");
     },
     focusItem() {
       this.$refs.dropdown.children[this.focusedIndex].children[0].focus();

@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
 export default {
   name: "EditProfile",
   data() {
@@ -58,7 +59,7 @@ export default {
     }
   },
   created() {
-    this.userLogged = this.$store.getters.getLoggedUser
+    this.userLogged = this.$store.getters.getLoggedUser;
 
     this.user.id = this.userLogged.id;
     this.user.username = this.userLogged.username;
@@ -69,8 +70,9 @@ export default {
     this.user.photo = this.userLogged.photo;
   },
   methods: {
-    onSubmit() {
-      const newValue = {
+    async onSubmit() {
+      try {
+        const newValue = {
         id: this.user.id,
         username: this.user.username,
         password: this.user.password,
@@ -78,12 +80,27 @@ export default {
         birthDate: this.user.birthDate,
         course: this.user.course,
         photo: this.user.photo
+        }
+        await this.$store.dispatch("editUser", newValue);
+        this.$router.push({name:'Profile', params : {userID: this.userLogged.id}})
+        Swal.fire({
+          title: 'Sucesso!',
+          text: `Utilizador editado com sucesso!`,
+          buttonsStyling: false,
+          confirmButtonClass: 'btn btn-success',
+          icon: 'success'
+        });
+      } catch (error) {
+        console.log(error)
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+          
       }
-
-      this.$store.dispatch('editUser', newValue);
-      this.$router.push({name:'Profile'});
+     },
     }
-  }
+  
 };
 </script>
 

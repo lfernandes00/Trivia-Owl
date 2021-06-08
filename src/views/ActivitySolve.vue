@@ -6,7 +6,7 @@
           <div>
             <b-img
               class="ml-4"
-              :src="getActivity.photo"
+              :src="activity.photo"
               alt=""
               style="width: 330px; height: 300px;display:flex; justify-content: start"
             ></b-img>
@@ -15,7 +15,7 @@
 
         <b-col>
           <div style="text-align: start" class="mt-3">
-            <h1 style="color: #FF7070">{{ getActivity.name }}</h1>
+            <h1 style="color: #FF7070">{{ activity.name }}</h1>
             <br />
 
             <h3></h3>
@@ -167,7 +167,7 @@ export default {
   data() {
     return {
       trophies: [],
-      activities: [],
+      activity: "",
       id: "",
       points: "",
       loggedUser: '',
@@ -229,17 +229,15 @@ export default {
     };
   },
   created() {
-    this.activities = this.$store.getters.getActivities;
+    this.activity = this.$store.getters.getActivityById;
     this.id = this.$route.params.activityId;
     this.loggedUser = this.$store.getters.getLoggedUser;
-    this.trophies = this.$store.getters.getAllTrophies;
+    this.getTrohpies(); 
 
-    const activity = this.activities.find(activity => activity.id === this.id);
-
-    this.points = activity.points;
+    this.points = this.activity.points;
 
     // pergunta 1
-    this.Q1 = activity.question1;
+    this.Q1 = this.activity.question1;
 
     const Question1 = this.Q1.split(";");
 
@@ -251,7 +249,7 @@ export default {
     this.questions.question1.correctOption = Question1[5];
 
     // pergunta 2
-    this.Q2 = activity.question2;
+    this.Q2 = this.activity.question2;
 
     const Question2 = this.Q2.split(";");
 
@@ -263,7 +261,7 @@ export default {
     this.questions.question2.correctOption = Question2[5];
 
     // pergunta 3
-    this.Q3 = activity.question3;
+    this.Q3 = this.activity.question3;
 
     const Question3 = this.Q3.split(";");
 
@@ -275,7 +273,7 @@ export default {
     this.questions.question3.correctOption = Question3[5];
 
     // pergunta 4
-    this.Q4 = activity.question4;
+    this.Q4 = this.activity.question4;
 
     const Question4 = this.Q4.split(";");
 
@@ -287,7 +285,7 @@ export default {
     this.questions.question4.correctOption = Question4[5];
 
     // pergunta 5
-    this.Q5 = activity.question5;
+    this.Q5 = this.activity.question5;
 
     const Question5 = this.Q5.split(";");
 
@@ -307,8 +305,33 @@ export default {
     if (this.loggedUser.type == 'estudante') {
       this.disabled = false;
     }
+
+    
   },
   methods: {
+    async getActivity() {
+      try {
+        await this.$store.dispatch("getOneActivity", this.$route.params.activityId);
+        
+      } catch (error) {
+        // console.log(error);
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+      }
+    },
+    async getTrohpies() {
+      try {
+        await this.$store.dispatch("getAllTrophies");
+        this.trophies = this.$store.getters.getTrophies;
+      } catch (error) {
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+      }
+    },
     submit() {
       let score = 0;
       if (this.answers.A1 === this.questions.question1.correctOption) {
@@ -333,133 +356,98 @@ export default {
       buttonsStyling: false,
       confirmButtonClass: 'btn btn-success',
       icon: 'success'
-    });
+      });
 
       //troféus
+      let trophyPoints = 0;
       //Completar 1 atividade
       if (this.loggedUser.doneActivities == 0) {
         const data = {
           trophyId: this.trophies[0].id,
-          trophyPoints: this.trophies[0].points,
-          userId: this.loggedUser.id,
-          username: this.loggedUser.username,
-          teamId: this.loggedUser.team
+          userId: this.loggedUser.id
         }
+
+        trophyPoints = this.trophies[0].points
 
         this.$store.dispatch('completeTrophy', data)
-
-        if (data.teamId !== 0) {
-          this.$store.dispatch('completeTeamTrophy',data);
-        }
       }
       //Completar 5 atividades
       if (this.loggedUser.doneActivities == 4) {
         const data = {
           trophyId: this.trophies[1].id,
-          trophyPoints: this.trophies[1].points,
-          userId: this.loggedUser.id,
-          username: this.loggedUser.username,
-          teamId: this.loggedUser.team
+          userId: this.loggedUser.id
         }
+
+        trophyPoints = this.trophies[1].points
 
         this.$store.dispatch('completeTrophy', data)
-
-        if (data.teamId !== 0) {
-          this.$store.dispatch('completeTeamTrophy',data);
-        }
       }
       //Completar 10 atividades
       if (this.loggedUser.doneActivities == 9) {
         const data = {
           trophyId: this.trophies[2].id,
-          trophyPoints: this.trophies[2].points,
-          userId: this.loggedUser.id,
-          username: this.loggedUser.username,
-          teamId: this.loggedUser.team
+          userId: this.loggedUser.id
         }
+
+        trophyPoints = this.trophies[2].points
 
         this.$store.dispatch('completeTrophy', data)
-
-        if (data.teamId !== 0) {
-          this.$store.dispatch('completeTeamTrophy',data);
-        }
       }
       //Completar 20 atividades
       if (this.loggedUser.doneActivities == 19) {
         const data = {
           trophyId: this.trophies[3].id,
-          trophyPoints: this.trophies[3].points,
-          userId: this.loggedUser.id,
-          username: this.loggedUser.username,
-          teamId: this.loggedUser.team
+          userId: this.loggedUser.id
         }
 
+        trophyPoints = this.trophies[3].points
+
         this.$store.dispatch('completeTrophy', data)
-        
-        if (data.teamId !== 0) {
-          this.$store.dispatch('completeTeamTrophy',data);
+      }
+      // completar 30 atividades
+      if (this.loggedUser.doneActivities == 29) {
+        const data = {
+          trophyId: this.trophies[4].id,
+          userId: this.loggedUser.id
         }
+
+        trophyPoints = this.trophies[4].points
+
+        this.$store.dispatch('completeTrophy', data)
       }
       //completar 1 atividade sem errar
       if (score == 10) {
         const data = {
-          trophyId: this.trophies[4].id,
-          trophyPoints: this.trophies[4].points,
-          userId: this.loggedUser.id,
-          username: this.loggedUser.username,
-          teamId: this.loggedUser.team
+          trophyId: this.trophies[5].id,
+          userId: this.loggedUser.id
         }
+
+        trophyPoints = this.trophies[5].points
 
         this.$store.dispatch('completeTrophy', data)
-
-        if (data.teamId !== 0) {
-          this.$store.dispatch('completeTeamTrophy',data);
-        }
       }
 
-      const results = {
-        activityId: this.id,
-        userName: this.loggedUser.name,
-        userPhoto: this.loggedUser.photo,
+      const newScore = {
+        activityId: this.activity.id,
+        userId: this.loggedUser.id,
         score: score
       }
 
       const updateUser = {
-        activityId: this.id,
-        activityName: this.$route.params.activityName,
-        activityCourse: this.$route.params.activityCourse,
-        activityPoints: this.points,
+        activityId: this.activity.id,
         userId: this.loggedUser.id,
+        doneActivities: parseInt(this.loggedUser.doneActivities) + 1,
+        points: parseInt(this.loggedUser.points) + parseInt(this.activity.points) + parseInt(trophyPoints)
       }
 
-      const updateTeam = {
-        activityPoints: this.points,
-        teamId: this.loggedUser.team
-      }
-
-      const activity = this.activities.find(activity => activity.id === this.id);
-
-      this.$store.dispatch('activitySolve', results);
+      this.$store.dispatch('addScore', newScore);
       this.$store.dispatch('updateUser', updateUser);
-      this.$store.dispatch('updateTeam', updateTeam);
       this.$router.push({name:'Activity', params: {
-            activityId: activity.id,
-            activityName: activity.name,
-            activityCourse: activity.course,
-            activitySubject: activity.subject,
-            activityPoints: activity.points,
-            activityLevel: activity.level,
-            activityType: activity.type,
-            activityPhoto: activity.photo,
-            activityLikes: activity.likes,
-            activityQuestion1: activity.question1
+            activityId: this.activity.id
       }});
     }
   },
   computed: {
-    getActivity() {
-      return this.$store.getters.getActivityById(this.$route.params.activityId)
-    }
   }
 };
 </script>

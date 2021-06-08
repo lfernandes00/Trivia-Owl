@@ -18,25 +18,25 @@
 
     <b-container>
       <table id="classificationTable" class="table table-borderless mt-5">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col"></th>
-              <th scope="col">Nome</th>
-              <th scope="col" @click='sortUsers'>Pontos</th>
-              <th scope="col">Atividades Realizadas</th>
-            </tr>
-          </thead>
-          <tbody :key="user.id" v-for="(user,index) in getAllUsers">
-            <tr>
-              <td>{{index + 1}}</td>
-              <td><b-avatar :src="user.photo"></b-avatar></td>
-              <td id="nameTd">{{user.name}}</td>
-              <td>{{user.points}}</td>
-              <td>{{user.doneActivities}}</td>
-            </tr>
-          </tbody>
-        </table>
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">Nome</th>
+            <th scope="col" @click="sortUsers">Pontos</th>
+            <th scope="col">Atividades Realizadas</th>
+          </tr>
+        </thead>
+        <tbody :key="user.id" v-for="(user, index) in users">
+          <tr>
+            <td>{{ index + 1 }}</td>
+            <td><b-avatar :src="user.photo"></b-avatar></td>
+            <td id="nameTd">{{ user.name }}</td>
+            <td>{{ user.points }}</td>
+            <td>{{ user.doneActivities }}</td>
+          </tr>
+        </tbody>
+      </table>
     </b-container>
   </div>
 </template>
@@ -52,45 +52,53 @@ export default {
     };
   },
   created() {
-    this.users = this.$store.getters.getUsers;
+    this.getUsers();
   },
   computed: {
-    getAllUsers() {
-      const allNames = [];
-      const allUsers = [];
-
-      for (let user of this.users) {
-        if (allNames.indexOf(user.username) == -1 && user.type == 'estudante')
-          allUsers.push({
-            id: user.id,
-            photo: user.photo,
-            name: user.name,
-            points: user.points,
-            doneActivities: user.doneActivities
-          });
-      }
-
-      allUsers.sort(this.compareUsers)
-      return allUsers;
-    }
   },
   methods: {
-        sortUsers() {
-            // ordenar users pelos pontos (alterando entre ordenação crescente e decrescente)
-            this.flagSort = this.flagSort * -1
-            this.getAllUsers.sort(this.compareUsers)
-        },
-        compareUsers(a, b) {
-            if (a.points > b.points) return 1 * this.flagSort
-            if (a.points < b.points) return -1 * this.flagSort
-            if (a.points === b.points) return 0
-        }
+    sortUsers() {
+      // ordenar users pelos pontos (alterando entre ordenação crescente e decrescente)
+      this.flagSort = this.flagSort * -1;
+      this.users.sort(this.compareUsers);
     },
-
+    compareUsers(a, b) {
+      if (a.points > b.points) return 1 * this.flagSort;
+      if (a.points < b.points) return -1 * this.flagSort;
+      if (a.points === b.points) return 0;
+    },
+    async getUsers() {
+      try {
+        await this.$store.dispatch("getAllUsers");
+        this.users = this.$store.getters.getUsers;
+        this.users.sort(this.compareUsers);
+      } catch (error) {
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
 /* Estilização da tabela */
-h1{color:#fff;font-weight:700}td{color:#fff}th{color:#ff7070}#nameTd{color:#70ffb4}#classificationTable{text-align:start}
+h1 {
+  color: #fff;
+  font-weight: 700;
+}
+td {
+  color: #fff;
+}
+th {
+  color: #ff7070;
+}
+#nameTd {
+  color: #70ffb4;
+}
+#classificationTable {
+  text-align: start;
+}
 </style>

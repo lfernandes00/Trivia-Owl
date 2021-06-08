@@ -48,6 +48,9 @@
 </template>
 
 <script>
+
+
+
 export default {
 name: 'ActivityProposal',
 data() {
@@ -110,25 +113,8 @@ data() {
     }
 },
 created() {
-    this.proposals = this.$store.getters.getProposals
-    this.id = this.$route.params.proposalId;
 
-    const currentProposal = this.proposals.find(proposal => proposal.id === this.id)
-
-    this.name = currentProposal.name
-    this.course = currentProposal.course
-    this.subject = currentProposal.subject
-    this.points = currentProposal.points
-    this.level = currentProposal.level
-    this.photo = currentProposal.photo
-    this.type = currentProposal.type
-    this.desc = currentProposal.desc
-    this.Q1 = currentProposal.question1
-    this.Q2 = currentProposal.question2
-    this.Q3 = currentProposal.question3
-    this.Q4 = currentProposal.question4
-    this.Q5 = currentProposal.question5
-
+    
 
 },
 methods: {
@@ -144,13 +130,11 @@ methods: {
           photo: this.photo,
           type: this.type,
           desc: this.desc,
-          likes: [],
           question1: this.Q1,
           question2: this.Q2,
           question3: this.Q3,
           question4: this.Q4,
           question5: this.Q5,
-          classification: []
 
         });
         console.log(this.$store.getters.getNextActivityId)
@@ -159,7 +143,8 @@ methods: {
       } catch (error) {
         alert(error);
       }
-    }
+    },
+    
 }
 }
 </script>

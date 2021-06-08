@@ -62,7 +62,7 @@ const routes = [
     }
   },
   {
-    path: "/profile",
+    path: "/users/:userID",
     name: "Profile",
     component: Profile,
     meta: {
@@ -134,7 +134,7 @@ const routes = [
     }
   },
   {
-    path: "/profile/trophies",
+    path: "/users/:userId/trophies",
     name: "Trophies",
     component: Trophies,
     meta: {
@@ -142,7 +142,7 @@ const routes = [
     }
   },
   {
-    path: "/profile/edit",
+    path: "/users/:userId/edit",
     name: "EditProfile",
     component: EditProfile,
     meta: {

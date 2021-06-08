@@ -27,15 +27,15 @@
               <th scope="col">Estado</th>
             </tr>
           </thead>
-          <tbody :key="trophy.id" v-for="trophy in getTrophies">
+          <tbody :key="trophy.id" v-for="trophy in trophies">
             <tr>
               <td>{{trophy.id}}</td>
               <td><b-icon class="h1" icon="trophy-fill" style="color: #70FFB4; font-size: 25px;"></b-icon></td>
               <td id="descTd">{{trophy.desc}}</td>
               <td>{{trophy.points}}</td>
-              <td :key="user" v-for="user in trophy.completed">
-                <p v-if='user == loggedUser.username && trophy.completed.length != 0'>Feito!</p>
-                <p v-else>Bloqueado!</p>
+              <td :key="completed.id" v-for="completed in trophy.users">
+                <p v-if='completed.id == user.id && trophy.users.length != 0'>Feito!</p>
+                <p v-else></p>
               </td>
             </tr>
           </tbody>
@@ -49,15 +49,37 @@ export default {
   name: "trophies",
   data() {
     return {
-      loggedUser: ''
+      user: '',
+      trophies: []
     }
   },
   created() {
-    this.loggedUser = this.$store.getters.getLoggedUser;
+    this.getTrohpies();
+    this.getUser();
   },
-  computed: {
-    getTrophies() {
-      return this.$store.getters.getAllTrophies;
+  methods: {
+    async getTrohpies() {
+      try {
+        await this.$store.dispatch("getAllTrophies");
+        this.trophies = this.$store.getters.getTrophies;
+      } catch (error) {
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+      }
+    },
+    async getUser() {
+      try {
+        await this.$store.dispatch("getOneUser", this.$route.params.userId);
+        this.user = this.$store.getters.getUserById;
+      } catch (error) {
+        // console.log(error);
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+      }
     }
   }
 };

@@ -12,7 +12,7 @@ import API_URL from './config.js'
 
 export const AuthService = {
     async login(user) { // payload = user (username + password)
-        const response = await fetch(`${API_URL}/`, {
+        const response = await fetch(`${API_URL}/signin`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json;charset=utf-8"
@@ -39,7 +39,7 @@ export const AuthService = {
     },
 
     async register(user) {
-        const response = await fetch(`${API_URL}/home/signup`, {
+        const response = await fetch(`${API_URL}/signup`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json;charset=utf-8"

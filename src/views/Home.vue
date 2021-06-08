@@ -34,7 +34,7 @@
         <!-- Criação de 2 tabelas, ambas borderless, uma para os utilizadores e outra para as atividades -->
         <b-col>
           <h4 id="title">Utilizadores</h4>
-          <div v-if="getAllUsers.length >= 3">
+          <div v-if="users.length >= 3">
           <table id="usersTable" class="table table-borderless">
           <thead>
             <tr>
@@ -47,23 +47,23 @@
           <tbody>
             <tr>
               <td>1</td>
-              <td id="nameTd">{{getAllUsers[0].name}}</td>
-              <td>{{getAllUsers[0].points}}</td>
-              <td>{{getAllUsers[0].level}}</td>
+              <td id="nameTd">{{users[0].name}}</td>
+              <td>{{users[0].points}}</td>
+              <td>{{users[0].level}}</td>
             </tr>
 
             <tr>
               <td>2</td>
               <td id="nameTd">{{users[1].name}}</td>
-              <td>{{getAllUsers[1].points}}</td>
-              <td>{{getAllUsers[1].level}}</td>
+              <td>{{users[1].points}}</td>
+              <td>{{users[1].level}}</td>
             </tr>
 
             <tr>
               <td>3</td>
-              <td id="nameTd">{{getAllUsers[2].name}}</td>
-              <td>{{getAllUsers[2].points}}</td>
-              <td>{{getAllUsers[2].level}}</td>
+              <td id="nameTd">{{users[2].name}}</td>
+              <td>{{users[2].points}}</td>
+              <td>{{users[2].level}}</td>
             </tr>
           </tbody>
           </table>
@@ -78,7 +78,7 @@
               <th scope="col">Nível</th>
             </tr>
           </thead>
-          <tbody :key='user.id' v-for="(user, index) in getAllUsers">
+          <tbody :key='user.id' v-for="(user, index) in users">
             <tr>
               <td>{{index + 1}}</td>
               <td id="nameTd">{{user.name}}</td>
@@ -105,55 +105,28 @@
             <tr>
               <td>1</td>
               <router-link id="firstActivity" :to="{name: 'Activity', params: {
-                activityId: activities[0].id,
-                activityName: activities[0].name,
-                activityCourse: activities[0].course,
-                activitySubject: activities[0].subject,
-                activityPoints: activities[0].points,
-                activityLevel: activities[0].level,
-                activityType: activities[0].type,
-                activityPhoto: activities[0].photo,
-                activityLikes: activities[0].likes.length,
-                activityQuestion1: activities[0].question1
+                activityId: activities[0].id
                 }}"><td id="nameTd">{{activities[0].name}}</td></router-link>
               <td>{{activities[0].course}}</td>
-              <td>{{activities[0].likes.length}}</td>
+              <td>{{activities[0].Likes.length}}</td>
             </tr>
 
             <tr>
               <td>2</td>
               <router-link id="secondActivity" :to="{name: 'Activity', params: {
-                activityId: activities[1].id,
-                activityName: activities[1].name,
-                activityCourse: activities[1].course,
-                activitySubject: activities[1].subject,
-                activityPoints: activities[1].points,
-                activityLevel: activities[1].level,
-                activityType: activities[1].type,
-                activityPhoto: activities[1].photo,
-                activityLikes: activities[1].likes.length,
-                activityQuestion1: activities[1].question1
+                activityId: activities[1].id
                 }}"><td id="nameTd">{{activities[1].name}}</td></router-link>
               <td>{{activities[1].course}}</td>
-              <td>{{activities[1].likes.length}}</td>
+              <td>{{activities[1].Likes.length}}</td>
             </tr>
 
             <tr>
               <td>3</td>
               <router-link id="thirdActivity" :to="{name: 'Activity', params: {
-                activityId: activities[2].id,
-                activityName: activities[2].name,
-                activityCourse: activities[2].course,
-                activitySubject: activities[2].subject,
-                activityPoints: activities[2].points,
-                activityLevel: activities[2].level,
-                activityType: activities[2].type,
-                activityPhoto: activities[2].photo,
-                activityLikes: activities[2].likes.length,
-                activityQuestion1: activities[2].question1
+                activityId: activities[2].id
                 }}"><td id="nameTd">{{activities[2].name}}</td></router-link>
               <td>{{activities[2].course}}</td>
-              <td>{{activities[2].likes.length}}</td>
+              <td>{{activities[2].Likes.length}}</td>
             </tr>
           </tbody>
         </table>
@@ -165,7 +138,6 @@
 </template>
 
 <script>
-// Preenchimento das duas tabelas com os três melhores estudantes e com as 3 atividades favoritas
 export default {
   name: "Home",
   data() {
@@ -176,17 +148,42 @@ export default {
     }
   },
   created() {
-    this.activities = this.$store.getters.getActivities;
-    this.users = this.$store.getters.getUsers;
-
-    this.activities.sort(this.compareActivities)
-    this.getAllUsers.sort(this.compareUsers)
+    this.getUsersList();
+    this.getActivitiesList();
+  },
+  computed: {
+    
   },
   methods: {
+    async getUsersList() {
+      try {
+        await this.$store.dispatch("getAllUsers");
+        // console.log("AdminPage - GET USERS: " + this.$store.getters.getUsers.length);
+        this.users = this.$store.getters.getUsers;
+        this.users.sort(this.compareUsers)
+      } catch (error) {
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+      }
+    },
+    async getActivitiesList() {
+      try {
+        await this.$store.dispatch("getAllActivities");
+        this.activities = this.$store.getters.getActivities;
+        this.activities.sort(this.compareActivities)
+      } catch (error) {
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+      }
+    },
     compareActivities(a, b) {
-            if (a.likes.length > b.likes.length) return 1 * -1
-            if (a.likes.length < b.likes.length) return -1 * -1
-            if (a.likes.length === b.likes.length) return 0
+            if (a.Likes.length > b.Likes.length) return 1 * -1
+            if (a.Likes.length < b.Likes.length) return -1 * -1
+            if (a.Likes.length === b.Likes.length) return 0
     },
     compareUsers(a, b) {
             if (a.points > b.points) return 1 * -1
@@ -194,24 +191,8 @@ export default {
             if (a.points === b.points) return 0
         }
   },
-  computed: {
-    getAllUsers() {
-      const allNames = [];
-      const allUsers = [];
-
-      for (let user of this.users) {
-        if (allNames.indexOf(user.username) == -1 && user.type == 'estudante')
-          allUsers.push({
-            id: user.id,
-            photo: user.photo,
-            name: user.name,
-            points: user.points,
-            doneActivities: user.doneActivities,
-            level: user.level
-          });
-      }
-      return allUsers;
-    }
+  mounted() {
+    
   }
 };
 </script>

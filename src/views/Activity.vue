@@ -6,7 +6,7 @@
           <div>
             <b-img
               class="ml-4"
-              :src="getActivity.photo"
+              :src="activity.photo"
               style="width: 330px; height: 300px;display:flex; justify-content: start"
             ></b-img>
           </div>
@@ -15,19 +15,16 @@
         <b-col>
           <div style="text-align: start" class="mt-3">
             <b class="mr-4">Nome: </b>
-            <strong>{{ getActivity.name }}</strong> <br /><br />
+            <strong>{{ activity.name }}</strong> <br /><br />
             <b class="mr-4">Curso: </b>
-            <strong>{{ getActivity.course }}</strong> <br /><br />
+            <strong>{{ activity.course }}</strong> <br /><br />
             <b class="mr-2">Cadeira: </b>
-            <strong>{{ getActivity.subject }}</strong> <br /><br />
+            <strong>{{ activity.subject }}</strong> <br /><br />
             <b class="mr-3">Pontos: </b>
-            <strong>{{ getActivity.points }}</strong
-            ><br /><br />
-            <b class="mr-4">Nível: </b>
-            <strong>{{ getActivity.level }}</strong
+            <strong>{{ activity.points }}</strong
             ><br /><br />
             <b class="mr-4">Tipo: </b>
-            <strong>{{ getActivity.level }}</strong
+            <strong>{{ activity.type }}</strong
             ><br />
           </div>
         </b-col>
@@ -35,7 +32,7 @@
 
       <b-row>
         <div>
-          <h4 id="desc" class="mt-3 ml-5 mr-5">{{getActivity.desc}}</h4>
+          <h4 id="desc" class="mt-3 ml-5 mr-5">{{activity.desc}}</h4>
         </div>
       </b-row>
 <br><br><br><br><br><br><br><br>
@@ -48,7 +45,7 @@
             @click='likeActivity()'>
             <b-icon icon="hand-thumbs-up"></b-icon> </b-button
           ><br />
-          <b>Gostos: </b> <strong>{{getActivity.likes.length}}</strong>
+          <b>Gostos: </b> <strong>{{activity.Likes.length}}</strong>
         </b-col>
         <b-col cols="6"></b-col>
         <b-col cols="3"><br>
@@ -82,23 +79,29 @@
 </template>
 
 <script>
+
+class Like {
+  constructor(activityId, userId) {
+    this.activityId = activityId;
+    this.userId = userId
+  }
+}
+
 export default {
   name: "Activity",
   data() {
     return {
-      activities: [],
       user: '',
-      activityId: '',
+      activity: '',
       disabled: false
     };
   },
   created() {
-    this.activities = this.$store.getters.getActivities;
+    this.getActivity()
     this.user = this.$store.getters.getLoggedUser;
-    this.activityId = this.$route.params.activityId;
 
-    for (let activity of this.user.historic) {
-      if (activity.id === this.activityId) {
+    for (let score of this.activity.Scores) {
+      if (score.id == this.user.id) {
         this.disabled = true;
       } else {
         this.disabled = false;
@@ -108,17 +111,30 @@ export default {
   },
   methods: {
     likeActivity() {
-      const like = {
-        username: this.user.username,
-        activityId: this.activityId
+      const newLike = new Like(this.activity.id, this.user.id)
+      for (let like of this.activity.Likes) {
+        if (like.id == this.user.id) {
+          this.$store.dispatch('removeLike',newLike);
+        } else {
+          this.$store.dispatch('addLike',newLike);
+        }
+      }       
+    },
+    async getActivity() {
+      try {
+        await this.$store.dispatch("getOneActivity", this.$route.params.activityId);
+        this.activity = this.$store.getters.getActivityById;
+      } catch (error) {
+        // console.log(error);
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
       }
-      this.$store.dispatch('likeActivity', like)
     }
   }, 
-  computed: {
-    getActivity() {
-      return this.$store.getters.getActivityById(this.$route.params.activityId)
-    }
+  mounted() {
+    
   }
 };
 </script>
