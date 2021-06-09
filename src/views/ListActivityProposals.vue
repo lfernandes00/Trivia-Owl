@@ -62,6 +62,7 @@ methods: {
       confirmButtonText: 'Sim!'
     }).then((result) => {
       if (result.isConfirmed) {
+        console.log(id);
       this.$store.dispatch('removeProposal', id)
       this.getProposalsList();
     }

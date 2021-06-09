@@ -114,7 +114,7 @@
               <b-form-select
                 class="mt-1 mb-1"
                 v-model="activity.question1.correctAnswer"
-                :options="correctAnswer"
+                :options="correctAnswer1"
               ></b-form-select>
             </b-form-group>
 
@@ -156,7 +156,7 @@
               <b-form-select
                 class="mt-1 mb-1"
                 v-model="activity.question2.correctAnswer"
-                :options="correctAnswer"
+                :options="correctAnswer2"
               ></b-form-select>
             </b-form-group>
 
@@ -198,7 +198,7 @@
               <b-form-select
                 class="mt-1 mb-1"
                 v-model="activity.question3.correctAnswer"
-                :options="correctAnswer"
+                :options="correctAnswer3"
               ></b-form-select>
             </b-form-group>
 
@@ -240,7 +240,7 @@
               <b-form-select
                 class="mt-1 mb-1"
                 v-model="activity.question4.correctAnswer"
-                :options="correctAnswer"
+                :options="correctAnswer4"
               ></b-form-select>
             </b-form-group>
 
@@ -282,7 +282,7 @@
               <b-form-select
                 class="mt-1 mb-1"
                 v-model="activity.question5.correctAnswer"
-                :options="correctAnswer"
+                :options="correctAnswer5"
               ></b-form-select>
             </b-form-group>
 
@@ -381,11 +381,35 @@ export default {
           corretcAnswer: 'Q5A4'
         }
       },
-      correctAnswer: [
+      correctAnswer1: [
             {value: 'Q1A1', text: 'Resposta 1'},
             {value: 'Q1A2', text: 'Resposta 2'},
             {value: 'Q1A3', text: 'Resposta 3'},
             {value: 'Q1A4', text: 'Resposta 4'}
+          ],
+          correctAnswer2: [
+            {value: 'Q2A1', text: 'Resposta 1'},
+            {value: 'Q2A2', text: 'Resposta 2'},
+            {value: 'Q2A3', text: 'Resposta 3'},
+            {value: 'Q2A4', text: 'Resposta 4'}
+          ],
+          correctAnswer3: [
+            {value: 'Q3A1', text: 'Resposta 1'},
+            {value: 'Q3A2', text: 'Resposta 2'},
+            {value: 'Q3A3', text: 'Resposta 3'},
+            {value: 'Q3A4', text: 'Resposta 4'}
+          ],
+          correctAnswer4: [
+            {value: 'Q4A1', text: 'Resposta 1'},
+            {value: 'Q4A2', text: 'Resposta 2'},
+            {value: 'Q4A3', text: 'Resposta 3'},
+            {value: 'Q4A4', text: 'Resposta 4'}
+          ],
+          correctAnswer5: [
+            {value: 'Q5A1', text: 'Resposta 1'},
+            {value: 'Q5A2', text: 'Resposta 2'},
+            {value: 'Q5A3', text: 'Resposta 3'},
+            {value: 'Q5A4', text: 'Resposta 4'}
           ]
     }
     

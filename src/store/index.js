@@ -286,7 +286,18 @@ export default new Vuex.Store({
         console.log(error)
         throw error;
       }
-    }
+    },
+    async removeProposal({ commit }, id) {
+      try {
+        const response = await ActivityService.RemoveProposal(id);
+        commit('SET_MESSAGE', response.message);
+      }
+      catch (error) {
+        console.log('STORE removeProposal FAILS')
+        console.log(error)
+        throw error;
+      }
+    },
   },
   mutations: {
     SET_MESSAGE(state, payload) {
