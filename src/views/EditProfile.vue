@@ -32,7 +32,7 @@
       </b-form>
         </b-col>
         <b-col cols="6">
-          <b-avatar class="mt-4 ml-2" id="avatar" :src="user.photo" size="200px"></b-avatar>
+          <b-avatar class="mt-4 ml-2" id="avatar" alt="" :src="user.photo" size="200px"></b-avatar>
         </b-col>
       </b-row>
       

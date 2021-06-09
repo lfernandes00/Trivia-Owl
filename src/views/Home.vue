@@ -22,12 +22,6 @@
           <!-- Slides with custom text -->
           <b-carousel-slide alt="" img-src="https://picsum.photos/1024/480/?image=54" rel="preload">
           </b-carousel-slide>
-
-          <!-- Slides with image only -->
-          <b-carousel-slide
-            alt=""
-            img-src="https://picsum.photos/1024/480/?image=58"
-          ></b-carousel-slide>
         </b-carousel>
       </div>
       <b-row class="mt-5">
@@ -104,7 +98,7 @@
           <tbody>
             <tr>
               <td>1</td>
-              <router-link id="firstActivity" :to="{name: 'Activity', params: {
+              <router-link rel="preconnect" id="firstActivity" :to="{name: 'Activity', params: {
                 activityId: activities[0].id
                 }}"><td id="nameTd">{{activities[0].name}}</td></router-link>
               <td>{{activities[0].course}}</td>
@@ -113,7 +107,7 @@
 
             <tr>
               <td>2</td>
-              <router-link id="secondActivity" :to="{name: 'Activity', params: {
+              <router-link rel="preconnect" id="secondActivity" :to="{name: 'Activity', params: {
                 activityId: activities[1].id
                 }}"><td id="nameTd">{{activities[1].name}}</td></router-link>
               <td>{{activities[1].course}}</td>
@@ -122,7 +116,7 @@
 
             <tr>
               <td>3</td>
-              <router-link id="thirdActivity" :to="{name: 'Activity', params: {
+              <router-link rel="preconnect" id="thirdActivity" :to="{name: 'Activity', params: {
                 activityId: activities[2].id
                 }}"><td id="nameTd">{{activities[2].name}}</td></router-link>
               <td>{{activities[2].course}}</td>
@@ -150,9 +144,6 @@ export default {
   created() {
     this.getUsersList();
     this.getActivitiesList();
-  },
-  computed: {
-    
   },
   methods: {
     async getUsersList() {
@@ -190,9 +181,6 @@ export default {
             if (a.points < b.points) return -1 * -1
             if (a.points === b.points) return 0
         }
-  },
-  mounted() {
-    
   }
 };
 </script>

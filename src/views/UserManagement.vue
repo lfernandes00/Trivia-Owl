@@ -14,7 +14,7 @@
           <tbody :key="user.id" v-for="(user, index) in users">
             <tr>
               <td>{{ index + 1 }}</td>
-              <td><b-avatar :src="user.photo"></b-avatar></td>
+              <td><b-avatar alt="" :src="user.photo"></b-avatar></td>
               <td>{{ user.name }}</td>
               <td>{{ user.course }}</td>
               <td>

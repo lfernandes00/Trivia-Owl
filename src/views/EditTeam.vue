@@ -27,6 +27,7 @@
           <b-avatar
             class="mt-4 ml-2"
             id="avatar"
+            alt=""
             :src="team.photo"
             size="200px"
           ></b-avatar>

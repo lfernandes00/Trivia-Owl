@@ -6,6 +6,7 @@
           <div>
             <b-img
               class="ml-4"
+              alt=""
               :src="activity.photo"
               style="width: 330px; height: 300px;display:flex; justify-content: start"
             ></b-img>

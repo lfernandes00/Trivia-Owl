@@ -20,7 +20,7 @@
           <tbody :key="proposal.id" v-for="(proposal,index) in proposals">
             <tr>
               <td>{{index + 1}}</td>
-              <td><b-avatar :src="proposal.photo"></b-avatar></td>
+              <td><b-avatar alt="" :src="proposal.photo"></b-avatar></td>
               <td id="nameTd">{{proposal.name}}</td>
               <td>{{proposal.points}}</td>
               <td>

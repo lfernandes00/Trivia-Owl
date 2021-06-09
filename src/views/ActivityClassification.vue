@@ -4,7 +4,8 @@
       <b-row>
         <b-col cols="3" class="mt-5 ml-5">
           <img
-            src="../assets/classificacao.webp" alt=""
+            src="../assets/classificacao.webp" 
+            alt=""
             style="width: 100px; height: 100px"
           />
         </b-col>
@@ -28,7 +29,7 @@
           <tbody :key="user.id" v-for="(user, index) in scores">
             <tr>
               <td>{{index + 1}}</td>
-              <td><b-avatar :src="user.photo"></b-avatar></td>
+              <td><b-avatar alt="" :src="user.photo"></b-avatar></td>
               <td id="nameTd">{{user.name}}</td>
               <td>{{user.activityScore.score}}</td>
             </tr>

@@ -20,7 +20,7 @@
           <tbody :key="team.id" v-for="(team,index) in teams">
             <tr>
               <td>{{index + 1}}</td>
-              <td><b-avatar :src="team.photo"></b-avatar></td>
+              <td><b-avatar alt="" :src="team.photo"></b-avatar></td>
               <td id="nameTd">{{team.name}}</td>
               <td>{{team.members.length}}</td>
               <td>
