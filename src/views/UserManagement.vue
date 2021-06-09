@@ -11,7 +11,7 @@
               <th scope="col">Curso</th>
             </tr>
           </thead>
-          <tbody :key="user.id" v-for="(user,index) in getAllUsers">
+          <tbody :key="user.id" v-for="(user,index) in users">
             <tr>
               <td>{{index + 1}}</td>
               <td><b-avatar :src="user.photo"></b-avatar></td>
@@ -36,34 +36,28 @@ export default {
     }
   },
   created() {
-    this.users = this.$store.getters.getUsers;
+    this.getUsers();
   },
   methods: {
     removeUser(id) {
             // Remover objeto com confirmação
             this.$store.dispatch("removeUser", id);
-            this.users = this.$store.getters.getUsers;
+            this.getUsers();
             
+    },
+    async getUsers() {
+      try {
+        await this.$store.dispatch("getAllUsersForAdmin");
+        this.users = this.$store.getters.getUsers;
+      } catch (error) {
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+      }
     }
   },
   computed: {
-    getAllUsers() {
-      const allNames = [];
-      const allUsers = [];
-
-      for (let user of this.users) {
-        if (allNames.indexOf(user.username) == -1 && user.type !== 'admin')
-          allUsers.push({
-            id: user.id,
-            photo: user.photo,
-            name: user.name,
-            course: user.course,
-            points: user.points,
-            doneActivities: user.doneActivities
-          });
-      }
-      return allUsers;
-    }
   }
 };
 </script>

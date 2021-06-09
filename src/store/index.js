@@ -13,6 +13,7 @@ export default new Vuex.Store({
     users: [],
     user: '',
     activities: [],
+    proposals: [],
     activity: "",
     activityClassification: [],
     trophies: [],
@@ -42,7 +43,9 @@ export default new Vuex.Store({
     getTrophies: (state) => {
       return state.trophies;
     },
-    
+    getProposals: (state) => {
+      return state.proposals;
+    },
   },
   actions: {
     // async getAPIRoot({ commit }) {
@@ -233,52 +236,57 @@ export default new Vuex.Store({
         throw error;
       }
     },
-    removeUser(context, payload) {
-      if (confirm('Deseja remover o utilizador?')) {
-        context.commit("REMOVEUSER", payload);
-        localStorage.setItem('users', JSON.stringify(context.state.users))
+    async getAllUsersForAdmin({ commit }) {
+      try {
+        const users = await UserService.fetchAllStudents();
+        // console.log('STORE listUsers: ' + users.length)
+        commit('SET_USERS', users);
+        //return Promise.resolve(users);
       }
-
-    },
-    editActivity(context, payload) {
-      context.state.activities.map(
-        activity => {
-          if (activity.id === payload.id) {
-            activity.name = payload.name
-            activity.course = payload.course
-            activity.subject = payload.subject
-            activity.points = payload.points
-            activity.level = payload.level
-            activity.photo = payload.photo
-            activity.question1 = payload.question1
-            activity.question2 = payload.question2
-            activity.question3 = payload.question3
-            activity.question4 = payload.question4
-            activity.question5 = payload.question5
-          }
-        }
-      )
-      localStorage.setItem('activities', JSON.stringify(context.state.activities))
-    },
-    addProposal(context, payload) {
-      const proposal = context.state.proposals.find(proposal => proposal.name === proposal.name);
-
-      if (proposal == undefined) {
-        context.commit("REGISTERPROPOSAL", payload);
-        localStorage.setItem("proposals", JSON.stringify(context.state.proposals));
-      } else {
-        throw Error(`Já existe uma atividade com o nome ${payload.name}`)
+      catch (error) {
+        // console.log('STORE listUsers: ' + error);
+        commit('SET_USERS', []);
+        // commit("SET_MESSAGE", error);
+        throw error; // Needed to continue propagating the error
+        //return Promise.reject(error);
       }
     },
-    aceptProposal(context, payload) {
-      context.commit("ACEPTPROPOSAL", payload);
-      localStorage.setItem('activities', JSON.stringify(context.state.activities));
-      localStorage.setItem("proposals", JSON.stringify(context.state.proposals));
+    async removeUser({ commit }, id) {
+      try {
+        const response = await UserService.RemoveUser(id);
+        commit('SET_MESSAGE', response.message);
+      }
+      catch (error) {
+        console.log('STORE removeUser FAILS')
+        console.log(error)
+        throw error;
+      }
     },
-    removeProposal(context, id) {
-      context.commit('REMOVEPROPOSAL', id)
-      localStorage.setItem("proposals", JSON.stringify(context.state.proposals));
+    async getAllProposals({ commit }) {
+      try {
+        const proposals = await ActivityService.fetchAllProposals();
+        commit('SET_PROPOSALS', proposals);
+        //return Promise.resolve(users);
+      }
+      catch (error) {
+        console.log(error);
+        commit('SET_PROPOSALS', []);
+        // commit("SET_MESSAGE", error);
+        throw error; // Needed to continue propagating the error
+        //return Promise.reject(error);
+      }
     },
+    async aceptActivity({ commit }, value) {
+      try {
+        const response = await ActivityService.AceptActivity(value);
+        commit('SET_MESSAGE', response.message);
+      }
+      catch (error) {
+        console.log('STORE aceptActivity FAILS')
+        console.log(error)
+        throw error;
+      }
+    }
   },
   mutations: {
     SET_MESSAGE(state, payload) {
@@ -319,6 +327,10 @@ export default new Vuex.Store({
     SET_ACTIVITY_CLASSIFICATION(state, payload) {
       console.log("STORE MUTATION SET_ACTIVITY_CLASSIFICATION: " + payload.length)
       state.activityClassification = payload
+    },
+    SET_PROPOSALS(state, payload) {
+      console.log("STORE MUTATION SET_PROPOSALS: " + payload.length)
+      state.proposals = payload
     },
   },
 

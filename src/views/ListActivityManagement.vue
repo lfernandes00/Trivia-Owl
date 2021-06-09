@@ -66,7 +66,7 @@ export default {
     };
   },
   created() {
-    this.activities = this.$store.getters.getActivities;
+    this.getActivitiesList();
   },
   methods: {
     sortActivitiesByLikes() {
@@ -77,7 +77,18 @@ export default {
       if (a.likes > b.likes) return 1 * this.flagLikes;
       if (a.likes < b.likes) return -1 * this.flagLikes;
       if (a.likes == b.likes) return 0;
-    }
+    },
+    async getActivitiesList() {
+      try {
+        await this.$store.dispatch("getAllActivities");
+        this.activities = this.$store.getters.getActivities;
+      } catch (error) {
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+      }
+    },
   },
   computed: {
     getAllCourses() {

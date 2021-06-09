@@ -181,6 +181,39 @@ export const ActivityService = {
         }
     },
 
+    async fetchAllProposals() {
+        const response = await fetch(`${API_URL}/activities/admin`, {
+            method: "GET",
+            headers: authHeader()
+        });
+        if (response.ok) {
+            let data = await response.json();
+            return data;
+        }
+        else {
+            throw Error(handleResponses(response.status));
+        }
+
+    },
+
+    async AceptActivity(value) {
+        console.log(value)
+        const response = await fetch(`${API_URL}/activities/${value.activityId}/`, {
+            method: "PATCH",
+            headers: authHeader(),
+            body: JSON.stringify({
+                pending: value.pending
+            })
+        });
+        if (response.ok) {
+            let data = await response.json();
+            return data;
+        }
+        else {
+            throw Error(handleResponses(response.status));
+        }
+    },
+
     // sends request to API root
     async getPublicContent() {
         // return axios.get(API_URL);

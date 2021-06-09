@@ -47,26 +47,37 @@ data() {
   }
 },
 created() {
-  this.proposals = this.$store.getters.getProposals
+  this.getProposalsList();
 },
 methods: {
   removeProposal(id) {
     
 
     Swal.fire({
-  title: 'Deseja remover a proposta?',
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Sim!'
-}).then((result) => {
-  if (result.isConfirmed) {
-    this.$store.dispatch('removeProposal', id)
-    this.proposals = this.$store.getters.getProposals
-  }
-})
-  }
+      title: 'Deseja remover a proposta?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+      this.$store.dispatch('removeProposal', id)
+      this.getProposalsList();
+    }
+  })
+  },
+  async getProposalsList() {
+      try {
+        await this.$store.dispatch("getAllProposals");
+        this.proposals = this.$store.getters.getProposals;
+      } catch (error) {
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+      }
+    }
 }
 }
 </script>
