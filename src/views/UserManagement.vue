@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
 export default {
   name: "UserManagement",
   data() {
