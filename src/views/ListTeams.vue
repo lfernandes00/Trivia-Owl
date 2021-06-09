@@ -24,7 +24,7 @@
               <td id="nameTd">{{team.name}}</td>
               <td>{{team.members.length}}</td>
               <td>
-                <router-link rel="preload" :to="{name: 'Team', params: {teamId: team.id}} ">
+                <router-link rel="preconnect" :to="{name: 'Team', params: {teamId: team.id}} ">
                   <b-button pill class="mr-2" id="detailBtn">Ver</b-button>
                 </router-link>
                 

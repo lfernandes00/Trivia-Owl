@@ -2,7 +2,7 @@
   <div id="activityCard" class="">
     <b-col cols="4">
       <router-link
-      rel="preload"
+      rel="preconnect"
         :to="{
           name: 'Activity',
           params: {

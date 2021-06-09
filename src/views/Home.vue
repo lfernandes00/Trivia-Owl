@@ -98,7 +98,7 @@
           <tbody>
             <tr>
               <td>1</td>
-              <router-link rel="preload" id="firstActivity" :to="{name: 'Activity', params: {
+              <router-link rel="preconnect" id="firstActivity" :to="{name: 'Activity', params: {
                 activityId: activities[0].id
                 }}"><td id="nameTd">{{activities[0].name}}</td></router-link>
               <td>{{activities[0].course}}</td>
@@ -107,7 +107,7 @@
 
             <tr>
               <td>2</td>
-              <router-link rel="preload" id="secondActivity" :to="{name: 'Activity', params: {
+              <router-link rel="preconnect" id="secondActivity" :to="{name: 'Activity', params: {
                 activityId: activities[1].id
                 }}"><td id="nameTd">{{activities[1].name}}</td></router-link>
               <td>{{activities[1].course}}</td>
@@ -116,7 +116,7 @@
 
             <tr>
               <td>3</td>
-              <router-link rel="preload" id="thirdActivity" :to="{name: 'Activity', params: {
+              <router-link rel="preconnect" id="thirdActivity" :to="{name: 'Activity', params: {
                 activityId: activities[2].id
                 }}"><td id="nameTd">{{activities[2].name}}</td></router-link>
               <td>{{activities[2].course}}</td>

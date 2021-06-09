@@ -69,7 +69,7 @@
           class="mt-5 ml-3"
           style="display: flex; items-align: start"
         >
-          <router-link rel="preload" :to="{ name: 'CreateTeam' }">
+          <router-link rel="preconnect" :to="{ name: 'CreateTeam' }">
             <b-button
               pill
               id="teamBtn"
@@ -80,7 +80,7 @@
             >
           </router-link>
 
-          <router-link rel="preload" :to="{ name: 'EditProfile', params: {userId: this.user.id} }"
+          <router-link rel="preconnect" :to="{ name: 'EditProfile', params: {userId: this.user.id} }"
             ><b-button
               pill
               id="editBtn"
@@ -90,7 +90,7 @@
           >
         </b-col>
         <b-col cols="3" class="mt-5">
-          <router-link class="h1" rel="preload" :to="{ name: 'Classification' }"
+          <router-link class="h1" rel="preconnect" :to="{ name: 'Classification' }"
             ><b-icon
               style="color: #70ffb4; font-size: 60px"
               icon="people-fill"
@@ -98,7 +98,7 @@
           ></router-link>
         </b-col>
         <b-col cols="3" class="mt-5">
-          <router-link class="h1" rel="preload" :to="{ name: 'Trophies' , params: {userId: user.id}}"
+          <router-link class="h1" rel="preconnect" :to="{ name: 'Trophies' , params: {userId: user.id}}"
             ><b-icon
               style="color: #70ffb4; font-size: 60px"
               icon="trophy-fill"

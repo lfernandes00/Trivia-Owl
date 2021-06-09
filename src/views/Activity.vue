@@ -51,7 +51,7 @@
         <b-col cols="6"></b-col>
         <b-col cols="3"><br>
           <!-- Botões que ao serem clicados enviam os utilizadores para a página de classificação ou para as diferentes questões da atividade -->
-          <router-link class="mr-3" rel="preload" :to="{ name: 'ActivityClassification' , params: {activityId: $route.params.activityId}}"
+          <router-link class="mr-3" rel="preconnect" :to="{ name: 'ActivityClassification' , params: {activityId: $route.params.activityId}}"
             ><b-button
               pill
               style="background-color: #70FFB4; color: #0B132B; font-weight: bold;"
@@ -59,7 +59,7 @@
             ></router-link
           >
           <router-link
-            rel="preload"
+            rel="preconnect"
             :to="{
               name: 'ActivitySolve',
               params: {
