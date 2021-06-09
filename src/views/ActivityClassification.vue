@@ -29,7 +29,7 @@
           <tbody :key="user.id" v-for="(user, index) in scores">
             <tr>
               <td>{{index + 1}}</td>
-              <td><b-avatar alt="" :src="user.photo"></b-avatar></td>
+              <td><b-avatar img-alt="" :src="user.photo"></b-avatar></td>
               <td id="nameTd">{{user.name}}</td>
               <td>{{user.activityScore.score}}</td>
             </tr>

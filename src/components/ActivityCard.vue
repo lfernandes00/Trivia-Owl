@@ -2,6 +2,7 @@
   <div id="activityCard" class="">
     <b-col cols="4">
       <router-link
+      rel="preload"
         :to="{
           name: 'Activity',
           params: {

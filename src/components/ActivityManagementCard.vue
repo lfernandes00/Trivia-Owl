@@ -2,7 +2,9 @@
   <div id="activityManagementCard" class="">
     <b-col cols="4">
       <router-link
+      rel="preload"
         :to="{
+          
           name: 'EditActivity',
           params: {
             activityId: activity.id,

@@ -29,7 +29,7 @@
             >{{ activity }}</option
           >
         </select>
-        <router-link :to="{ name: 'AddActivity' }"
+        <router-link rel="preload" :to="{ name: 'AddActivity' }"
           ><b-button pill id="addBtn" class="btn btn-primary mt-4"
             >+</b-button
           ></router-link

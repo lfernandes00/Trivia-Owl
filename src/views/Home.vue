@@ -15,19 +15,19 @@
           style="text-shadow: 1px 1px 2px #333"
         >
           <!-- Text slides with image -->
-          <b-carousel-slide alt="" img-src="https://picsum.photos/1024/480/?image=52" rel="preload">
+          <b-carousel-slide img-alt="" img-src="https://picsum.photos/1024/480/?image=52" rel="preload">
             <h1>TÍTULO DA NOTÍCIA</h1>
           </b-carousel-slide>
 
           <!-- Slides with custom text -->
-          <b-carousel-slide alt="" img-src="https://picsum.photos/1024/480/?image=54" rel="preload">
+          <b-carousel-slide img-alt="" img-src="https://picsum.photos/1024/480/?image=54" rel="preload">
           </b-carousel-slide>
         </b-carousel>
       </div>
       <b-row class="mt-5">
         <!-- Criação de 2 tabelas, ambas borderless, uma para os utilizadores e outra para as atividades -->
         <b-col>
-          <h4 id="title">Utilizadores</h4>
+          <a id="userTitle">Utilizadores</a>
           <div v-if="users.length >= 3">
           <table id="usersTable" class="table table-borderless">
           <thead>
@@ -84,7 +84,7 @@
           </div>
         </b-col>
         <b-col>
-          <h4>Atividades</h4>
+          <a id="activityTitle">Atividades</a>
           <div>
             <table id="activitiesTable" class="table table-borderless">
           <thead>
@@ -98,7 +98,7 @@
           <tbody>
             <tr>
               <td>1</td>
-              <router-link rel="preconnect" id="firstActivity" :to="{name: 'Activity', params: {
+              <router-link rel="preload" id="firstActivity" :to="{name: 'Activity', params: {
                 activityId: activities[0].id
                 }}"><td id="nameTd">{{activities[0].name}}</td></router-link>
               <td>{{activities[0].course}}</td>
@@ -107,7 +107,7 @@
 
             <tr>
               <td>2</td>
-              <router-link rel="preconnect" id="secondActivity" :to="{name: 'Activity', params: {
+              <router-link rel="preload" id="secondActivity" :to="{name: 'Activity', params: {
                 activityId: activities[1].id
                 }}"><td id="nameTd">{{activities[1].name}}</td></router-link>
               <td>{{activities[1].course}}</td>
@@ -116,7 +116,7 @@
 
             <tr>
               <td>3</td>
-              <router-link rel="preconnect" id="thirdActivity" :to="{name: 'Activity', params: {
+              <router-link rel="preload" id="thirdActivity" :to="{name: 'Activity', params: {
                 activityId: activities[2].id
                 }}"><td id="nameTd">{{activities[2].name}}</td></router-link>
               <td>{{activities[2].course}}</td>
@@ -187,7 +187,7 @@ export default {
 
 <style scoped>
 /* Estilização da tabela */
-.h4,h4{color:#ff7070}#userTable{color:#fff}th{color:#ff7070}td{color:#fff}#nameTd{color:#6fffe9}#firstActivity{text-decoration:none}#secondActivity{text-decoration:none}#thirdActivity{text-decoration:none}#activitiesTable{color:#fff}#activitiesTable{text-align:start}#usersTable{text-align:start}
+.a,a#userTitle{color:#ff7070; font-weight: bold;font-size: 20px;}a#activityTitle{color:#ff7070;font-weight: bold;font-size: 20px;}#userTable{color:#fff}th{color:#ff7070}td{color:#fff}#nameTd{color:#6fffe9}#firstActivity{text-decoration:none}#secondActivity{text-decoration:none}#thirdActivity{text-decoration:none}#activitiesTable{color:#fff}#activitiesTable{text-align:start}#usersTable{text-align:start}
 
 
 </style>

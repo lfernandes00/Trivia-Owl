@@ -4,7 +4,7 @@
     <b-container fluid>
       <b-row class="mt-5">
         <b-col cols="4"
-          ><b-avatar :src="getTeam.photo" alt="" size="200px"></b-avatar
+          ><b-avatar :src="getTeam.photo" img-alt="" size="200px"></b-avatar
         ></b-col>
         <b-col cols="6" class="mt-5">
           <h6>Nível</h6>
@@ -68,10 +68,10 @@
           
         </b-col>
         <b-col cols="3" class="mt-5">
-          <router-link class="h1" :to='{name: "TeamClassification"}'><b-icon style="color: #70FFB4; font-size: 60px;" icon="people-fill"></b-icon></router-link>
+          <router-link class="h1" rel="preload" :to='{name: "TeamClassification"}'><b-icon style="color: #70FFB4; font-size: 60px;" icon="people-fill"></b-icon></router-link>
         </b-col>
         <b-col cols="3" class="mt-5">
-          <router-link class="h1" :to='{name: "Trophies"}'><b-icon style="color: #70FFB4; font-size: 60px;" icon="trophy-fill"></b-icon></router-link>
+          <router-link class="h1" rel="preload" :to='{name: "Trophies"}'><b-icon style="color: #70FFB4; font-size: 60px;" icon="trophy-fill"></b-icon></router-link>
         </b-col>
       </b-row>
     </b-container>

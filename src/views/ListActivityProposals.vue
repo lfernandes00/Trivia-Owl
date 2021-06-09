@@ -24,7 +24,7 @@
               <td id="nameTd">{{proposal.name}}</td>
               <td>{{proposal.points}}</td>
               <td>
-                <router-link :to="{name: 'ActivityProposal', params: {proposalId: proposal.id}} ">
+                <router-link rel="preload" :to="{name: 'ActivityProposal', params: {proposalId: proposal.id}} ">
                   <b-button pill class="mr-2" id="detailBtn">Ver</b-button>
                 </router-link>
                 

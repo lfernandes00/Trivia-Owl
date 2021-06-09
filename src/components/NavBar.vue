@@ -1,7 +1,7 @@
 <template>
   <div id="navbar">
     <b-navbar toggleable="lg" style="height: 60px">
-      <router-link :to="{ name: 'Home' }"
+      <router-link rel="preload" :to="{ name: 'Home' }"
         ><img id="logo" alt="" src="../assets/logo_trivia_owl_escuro.webp"
       /></router-link>
 
@@ -11,13 +11,13 @@
         <!-- Right aligned nav items -->
         <!--  class="mt-2 mr-4"-->
         <b-navbar-nav class="ml-auto mr-2">
-          <router-link id="firstNav" rel="preconnect" :to="{ name: 'ListActivities' }"
+          <router-link id="firstNav" rel="preload" :to="{ name: 'ListActivities' }"
             ><p class="mt-3">Atividades</p></router-link
           >
-          <router-link id="secondNav" rel="preconnect" :to="{ name: 'Classification' }"
+          <router-link id="secondNav" rel="preload" :to="{ name: 'Classification' }"
             ><p class="mt-3">Classificação</p></router-link
           >
-          <router-link id="thirdNav" rel="preconnect" :to="{ name: 'Interaction' }"
+          <router-link id="thirdNav" rel="preload" :to="{ name: 'Interaction' }"
             ><p class="mt-3">Interação</p></router-link
           >
           <div class="dropdown dropleft">
@@ -29,25 +29,25 @@
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <b-avatar :src="getUser.photo"></b-avatar>
+              <b-avatar img-alt="" :src="getUser.photo"></b-avatar>
             </button>
             <div v-if="getUser == ''" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item dropdownItem" href="#" v-b-modal.modalLogin >Entrar</a>
             </div>
             <div v-else-if="getUser.type == 'admin'" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item dropdownItem" href="#"><router-link class="profileDrop" rel="preconnect" :to="{name: 'Profile' , params: {userID: getUser.id}}">Perfil</router-link></a>
-              <a class="dropdown-item dropdownItem" href="#"><router-link rel="preconnect" :to="{name: 'UserManagement'}">Gerir Utilizadores</router-link></a>
-              <a class="dropdown-item dropdownItem" href="#"><router-link rel="preconnect" :to="{name: 'ListActivityManagement'}">Gerir Atividades</router-link></a>
-              <a class="dropdown-item dropdownItem" href="#" @click='logout'>Sair</a>
+              <a class="dropdown-item dropdownItem" href="#"><router-link class="profileDrop" rel="preload" :to="{name: 'Profile' , params: {userID: getUser.id}}">Perfil</router-link></a>
+              <a class="dropdown-item dropdownItem" href="#"><router-link rel="preload" :to="{name: 'UserManagement'}">Gerir Utilizadores</router-link></a>
+              <a class="dropdown-item dropdownItem" href="#"><router-link rel="preload" :to="{name: 'ListActivityManagement'}">Gerir Atividades</router-link></a>
+              <a class="dropdown-item dropdownItem" rel="preload" href="#" @click='logout'>Sair</a>
             </div>
             <div v-else-if="getUser.type == 'docente'" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item dropdownItem" href="#"><router-link rel="preconnect" class="profileDrop" :to="{name: 'Profile' , params: {userID: getUser.id}}">Perfil</router-link></a>
-              <a class="dropdown-item dropdownItem" href="#"><router-link rel="preconnect" :to="{name: 'ListActivityManagement'}">Gerir Atividades</router-link></a>
-              <a class="dropdown-item dropdownItem" href="#" @click='logout'>Sair</a>
+              <a class="dropdown-item dropdownItem" href="#"><router-link rel="preload" class="profileDrop" :to="{name: 'Profile' , params: {userID: getUser.id}}">Perfil</router-link></a>
+              <a class="dropdown-item dropdownItem" href="#"><router-link rel="preload" :to="{name: 'ListActivityManagement'}">Gerir Atividades</router-link></a>
+              <a class="dropdown-item dropdownItem" rel="preload" href="#" @click='logout'>Sair</a>
             </div>
             <div v-else-if="getUser.type == 'estudante'" class="dropdown-menu dropdownMenu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item dropdownItem" href="#"><router-link rel="preconnect" class="profileDrop" :to="{name: 'Profile' , params: {userID: getUser.id}}">Perfil</router-link></a>    
-              <a class="dropdown-item dropdownItem" href="#" @click='logout'>Sair</a>
+              <a class="dropdown-item dropdownItem" href="#"><router-link rel="preload" class="profileDrop" :to="{name: 'Profile' , params: {userID: getUser.id}}">Perfil</router-link></a>    
+              <a class="dropdown-item dropdownItem" rel="preload" href="#" @click='logout'>Sair</a>
             </div>
           </div>
         </b-navbar-nav>
