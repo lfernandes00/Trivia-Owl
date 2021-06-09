@@ -72,9 +72,9 @@ export default {
       this.activities = this.activities.sort(this.compareActivities);
     },
     compareActivities(a, b) {
-      if (a.likes > b.likes) return 1 * this.flagLikes;
-      if (a.likes < b.likes) return -1 * this.flagLikes;
-      if (a.likes == b.likes) return 0;
+      if (a.Likes.length > b.Likes.length) return 1 * this.flagLikes;
+      if (a.Likes.length < b.Likes.length) return -1 * this.flagLikes;
+      if (a.Likes.length == b.Likes.length) return 0;
     },
     async getActivitiesList() {
       try {

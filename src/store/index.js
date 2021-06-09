@@ -58,7 +58,6 @@ export default new Vuex.Store({
         // console.log("STORE REGISTER SUCCES: response is...")
         // console.log(response)
         commit('SET_MESSAGE', response.message);
-        commit('loginSuccess', user);
       }
       catch (error) {
         console.log('STORE REGISTER FAILS')
@@ -238,7 +237,7 @@ export default new Vuex.Store({
     },
     async getAllUsersForAdmin({ commit }) {
       try {
-        const users = await UserService.fetchAllStudents();
+        const users = await UserService.fetchAllUsers();
         // console.log('STORE listUsers: ' + users.length)
         commit('SET_USERS', users);
         //return Promise.resolve(users);
@@ -294,6 +293,17 @@ export default new Vuex.Store({
       }
       catch (error) {
         console.log('STORE removeProposal FAILS')
+        console.log(error)
+        throw error;
+      }
+    },
+    async editActivity({ commit }, value) {
+      try {
+        const response = await ActivityService.EditActivity(value);
+        commit('SET_MESSAGE', response.message);
+      }
+      catch (error) {
+        console.log('STORE editActivity FAILS')
         console.log(error)
         throw error;
       }

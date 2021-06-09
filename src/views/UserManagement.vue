@@ -8,7 +8,7 @@
               <th scope="col"></th>
               <th scope="col"></th>
               <th scope="col">Nome</th>
-              <th scope="col">Curso</th>
+              <th scope="col">Tipo</th>
             </tr>
           </thead>
           <tbody :key="user.id" v-for="(user, index) in users">
@@ -16,7 +16,7 @@
               <td>{{ index + 1 }}</td>
               <td><b-avatar alt="" :src="user.photo"></b-avatar></td>
               <td>{{ user.name }}</td>
-              <td>{{ user.course }}</td>
+              <td>{{ user.userType.name }}</td>
               <td>
                 <b-button pill id="removeBtn" @click="removeUser(user.id)"
                   >Eliminar</b-button
@@ -55,6 +55,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           this.$store.dispatch("removeUser", id);
+          this.$router.push({name:'UserManagement'});
           this.getUsers();
         }
       });

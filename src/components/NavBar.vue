@@ -248,7 +248,6 @@ export default {
       if (this.user.username && this.user.password) {
             //makes request by dispatching an action
       try {
-        this.hideModal("modalLogin");
         await this.$store.dispatch("register", this.user);
         this.hideModal("modalRegister");
         // console.log("REGISTER OK");

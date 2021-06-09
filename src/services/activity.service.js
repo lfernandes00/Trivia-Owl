@@ -228,6 +228,36 @@ export const ActivityService = {
         }
     },
 
+    async EditActivity(value) {
+        console.log(value)
+        const response = await fetch(`${API_URL}/activities/${value.activityId}/admin`, {
+            method: "PATCH",
+            headers: authHeader(),
+            body: JSON.stringify({
+                name: value.name,
+                course: value.course,
+                subject: value.subject,
+                points: value.points,
+                level: value.level,
+                type: value.type,
+                photo: value.photo,
+                desc: value.desc,
+                question1: value.question1,
+                question2: value.question2,
+                question3: value.question3,
+                question4: value.question4,
+                question5: value.question5 
+            })
+        });
+        if (response.ok) {
+            let data = await response.json();
+            return data;
+        }
+        else {
+            throw Error(handleResponses(response.status));
+        }
+    },
+
     // sends request to API root
     async getPublicContent() {
         // return axios.get(API_URL);
