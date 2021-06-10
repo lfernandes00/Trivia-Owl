@@ -444,7 +444,7 @@ export default {
         this.$router.push({name:'ListActivities'})
         Swal.fire({
           title: 'Sucesso!',
-          text: `Nova atividade criada!`,
+          text: `Nova proposta criada!`,
           buttonsStyling: false,
           confirmButtonClass: 'btn btn-success',
           icon: 'success'

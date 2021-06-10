@@ -43,6 +43,7 @@
             size="lg"
             class="mb-2"
             style="background-color:#70FFB4; color: #0B132B; "
+            :disabled='disabledLike'
             @click='likeActivity()'>
             <b-icon icon="hand-thumbs-up"></b-icon> </b-button
           ><br />
@@ -95,7 +96,8 @@ export default {
     return {
       user: '',
       activity: '',
-      disabled: false
+      disabled: false,
+      disabledLike: false
     };
   },
   created() {
@@ -103,8 +105,15 @@ export default {
     this.user = this.$store.getters.getLoggedUser;
 
     
-    console.log(this.activity.Scores)
-    console.log(this.user.id)
+    if (this.user.type == 'docente') {
+      this.disabledLike = false;
+    }
+    if (this.user.type == 'admin') {
+      this.disabledLike = true;
+    }
+    if (this.user.type == 'estudante') {
+      this.disabledLike = false;
+    }
 
   },
   methods: {
