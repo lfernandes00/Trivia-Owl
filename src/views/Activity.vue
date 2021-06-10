@@ -115,8 +115,7 @@ export default {
 
       if (this.activity.Likes.length == 0) {
         this.$store.dispatch('addLike', newLike)
-        this.$router.push({name:'Activity', params: {activityId: this.activity.id}});
-        this.getActivity()
+        this.activity = this.$store.getters.getActivityById(this.activity.id)
       }
 
       for (const like of this.activity.Likes) {
